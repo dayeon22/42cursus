@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 12:36:05 by daypark           #+#    #+#             */
-/*   Updated: 2021/01/16 13:39:22 by daypark          ###   ########.fr       */
+/*   Updated: 2021/01/24 12:43:09 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		ft_isprint(int c);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
 void	*ft_calloc(size_t count, size_t size);
-char	*strdup(const char *s1);
+char	*ft_strdup(const char *s1);
 
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
