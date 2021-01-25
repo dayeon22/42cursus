@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daypark <daypark@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/15 05:14:31 by daypark           #+#    #+#             */
-/*   Updated: 2021/01/16 13:06:29 by daypark          ###   ########.fr       */
+/*   Created: 2021/01/10 10:04:08 by daypark           #+#    #+#             */
+/*   Updated: 2021/01/24 17:40:08 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+char	*ft_strrchr(const char *s, int c)
 {
-	unsigned char	*tmp;
-	unsigned char	*s;
+	char	*result;
 
-	if (dst < src)
+	result = NULL;
+	while (*s)
 	{
-		tmp = (unsigned char *)dst;
-		s = (unsigned char *)src;
-		while (len--)
-			*tmp++ = *s++;
+		if (*s == c)
+			result = (char *)s;
+		s++;
 	}
-	else
-	{
-		tmp = (unsigned char *)dst + len - 1;
-		s = (unsigned char *)src + len - 1;
-		while (len--)
-			*tmp-- = *s--;
-	}
-	return (dst);
+	if (*s == c)
+		result = (char *)s;
+	return (result);
 }

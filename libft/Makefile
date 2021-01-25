@@ -6,7 +6,7 @@
 #    By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/24 11:16:19 by daypark           #+#    #+#              #
-#    Updated: 2021/01/24 12:51:50 by daypark          ###   ########.fr        #
+#    Updated: 2021/01/24 13:00:46 by daypark          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,8 +24,6 @@ SRCS = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
 
 OBJS = $(SRCS:.c=.o)
 
-.SUFFIXES : .c .o
-
 all : $(TARGET)
 
 $(TARGET) : $(OBJS)
@@ -40,5 +38,4 @@ clean :
 fclean : clean
 	rm -f $(TARGET)
 
-re :
-	fclean all
+re : fclean all

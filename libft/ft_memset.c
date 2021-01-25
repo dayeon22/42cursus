@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daypark <daypark@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/10 10:04:08 by daypark           #+#    #+#             */
-/*   Updated: 2021/01/16 13:08:54 by daypark          ###   ########.fr       */
+/*   Created: 2021/01/10 13:55:11 by daypark           #+#    #+#             */
+/*   Updated: 2021/01/24 17:09:19 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	char	*result;
+	unsigned char *	tmp;
 
-	result = NULL;
-	while (*s)
-	{
-		if (*s == c)
-			result = (char *)s;
-		s++;
-	}
-	return (result);
+	tmp = (unsigned char *)b;
+	while (len--)
+		*((unsigned char *)tmp++) = c;
+	return (b);
 }

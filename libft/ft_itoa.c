@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 20:00:01 by daypark           #+#    #+#             */
-/*   Updated: 2021/01/23 16:19:26 by daypark          ###   ########.fr       */
+/*   Updated: 2021/01/24 16:12:35 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,5 @@ char	*ft_itoa(int n)
 	}
 	if (sign == -1)
 		res[0] = '-';
-	return res;
+	return (res);
 }

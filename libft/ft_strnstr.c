@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 10:55:49 by daypark           #+#    #+#             */
-/*   Updated: 2021/01/16 13:09:27 by daypark          ###   ########.fr       */
+/*   Updated: 2021/01/24 21:18:06 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,22 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 		i++;
 	}
 	return (NULL);
+}
+
+#include <stdio.h>
+#include <string.h>
+
+int		main(void)
+{
+	char	*big = "123456789";
+	char	*little = "9";
+	size_t	max = 8;
+
+	char	*i1 = strnstr(big, little, max);
+	char	*i2 = ft_strnstr(big, little, max);
+
+	if (i1 != i2)
+		printf("wrong");
+	else
+		printf("correct");
 }
