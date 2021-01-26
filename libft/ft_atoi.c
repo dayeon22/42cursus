@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 05:28:13 by daypark           #+#    #+#             */
-/*   Updated: 2021/01/16 13:10:02 by daypark          ###   ########.fr       */
+/*   Updated: 2021/01/26 13:03:29 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		ft_atoi(const char *str)
 	while (str[i])
 	{
 		if (!('0' <= str[i] && str[i] <= '9'))
-			return (result);
+			return (sign * result);
 		else
 			result = result * 10 + str[i++] - '0';
 	}

@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 20:00:01 by daypark           #+#    #+#             */
-/*   Updated: 2021/01/24 16:12:35 by daypark          ###   ########.fr       */
+/*   Updated: 2021/01/26 19:03:16 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,13 @@ char	*ft_itoa(int n)
 	char	*res;
 
 	if (n == -2147483648)
-	{
-		res = "-2147483648";
-		return (res);
-	}
+		return (ft_strdup("-2147483648"));
 	size = (n <= 0) ? 1 : 0;
 	sign = (n < 0) ? -1 : 1;
 	n = (n < 0) ? -n : n;
 	size += get_size(n);
-	res = (char *)malloc(sizeof(char) * (size + 1));
+	if (!(res = (char *)malloc(sizeof(char) * (size + 1))))
+		return (NULL);
 	res[size--] = 0;
 	while (size >= 0)
 	{

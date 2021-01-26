@@ -6,11 +6,11 @@
 #    By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/24 11:16:19 by daypark           #+#    #+#              #
-#    Updated: 2021/01/24 13:00:46 by daypark          ###   ########.fr        #
+#    Updated: 2021/01/26 21:37:12 by daypark          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-TARGET = libft.a
+NAME = libft.a
 CC = gcc
 CFLAGS = -Wextra -Wall -Werror
 AFLAGS = rc
@@ -24,9 +24,9 @@ SRCS = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
 
 OBJS = $(SRCS:.c=.o)
 
-all : $(TARGET)
+all : $(NAME)
 
-$(TARGET) : $(OBJS)
+$(NAME) : $(OBJS)
 	ar $(AFLAGS) $@ $?
 
 %.o : %.c
@@ -36,6 +36,6 @@ clean :
 	rm -f $(OBJS)
 
 fclean : clean
-	rm -f $(TARGET)
+	rm -f $(NAME)
 
 re : fclean all

@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 10:55:49 by daypark           #+#    #+#             */
-/*   Updated: 2021/01/24 21:18:06 by daypark          ###   ########.fr       */
+/*   Updated: 2021/01/26 21:25:18 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,46 +14,17 @@
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	size_t	h_size;
 	size_t	n_size;
-	size_t	i;
-	size_t	j;
 
-	h_size = ft_strlen(haystack);
 	n_size = ft_strlen(needle);
-	if (needle[0] == 0)
+	if (!*needle)
 		return ((char *)haystack);
-	else if (h_size < n_size)
-		return (NULL);
-	i = 0;
-	while (haystack[i] && i + 1 < len)
+	while (*haystack && len >= n_size)
 	{
-		j = 0;
-		while (haystack[i + j] == needle[j])
-		{
-			j++;
-			if (needle[j] == 0)
-				return ((char *)&haystack[i]);
-		}
-		i++;
+		if (*haystack == *needle && (ft_memcmp(haystack, needle, n_size) == 0))
+			return ((char *)haystack);
+		haystack++;
+		len--;
 	}
 	return (NULL);
-}
-
-#include <stdio.h>
-#include <string.h>
-
-int		main(void)
-{
-	char	*big = "123456789";
-	char	*little = "9";
-	size_t	max = 8;
-
-	char	*i1 = strnstr(big, little, max);
-	char	*i2 = ft_strnstr(big, little, max);
-
-	if (i1 != i2)
-		printf("wrong");
-	else
-		printf("correct");
 }

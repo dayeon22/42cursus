@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 17:11:42 by daypark           #+#    #+#             */
-/*   Updated: 2021/01/23 17:31:44 by daypark          ###   ########.fr       */
+/*   Updated: 2021/01/26 19:05:57 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	size = ft_strlen(s);
 	if (!(res = (char *)malloc(sizeof(char) * (size + 1))))
 		return (NULL);
-	res[size] = 0;
+	res[size--] = 0;
 	while (size >= 0)
 	{
 		res[size] = f(size, s[size]);
