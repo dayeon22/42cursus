@@ -6,9 +6,10 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/28 00:31:22 by daypark           #+#    #+#             */
-/*   Updated: 2021/01/28 00:46:22 by daypark          ###   ########.fr       */
+/*   Updated: 2021/01/29 08:02:22 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 int		ft_lstsize(t_list *lst)
