@@ -6,13 +6,13 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 20:00:01 by daypark           #+#    #+#             */
-/*   Updated: 2021/01/26 19:03:16 by daypark          ###   ########.fr       */
+/*   Updated: 2021/01/30 04:10:58 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		get_size(int n)
+static int	get_size(int n)
 {
 	int		size;
 

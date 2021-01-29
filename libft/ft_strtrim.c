@@ -6,13 +6,13 @@
 /*   By: daypark <daypark@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 07:26:55 by daypark           #+#    #+#             */
-/*   Updated: 2021/01/26 21:18:20 by daypark          ###   ########.fr       */
+/*   Updated: 2021/01/30 04:10:15 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		getfirst(char const *s1, char const *set)
+static int	getfirst(char const *s1, char const *set)
 {
 	int		i;
 
@@ -22,7 +22,7 @@ int		getfirst(char const *s1, char const *set)
 	return (i);
 }
 
-int		getlast(char const *s1, char const *set)
+static int	getlast(char const *s1, char const *set)
 {
 	int		i;
 	size_t	s1len;
@@ -34,7 +34,7 @@ int		getlast(char const *s1, char const *set)
 	return (ft_strlen(s1) - i);
 }
 
-char	*ft_strtrim(char const *s1, char const *set)
+char		*ft_strtrim(char const *s1, char const *set)
 {
 	int		first;
 	int		last;
