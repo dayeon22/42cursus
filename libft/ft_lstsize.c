@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/28 00:31:22 by daypark           #+#    #+#             */
-/*   Updated: 2021/01/29 08:02:22 by daypark          ###   ########.fr       */
+/*   Updated: 2021/02/06 02:22:30 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@ int		ft_lstsize(t_list *lst)
 {
 	int		cnt;
 
-	if (!lst)
-		return (0);
-	cnt = 1;
-	while (lst->next)
+	cnt = 0;
+	while (lst)
 	{
 		lst = lst->next;
 		cnt++;

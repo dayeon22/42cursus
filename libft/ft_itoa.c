@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 20:00:01 by daypark           #+#    #+#             */
-/*   Updated: 2021/01/30 04:10:58 by daypark          ###   ########.fr       */
+/*   Updated: 2021/01/30 04:25:09 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	get_size(int n)
 	return (size);
 }
 
-char	*ft_itoa(int n)
+char		*ft_itoa(int n)
 {
 	int		size;
 	int		sign;
