@@ -6,11 +6,11 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 13:02:21 by daypark           #+#    #+#             */
-/*   Updated: 2021/02/27 16:46:16 by daypark          ###   ########.fr       */
+/*   Updated: 2021/02/27 20:25:56 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 size_t	ft_strlen(const char *str)
 {

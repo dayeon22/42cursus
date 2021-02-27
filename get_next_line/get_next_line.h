@@ -6,12 +6,12 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 13:02:19 by daypark           #+#    #+#             */
-/*   Updated: 2021/02/27 16:52:17 by daypark          ###   ########.fr       */
+/*   Updated: 2021/02/27 20:26:44 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_
 
 # include <unistd.h>
 # include <stdlib.h>
