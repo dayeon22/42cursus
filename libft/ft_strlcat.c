@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 13:37:02 by daypark           #+#    #+#             */
-/*   Updated: 2021/01/16 13:37:07 by daypark          ###   ########.fr       */
+/*   Updated: 2021/02/06 02:27:41 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	i = ft_strlen(dst);
 	j = 0;
 	dstlength = ft_strlen(dst);
-	if (dstsize < ft_strlen(dst) + 1)
+	if (dstsize < dstlength + 1)
 		return (ft_strlen(src) + dstsize);
 	while (src[j] && i < dstsize - 1)
 		dst[i++] = src[j++];
