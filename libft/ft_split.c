@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 20:00:58 by daypark           #+#    #+#             */
-/*   Updated: 2021/01/30 03:47:52 by daypark          ###   ########.fr       */
+/*   Updated: 2021/03/21 12:49:22 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,17 @@ static char	**free_words(char **words)
 	return (NULL);
 }
 
-char		**ft_split(char const *s, char c)
+static char	**malloc_words(char ***words, int size)
+{
+	return (*words = (char **)malloc(sizeof(char *) * size));
+}
+
+static char	*malloc_words_idx(char **words, int size)
+{
+	return (*words = (char *)malloc(sizeof(char) * size));
+}
+
+char	**ft_split(char const *s, char c)
 {
 	char		**words;
 	char const	*temp;
@@ -52,7 +62,7 @@ char		**ft_split(char const *s, char c)
 	size_t		len;
 
 	idx = 0;
-	if (!s || !(words = malloc(sizeof(char *) * (count_words(s, c) + 1))))
+	if (!s || !(malloc_words(&words, count_words(s, c) + 1)))
 		return (NULL);
 	while (*s)
 	{
@@ -62,7 +72,7 @@ char		**ft_split(char const *s, char c)
 			len = 0;
 			while (*s && *s++ != c)
 				len++;
-			if (!(words[idx] = malloc(sizeof(char) * (len + 1))))
+			if (!(malloc_words_idx(&words[idx], len + 1)))
 				return (free_words(words));
 			ft_strlcpy(*(words + idx++), temp, len + 1);
 		}

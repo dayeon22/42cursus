@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 07:21:41 by daypark           #+#    #+#             */
-/*   Updated: 2021/01/16 13:13:20 by daypark          ###   ########.fr       */
+/*   Updated: 2021/03/19 19:27:58 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ char	*ft_strdup(const char *s1)
 	int		i;
 	char	*res;
 
-	if (!(res = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1))))
+	res = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	if (!res)
 		return (NULL);
 	i = 0;
 	while (s1[i])

@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/28 13:12:50 by daypark           #+#    #+#             */
-/*   Updated: 2021/01/28 16:49:44 by daypark          ###   ########.fr       */
+/*   Updated: 2021/03/19 19:15:08 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,14 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 
 	if (!lst || !f)
 		return (NULL);
-	if (!(n_lst = ft_lstnew(f(lst->content))))
+	n_lst = ft_lstnew(f(lst->content));
+	if (!n_lst)
 		return (NULL);
 	lst = lst->next;
 	while (lst)
 	{
-		if (!(add = ft_lstnew(f(lst->content))))
+		add = ft_lstnew(f(lst->content));
+		if (!add)
 		{
 			ft_lstclear(&n_lst, del);
 			return (NULL);

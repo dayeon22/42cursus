@@ -6,11 +6,11 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 13:02:21 by daypark           #+#    #+#             */
-/*   Updated: 2021/02/27 20:25:56 by daypark          ###   ########.fr       */
+/*   Updated: 2021/03/09 14:21:37 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
 
 size_t	ft_strlen(const char *str)
 {
@@ -27,7 +27,8 @@ char	*ft_strdup(const char *s1)
 	int		i;
 	char	*res;
 
-	if (!(res = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1))))
+	res = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	if (!res)
 		return (NULL);
 	i = -1;
 	while (s1[++i])
@@ -58,7 +59,8 @@ char	*ft_strjoin(char *s1, char *s2)
 		return (NULL);
 	len1 = ft_strlen(s1);
 	len2 = ft_strlen(s2);
-	if (!(ret = (char *)malloc(sizeof(char) * (len1 + len2 + 1))))
+	ret = (char *)malloc(sizeof(char) * (len1 + len2 + 1));
+	if (!ret)
 		return (0);
 	ft_strncpy(ret, s1, len1);
 	ft_strncpy(ret + len1, s2, len2);

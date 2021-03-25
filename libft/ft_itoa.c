@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 20:00:01 by daypark           #+#    #+#             */
-/*   Updated: 2021/01/30 04:25:09 by daypark          ###   ########.fr       */
+/*   Updated: 2021/03/21 12:05:14 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,27 @@ static int	get_size(int n)
 	return (size);
 }
 
-char		*ft_itoa(int n)
+static void	set(int *size, int *sign, int *n)
+{
+	if (*n <= 0)
+	{
+		*size = 1;
+		if (*n == 0)
+			*sign = 1;
+		else
+		{
+			*sign = -1;
+			*n = -(*n);
+		}
+	}
+	else
+	{
+		*size = 0;
+		*sign = 1;
+	}
+}
+
+char	*ft_itoa(int n)
 {
 	int		size;
 	int		sign;
@@ -33,11 +53,10 @@ char		*ft_itoa(int n)
 
 	if (n == -2147483648)
 		return (ft_strdup("-2147483648"));
-	size = (n <= 0) ? 1 : 0;
-	sign = (n < 0) ? -1 : 1;
-	n = (n < 0) ? -n : n;
+	set(&size, &sign, &n);
 	size += get_size(n);
-	if (!(res = (char *)malloc(sizeof(char) * (size + 1))))
+	res = (char *)malloc(sizeof(char) * (size + 1));
+	if (!res)
 		return (NULL);
 	res[size--] = 0;
 	while (size >= 0)

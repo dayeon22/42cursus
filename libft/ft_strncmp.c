@@ -6,13 +6,13 @@
 /*   By: daypark <daypark@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 09:31:11 by daypark           #+#    #+#             */
-/*   Updated: 2021/01/24 17:47:01 by daypark          ###   ########.fr       */
+/*   Updated: 2021/03/19 19:24:48 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_strncmp(const char *s1, const char *s2, size_t n)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t	i;
 

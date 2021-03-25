@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 06:09:33 by daypark           #+#    #+#             */
-/*   Updated: 2021/01/16 13:06:51 by daypark          ###   ########.fr       */
+/*   Updated: 2021/03/19 19:20:53 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_memchr(const void *s1, int c, size_t n)
 {
-	unsigned char *s;
+	unsigned char	*s;
 
 	s = (unsigned char *)s1;
 	while (n--)

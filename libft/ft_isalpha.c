@@ -6,13 +6,13 @@
 /*   By: daypark <daypark@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 05:22:31 by daypark           #+#    #+#             */
-/*   Updated: 2021/01/16 13:10:22 by daypark          ###   ########.fr       */
+/*   Updated: 2021/03/19 19:20:26 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_isalpha(int c)
+int	ft_isalpha(int c)
 {
 	if (('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z'))
 		return (1);

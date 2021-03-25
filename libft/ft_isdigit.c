@@ -6,13 +6,13 @@
 /*   By: daypark <daypark@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 05:23:47 by daypark           #+#    #+#             */
-/*   Updated: 2021/01/16 13:10:40 by daypark          ###   ########.fr       */
+/*   Updated: 2021/03/19 19:06:28 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_isdigit(int c)
+int	ft_isdigit(int c)
 {
 	if ('0' <= c && c <= '9')
 		return (1);

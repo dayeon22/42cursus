@@ -6,16 +6,16 @@
 /*   By: daypark <daypark@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 05:34:40 by daypark           #+#    #+#             */
-/*   Updated: 2021/01/16 13:30:43 by daypark          ###   ########.fr       */
+/*   Updated: 2021/03/19 19:30:37 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_isalnum(int c)
+int	ft_isalnum(int c)
 {
-	if (('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z')
-			|| ('0' <= c && c <= '9'))
+	if (('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z') || \
+			('0' <= c && c <= '9'))
 		return (1);
 	return (0);
 }

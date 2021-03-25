@@ -6,13 +6,13 @@
 /*   By: daypark <daypark@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 07:38:27 by daypark           #+#    #+#             */
-/*   Updated: 2021/01/16 13:12:39 by daypark          ###   ########.fr       */
+/*   Updated: 2021/03/19 19:33:30 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_tolower(int c)
+int	ft_tolower(int c)
 {
 	if ('A' <= c && c <= 'Z')
 		return (c + ('a' - 'A'));

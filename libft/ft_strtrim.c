@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 07:26:55 by daypark           #+#    #+#             */
-/*   Updated: 2021/01/30 04:10:15 by daypark          ###   ########.fr       */
+/*   Updated: 2021/03/19 19:26:51 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	getlast(char const *s1, char const *set)
 	return (ft_strlen(s1) - i);
 }
 
-char		*ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
 	int		first;
 	int		last;
@@ -49,7 +49,8 @@ char		*ft_strtrim(char const *s1, char const *set)
 	last = getlast(s1, set);
 	if (first >= last)
 		return (ft_strdup(""));
-	if (!(res = (char *)malloc(sizeof(char) * (last - first + 1))))
+	res = (char *)malloc(sizeof(char) * (last - first) + 1);
+	if (!res)
 		return (NULL);
 	i = 0;
 	ft_strlcpy(res, s1 + first, last - first + 1);

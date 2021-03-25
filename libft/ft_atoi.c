@@ -6,24 +6,33 @@
 /*   By: daypark <daypark@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 05:28:13 by daypark           #+#    #+#             */
-/*   Updated: 2021/01/26 13:03:29 by daypark          ###   ########.fr       */
+/*   Updated: 2021/03/21 13:13:49 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_atoi(const char *str)
+int	check_over_range(unsigned long long result, int sign)
 {
-	int		i;
-	int		result;
-	int		sign;
+	if (result > LLONG_MAX - 1 && sign == -1)
+		return (0);
+	if (result > LLONG_MAX && sign == 1)
+		return (-1);
+	return (result * sign);
+}
+
+int	ft_atoi(const char *str)
+{
+	int					i;
+	int					sign;
+	unsigned long long	result;
 
 	i = 0;
 	result = 0;
 	sign = 1;
 	if (!(ft_strncmp(str, "-2147483648", 12)))
 		return (-2147483648);
-	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\r' ||
+	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\r' || \
 			str[i] == '\n' || str[i] == '\v' || str[i] == '\f')
 		i++;
 	if (str[i] == '+' || str[i] == '-')
@@ -38,5 +47,5 @@ int		ft_atoi(const char *str)
 		else
 			result = result * 10 + str[i++] - '0';
 	}
-	return (sign * result);
+	return (check_over_range(result, sign));
 }
