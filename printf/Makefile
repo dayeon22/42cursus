@@ -1,12 +1,13 @@
 # 라이브러리를 만들지 않고 main함수를 넣어 테스트하는 용도로 만들어진 임시 Makefile
 
 NAME = test.out
-SRCS = ft_printf.c
+SRCS = ft_printf.c print_cs.c
 OBJS = $(SRCS:.c=.o)
 LIBFT = libft
 LIBFTL = libft.a
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall
+# CFLAGS = -Wall -Wextra -Werror
 
 all : $(NAME)
 

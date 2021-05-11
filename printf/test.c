@@ -2,5 +2,5 @@
 
 int main()
 {
-	printf("%.-1d", 123);
+	printf("%05c", 'a');
 }
