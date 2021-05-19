@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/01 19:23:49 by daypark           #+#    #+#             */
-/*   Updated: 2021/05/11 01:17:08 by daypark          ###   ########.fr       */
+/*   Updated: 2021/05/11 19:19:27 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ void	print_by_type(va_list *ap, t_info *info)
 		print_c(va_arg(*ap, int), info);
 	else if (info->type == 's')
 		print_s(va_arg(*ap, char *), info);
-//	else if (info->type == 'd' || info->type == 'i')
-//		print_di(va_arg(*ap, int), info);
+	else if (info->type == 'd' || info->type == 'i')
+		print_di(va_arg(*ap, int), info);
 //	else if (info->type == 'x' || info->type == 'X' || info->type == 'u')
 //		print_ux(va_arg(*ap, unsigned int), info);
 //	else if (info->type == 'p')
@@ -117,7 +117,7 @@ int main()
 {
 	t_info info;
 
-	ft_printf(&info, "%-10.5s", "Hello World!");
+	ft_printf(&info, "%-10.5d", 1234567);
 	printf("\n");
 	printf("flags:%c, width:%d, precision:%d, type:%c\n", info.flags, info.width, info.precision, info.type);
 }
