@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/01 19:23:49 by daypark           #+#    #+#             */
-/*   Updated: 2021/05/19 18:05:22 by daypark          ###   ########.fr       */
+/*   Updated: 2021/05/19 19:45:35 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ void	set_fwp(char *str, t_info *info)
 			n = 0;
 			i++;
 		}
-		n = n * 10 + str[i++] - '0';
+		else
+			n = n * 10 + str[i++] - '0';
 	}
 	if (ft_strchr(str, '.'))
 		info->precision = n;
@@ -126,7 +127,7 @@ int main()
 {
 	t_info info;
 
-	printf("\nret: %d", ft_printf(&info, "%6.5d", 123));
+	printf("\nret: %d", ft_printf(&info, "hello, %s", "daypark"));
 	printf("\nflags:%c, width:%d, precision:%d, type:%c\n", info.flags, info.width, info.precision, info.type);
 }
 */
