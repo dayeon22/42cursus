@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/01 19:23:49 by daypark           #+#    #+#             */
-/*   Updated: 2021/05/11 19:19:27 by daypark          ###   ########.fr       */
+/*   Updated: 2021/05/19 18:05:22 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,30 +57,33 @@ void	set_fwp(char *str, t_info *info)
 }
 
 //int		print_by_type(va_list *ap, t_info *info)
-void	print_by_type(va_list *ap, t_info *info)
+int		print_by_type(va_list *ap, t_info *info)
 {
 	
 	if (info->type == 'c')
-		print_c(va_arg(*ap, int), info);
+		return (ft_c(va_arg(*ap, int), info));
 	else if (info->type == 's')
-		print_s(va_arg(*ap, char *), info);
+		return (ft_s(va_arg(*ap, char *), info));
 	else if (info->type == 'd' || info->type == 'i')
-		print_di(va_arg(*ap, int), info);
+		return (ft_di(va_arg(*ap, int), info));
 //	else if (info->type == 'x' || info->type == 'X' || info->type == 'u')
-//		print_ux(va_arg(*ap, unsigned int), info);
+//		ft_ux(va_arg(*ap, unsigned int), info);
 //	else if (info->type == 'p')
-//		print_p(va_arg(*ap, unsigned long long), info);
+//		ft_p(va_arg(*ap, unsigned long long), info);
 //	else if (info->type == '%')
 //		ft_putchar_fd('%', 1);
+	return (0);
 }
 
-void	find_pct(char *fmt, t_info *info, va_list *ap)
+int		find_pct(char *fmt, t_info *info, va_list *ap)
 {
 	int	i;
 	char *str;
 	int idx;
+	int ret;
 
 	i = 0;
+	ret = 0;
 	while (fmt[i])
 	{
 		if (fmt[i] == '%')
@@ -94,30 +97,36 @@ void	find_pct(char *fmt, t_info *info, va_list *ap)
 			set_fwp(str, info);
 			free(str);
 			info->type = fmt[i];
-			print_by_type(ap, info);
+			ret += print_by_type(ap, info);
+		}
+		else
+		{
+			ft_putchar_fd(fmt[i], 1);
+			ret++;
 		}
 		i++;
 	}
+	return (ret);
 }
 
-//int	ft_printf(const char *fmt, ...)
-void	ft_printf(t_info *info, const char *fmt, ...)
+//int		ft_printf(t_info *info, const char *fmt, ...)
+int		ft_printf(const char *fmt, ...)
 {
-//	t_info	info;
+	t_info	info;
 	va_list	ap;
-	//int		ret;
+	int		ret;
 
 	va_start(ap, fmt);
-	find_pct((char *)fmt, info, &ap);
+	ret = find_pct((char *)fmt, &info, &ap);
 	va_end(ap);
-	//return (ret);
+	return (ret);
 }
-
+/*
 int main()
 {
 	t_info info;
 
-	ft_printf(&info, "%-10.5d", 1234567);
-	printf("\n");
-	printf("flags:%c, width:%d, precision:%d, type:%c\n", info.flags, info.width, info.precision, info.type);
+	printf("\nret: %d", ft_printf(&info, "%6.5d", 123));
+	printf("\nflags:%c, width:%d, precision:%d, type:%c\n", info.flags, info.width, info.precision, info.type);
 }
+*/

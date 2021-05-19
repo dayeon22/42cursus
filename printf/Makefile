@@ -1,22 +1,36 @@
-# 라이브러리를 만들지 않고 main함수를 넣어 테스트하는 용도로 만들어진 임시 Makefile
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: daypark <daypark@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/05/05 02:10:50 by daypark           #+#    #+#              #
+#    Updated: 2021/05/19 18:06:53 by daypark          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-NAME = test.out
-SRCS = ft_printf.c print_cs.c
+NAME = libftprintf.a
+SRCS = ft_printf.c cs.c di.c
 OBJS = $(SRCS:.c=.o)
 LIBFT = libft
 LIBFTL = libft.a
 CC = gcc
-CFLAGS = -Wall
-# CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
+AR = ar
+ARFLAGS = rcs
+
+.PHONY : all clean fclean re
 
 all : $(NAME)
 
 $(NAME) : $(OBJS)
 	make all -C $(LIBFT)/
-	CC -o $(NAME) $(SRCS) -L $(LIBFT)/ -l ft
+	cp $(LIBFT)/$(LIBFTL) $(NAME)
+	$(AR) $(ARFLAGS) $(NAME) $(OBJS)
 
-#%.o : %.c
-#	$(CC) $(CFLAGS) -c $^
+%.o : %.c
+	$(CC) $(CFLAGS) -c $^
 
 clean :
 	rm -f $(OBJS)

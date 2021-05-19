@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_cs.c                                         :+:      :+:    :+:   */
+/*   cs.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 19:13:15 by daypark           #+#    #+#             */
-/*   Updated: 2021/05/11 01:16:20 by daypark          ###   ########.fr       */
+/*   Updated: 2021/05/19 17:19:56 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	print_c(int c, t_info *info)
+int	ft_c(int c, t_info *info)
 {
 	int	i;
+	int ret;
 
-	i = 1;
+	i = 0;
+	ret = 0;
 	if (info->flags == '-')
 		ft_putchar_fd(c, 1);
-	while (i++ < info->width)
+	while (++i < info->width)
+	{
 		ft_putchar_fd(' ', 1);
+		ret++;
+	}
 	if (info->flags != '-')
 		ft_putchar_fd(c, 1);
+	return (ret + 1);
 }
 
-void	print_s(char *str, t_info *info)
+int	ft_s(char *str, t_info *info)
 {
 	int		n;
 	char	*prt;
@@ -50,5 +56,8 @@ void	print_s(char *str, t_info *info)
 	else
 		ft_putstr_fd(prt, 1);
 	free(prt);
+	if (n < info->width) //normV3으로 바뀌기 전이면 삼항연산자로 바꾸기
+		return (info->width);
+	else
+		return (n);
 }
-
