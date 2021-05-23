@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 19:13:15 by daypark           #+#    #+#             */
-/*   Updated: 2021/05/19 20:14:23 by daypark          ###   ########.fr       */
+/*   Updated: 2021/05/21 20:22:19 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,20 +52,12 @@ int	ft_s(char *str, t_info *info)
 		if (info->flags == '-')
 			ft_putstr_fd(prt, 1);
 		while (i++ < info->width - len)
-		{	
-			if (info->flags != '0')
-				ft_putchar_fd(' ', 1);
-			else
-				ft_putchar_fd('0', 1);
-		}
+			info->flags != '0' ? ft_putchar_fd(' ', 1) : ft_putchar_fd('0', 1);
 		if (info->flags != '-')
 			ft_putstr_fd(prt, 1);
 	}
 	else
 		ft_putstr_fd(prt, 1);
 	free(prt);
-	if (len < info->width) //normV3으로 바뀌기 전이면 삼항연산자로 바꾸기
-		return (info->width);
-	else
-		return (len);
+	return (len < info->width ? info->width : len);
 }
