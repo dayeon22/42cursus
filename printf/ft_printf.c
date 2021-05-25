@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/01 19:23:49 by daypark           #+#    #+#             */
-/*   Updated: 2021/05/21 18:26:14 by daypark          ###   ########.fr       */
+/*   Updated: 2021/05/26 03:47:41 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ int		print_by_type(va_list *ap, t_info *info)
 		return (ft_s(va_arg(*ap, char *), info));
 	else if (info->type == 'd' || info->type == 'i')
 		return (ft_di(va_arg(*ap, int), info));
-//	else if (info->type == 'x' || info->type == 'X' || info->type == 'u')
-//		ft_ux(va_arg(*ap, unsigned int), info);
+	else if (info->type == 'x' || info->type == 'X' || info->type == 'u')
+		return (ft_di(va_arg(*ap, unsigned int), info));
 //	else if (info->type == 'p')
 //		ft_p(va_arg(*ap, unsigned long long), info);
 //	else if (info->type == '%')
@@ -127,7 +127,7 @@ int main()
 {
 	t_info info;
 
-	printf("\nret: %d", ft_printf(&info, "%d", -123));
+	printf("\nret: %d", ft_printf(&info, "%.7d", -123));
 	printf("\nflags:%c, width:%d, precision:%d, type:%c\n", info.flags, info.width, info.precision, info.type);
 }
 */

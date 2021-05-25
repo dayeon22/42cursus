@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/01 19:22:58 by daypark           #+#    #+#             */
-/*   Updated: 2021/05/23 18:06:04 by daypark          ###   ########.fr       */
+/*   Updated: 2021/05/25 19:48:41 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		ft_s(char *str, t_info *info);
 //print_di.c
 int		ft_di(int n, t_info *info);
 int		get_len(int n, int base, t_info *info);
-char	*i_to_s(int len, int n, int base);
+char	*i_to_s(int len, int n, int base, t_info *info);
 int		print_di(int n, char *s, int len, t_info *info);
 
 //void	ft_ux(unsigned int n, t_info *info);

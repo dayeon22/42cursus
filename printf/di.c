@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 17:11:51 by daypark           #+#    #+#             */
-/*   Updated: 2021/05/23 18:06:32 by daypark          ###   ########.fr       */
+/*   Updated: 2021/05/26 03:51:30 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ int		get_len(int n, int base, t_info *info)
 		len++;
 	}
 	len = (info->precision > len) ? info->precision : len;
-	len += (n < 0) ? 1 : 0;
+	len += n < 0 && ((info->flags == '0' && info->precision == -1) || info->flags != '0' || info->width <= len);
 	len = (info->precision == -1 && n == 0) ? 1 : len;
 	return (len);
 }
 
-char	*i_to_s(int len, int n, int base)
+char	*i_to_s(int len, int n, int base, t_info *info)
 {
 	int		i;
 	char	*s;
@@ -49,7 +49,7 @@ char	*i_to_s(int len, int n, int base)
 	}
 	while (i)
 		s[--i] = '0';
-	if (n < 0)
+	if (n < 0 && ((info->flags != '0' && info->precision == -1) || info->flags != '0' || info->width <= len))
 		s[0] = '-';
 	return (s);
 }
@@ -61,12 +61,10 @@ int		ft_di(int n, t_info *info)
 	int		base;
 
 	base = 10;
-	if (info->type == 'u')
-		base = 8;
 	if (info->type == 'p' || info->type == 'x' || info->type == 'X')
 		base = 16;
 	len = get_len(n, base, info);
-	s = i_to_s(len, n, base);
+	s = i_to_s(len, n, base, info);
 	
 	return (print_di(n, s, len, info));
 }
@@ -74,7 +72,6 @@ int		ft_di(int n, t_info *info)
 int		print_di(int n, char *s, int len, t_info *info)
 {
 	int	i;
-	n = 0;
 
 	i = 0;
 	if (len < info->width)
@@ -83,10 +80,12 @@ int		print_di(int n, char *s, int len, t_info *info)
 			ft_putstr_fd(s, 1);
 		while (i++ < info->width - len)
 		{
-			if (info->flags == '0' && info->precision == -1)
-				ft_putchar_fd('0', 1);
-			else if (info->flags == '0' && i == 1 && n < 0)
+			if  (i == 1 && n < 0 && info->flags == '0' && info->precision == -1 && info->width > len)
 				ft_putchar_fd('-', 1);
+			else if (i == info->width - len && n < 0 && info->flags == '0' && info->precision >= 0 && info->width > len)
+				ft_putchar_fd('-', 1);
+			else if (info->flags == '0' && info->precision == -1)
+				ft_putchar_fd('0', 1);
 			else
 				ft_putchar_fd(' ', 1);
 		}
