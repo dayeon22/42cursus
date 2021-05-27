@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 19:13:15 by daypark           #+#    #+#             */
-/*   Updated: 2021/05/26 17:27:50 by daypark          ###   ########.fr       */
+/*   Updated: 2021/05/27 19:10:27 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,15 @@
 int	ft_c(int c, t_info *info)
 {
 	int	i;
-	int ret;
 
 	i = 0;
-	ret = 0;
 	if (info->flags == '-')
 		ft_putchar_fd(c, 1);
 	while (++i < info->width)
-	{
-		ft_putchar_fd(' ', 1);
-		ret++;
-	}
+		info->flags != '0' ? ft_putchar_fd(' ', 1) : ft_putchar_fd('0', 1);
 	if (info->flags != '-')
 		ft_putchar_fd(c, 1);
-	return (ret + 1);
+	return (info->width > 1 ? info->width : 1);
 }
 
 int	ft_s(char *str, t_info *info)

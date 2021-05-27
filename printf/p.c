@@ -52,6 +52,7 @@ int		ft_p(unsigned long long n, t_info *info)
 	str[i++] = 'x';
 	while (*s)
 		str[i++] = *s++;
+	str[i] = 0;
 	len += 2;
 	return (print_di(str, len, info, 0));
 }
