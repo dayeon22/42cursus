@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   di.c                                               :+:      :+:    :+:   */
+/*   diux.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 17:11:51 by daypark           #+#    #+#             */
-/*   Updated: 2021/05/26 16:04:51 by daypark          ###   ########.fr       */
+/*   Updated: 2021/05/28 19:55:47 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,15 +82,13 @@ int		ft_ux(unsigned int n, t_info *info)
 	int		len;
 	char	*s;
 	int		base;
-	int		m_flag;
 
-	m_flag = 0;
 	base = 10;
 	if (info->type == 'x' || info->type == 'X')
 		base = 16;
-	len = get_len(n, base, info, m_flag);
-	s = i_to_s(len, n, base, info, m_flag);
-	return (print_di(s, len, info, m_flag));
+	len = get_len(n, base, info, 0);
+	s = i_to_s(len, n, base, info, 0);
+	return (print_di(s, len, info, 0));
 }
 
 
@@ -120,5 +118,5 @@ int		print_di(char *s, int len, t_info *info, int m_flag)
 	}
 	else
 		ft_putstr_fd(s, 1);
-	return (len < info->width ? info->width : len); //삼항연산자
+	return (len < info->width ? info->width : len);
 }

@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/01 19:23:49 by daypark           #+#    #+#             */
-/*   Updated: 2021/05/28 03:55:10 by daypark          ###   ########.fr       */
+/*   Updated: 2021/05/28 05:29:55 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void init_info(t_info *info)
 	info->type = 0;
 }
 
-void	set_fwp(char *str, t_info *info)
+void	set_fwp(char *str, t_info *info, va_list *ap)
 {
 	int	i;
 	int minus;
@@ -41,22 +41,52 @@ void	set_fwp(char *str, t_info *info)
 	if (minus)
 		info->flags = '-';
 	n = 0;
-	while (ft_isdigit(str[i]) || str[i] == '.')
+	while (ft_isdigit(str[i]) || str[i] == '.' || str[i] == '*')
 	{
 		if (str[i] == '.')
 		{
 			info->width = n;
 			n = 0;
-			i++;
 		}
-		else
-			n = n * 10 + str[i++] - '0';
+		else if (ft_isdigit(str[i]))
+			n = n * 10 + str[i] - '0';
+		i++;
 	}
 	if (ft_strchr(str, '.'))
 		info->precision = n;
 	else
 		info->width = n;
+	asterisk(str, info, ap);
 	//printf("\nflags:%c, width:%d, precision:%d, type:%c\n", info->flags, info->width, info->precision, info->type);
+}
+
+void asterisk(char *str, t_info *info, va_list *ap)
+{
+	int		i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '*')
+		{
+			if (i != 0 && str[i - 1] == '.')
+			{
+				info->precision = va_arg(*ap, int);
+				if (info->precision < 0)
+					info->precision = -1;
+			}
+			else
+			{
+				info->width = va_arg(*ap, int);
+				if (info->width < 0)
+				{
+					info->flags = '-';
+					info->width *= -1;
+				}
+			}
+		}
+		i++;
+	}
 }
 
 int		print_by_type(va_list *ap, t_info *info)
@@ -95,7 +125,7 @@ int		find_pct(char *fmt, t_info *info, va_list *ap)
 				i++;
 			str = (char *)malloc(sizeof(char) * i - idx + 1); //실패시
 			ft_strlcpy(str, &fmt[idx], i - idx + 1);
-			set_fwp(str, info);
+			set_fwp(str, info, ap);
 			free(str);
 			info->type = fmt[i];
 			ret += print_by_type(ap, info);
