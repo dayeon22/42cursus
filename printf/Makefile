@@ -6,12 +6,12 @@
 #    By: daypark <daypark@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/05 02:10:50 by daypark           #+#    #+#              #
-#    Updated: 2021/05/19 18:06:53 by daypark          ###   ########.fr        #
+#    Updated: 2021/05/29 03:36:55 by daypark          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
-SRCS = ft_printf.c cs.c di.c p.c
+SRCS = ft_printf.c cs.c diux.c p.c
 OBJS = $(SRCS:.c=.o)
 LIBFT = libft
 LIBFTL = libft.a

@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 19:13:15 by daypark           #+#    #+#             */
-/*   Updated: 2021/05/27 19:10:27 by daypark          ###   ########.fr       */
+/*   Updated: 2021/05/28 20:19:59 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ int	ft_s(char *str, t_info *info)
 	len = ft_strlen(str);
 	if (0 <= info->precision && len > info->precision)
 		len = info->precision;
-	prt = (char *)malloc(sizeof(char) * len + 1); //실패시
+	if (!(prt = (char *)malloc(sizeof(char) * len + 1)))
+		return (0);
 	ft_strlcpy(prt, str, len + 1);
 	if (len < info->width)
 	{

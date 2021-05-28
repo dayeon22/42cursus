@@ -23,7 +23,8 @@ char	*p_to_s(int len, unsigned long long n, int base)
 	char	*s;
 	char	*b;
 
-	s = (char *)malloc(sizeof(char) * len + 1); //free(다쓰고), 실패처리
+	if (!(s = (char *)malloc(sizeof(char) * len + 1)))
+		return (NULL);
 	i = len;
 	s[i] = 0;
 	b = _HEX_L;
@@ -43,16 +44,21 @@ int		ft_p(unsigned long long n, t_info *info)
 	char	*s;
 	char	*str;
 	int		i;
+	int		j;
 
 	len = get_len_p(n, 16, info);
-	s = p_to_s(len, n, 16);
-	str = (char *)malloc(sizeof(char) * len + 3);
+	if (!(s = p_to_s(len, n, 16)))
+		return (0);
+	if (!(str = (char *)malloc(sizeof(char) * len + 3)))
+		return (0);
 	i = 0;
+	j = 0;
 	str[i++] = '0';
 	str[i++] = 'x';
-	while (*s)
-		str[i++] = *s++;
+	while (s[j])
+		str[i++] = s[j++];
 	str[i] = 0;
 	len += 2;
+	free(s);
 	return (print_di(str, len, info, 0));
 }

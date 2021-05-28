@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/01 19:22:58 by daypark           #+#    #+#             */
-/*   Updated: 2021/05/28 04:23:32 by daypark          ###   ########.fr       */
+/*   Updated: 2021/05/29 03:36:36 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct	s_info
 //ft_printf.c
 //int		ft_printf(t_info *info, const char *fmt, ...);
 int		ft_printf(const char *fmt, ...);
-int		find_pct(char *fmt, t_info *info, va_list *ap);
+int		find_pct(char *fmt, t_info *info, va_list ap);
 void	set_fwp(char *fmt, t_info *info, va_list *ap);
 int		print_by_type(va_list *ap, t_info *info);
 void	init_info(t_info *info);

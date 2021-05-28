@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 17:11:51 by daypark           #+#    #+#             */
-/*   Updated: 2021/05/28 19:55:47 by daypark          ###   ########.fr       */
+/*   Updated: 2021/05/29 02:44:55 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ char	*i_to_s(int len, unsigned int n, int base, t_info *info, int m_flag)
 	char	*s;
 	char	*b;
 
-	s = (char *)malloc(sizeof(char) * len + 1); //free(다쓰고), 실패처리
+	if (!(s = (char *)malloc(sizeof(char) * len + 1)))
+		return (NULL);
 	i = len;
 	s[i] = 0;
 	b = _DEC;
@@ -73,7 +74,8 @@ int		ft_di(int n, t_info *info)
 		n *= -1;
 	}
 	len = get_len(n, base, info, m_flag);
-	s = i_to_s(len, n, base, info, m_flag);
+	if (!(s = i_to_s(len, n, base, info, m_flag)))
+		return (0);
 	return (print_di(s, len, info, m_flag));
 }
 
@@ -118,5 +120,6 @@ int		print_di(char *s, int len, t_info *info, int m_flag)
 	}
 	else
 		ft_putstr_fd(s, 1);
+	free(s);
 	return (len < info->width ? info->width : len);
 }
