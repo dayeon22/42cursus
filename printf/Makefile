@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = libftprintf.a
-SRCS = ft_printf.c cs.c diux.c p.c
+SRCS = ft_printf.c set.c cs.c diux.c p.c
 OBJS = $(SRCS:.c=.o)
 LIBFT = libft
 LIBFTL = libft.a

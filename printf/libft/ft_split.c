@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 20:00:58 by daypark           #+#    #+#             */
-/*   Updated: 2021/03/21 12:49:22 by daypark          ###   ########.fr       */
+/*   Updated: 2021/05/29 19:40:45 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static char	*malloc_words_idx(char **words, int size)
 	return (*words = (char *)malloc(sizeof(char) * size));
 }
 
-char	**ft_split(char const *s, char c)
+char		**ft_split(char const *s, char c)
 {
 	char		**words;
 	char const	*temp;

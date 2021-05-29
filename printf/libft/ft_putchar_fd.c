@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daypark <daypark@student.42seoul.k>        +#+  +:+       +#+        */
+/*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 13:40:03 by daypark           #+#    #+#             */
-/*   Updated: 2021/01/16 14:24:05 by daypark          ###   ########.fr       */
+/*   Updated: 2021/05/29 19:39:24 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putchar_fd(char c, int fd)
+int		ft_putchar_fd(char c, int fd)
 {
 	if (fd < 0)
-		return ;
+		return (0);
 	write(fd, &c, 1);
+	return (1);
 }

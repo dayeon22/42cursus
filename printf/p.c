@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   p.c                                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/05/11 17:11:51 by daypark           #+#    #+#             */
+/*   Updated: 2021/05/29 16:36:10 by daypark          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 int		get_len_p(unsigned long long n, int base, t_info *info)
 {
-	int	len;
-	unsigned long long temp;
+	int					len;
+	unsigned long long	temp;
 
 	len = 0;
 	temp = n;
@@ -12,8 +24,8 @@ int		get_len_p(unsigned long long n, int base, t_info *info)
 		temp = temp / base;
 		len++;
 	}
-	len = (info->precision > len) ? info->precision : len;
-	len = (info->precision == -1 && n == 0) ? 1 : len;
+	len = (info->p > len) ? info->p : len;
+	len = (info->p == -1 && n == 0) ? 1 : len;
 	return (len);
 }
 

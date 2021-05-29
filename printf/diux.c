@@ -6,18 +6,16 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 17:11:51 by daypark           #+#    #+#             */
-/*   Updated: 2021/05/29 02:44:55 by daypark          ###   ########.fr       */
+/*   Updated: 2021/05/29 16:35:31 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-#include <stdio.h> //지우기
-
-int		get_len(unsigned int n, int base, t_info *info, int m_flag)
+int		get_len(unsigned int n, int base, t_info *in, int m)
 {
-	int	len;
-	unsigned int temp;
+	int				len;
+	unsigned int	temp;
 
 	len = 0;
 	temp = n;
@@ -26,26 +24,28 @@ int		get_len(unsigned int n, int base, t_info *info, int m_flag)
 		temp = temp / base;
 		len++;
 	}
-	len = (info->precision > len) ? info->precision : len;
-	len += m_flag && ((info->flags == '0' && info->precision == -1) || info->flags != '0' || info->width <= len);
-	len = (info->precision == -1 && n == 0) ? 1 : len;
+	len = (in->p > len) ? in->p : len;
+	len += m && ((in->f == '0' && in->p == -1) || in->f != '0' || in->w <= len);
+	len = (in->p == -1 && n == 0) ? 1 : len;
 	return (len);
 }
 
-char	*i_to_s(int len, unsigned int n, int base, t_info *info, int m_flag)
+int		i_to_s(unsigned int n, int base, t_info *in, int m)
 {
 	int		i;
 	char	*s;
 	char	*b;
+	int		len;
 
+	len = get_len(n, base, in, m);
 	if (!(s = (char *)malloc(sizeof(char) * len + 1)))
-		return (NULL);
+		return (0);
 	i = len;
 	s[i] = 0;
 	b = _DEC;
-	if (info->type == 'x' || info->type == 'p')
+	if (in->t == 'x' || in->t == 'p')
 		b = _HEX_L;
-	else if (info->type == 'X')
+	else if (in->t == 'X')
 		b = _HEX_U;
 	while (n)
 	{
@@ -54,72 +54,61 @@ char	*i_to_s(int len, unsigned int n, int base, t_info *info, int m_flag)
 	}
 	while (i)
 		s[--i] = '0';
-	if (m_flag && ((info->flags != '0' && info->precision == -1) || info->flags != '0' || info->width <= len))
+	if (m && ((in->f != '0' && in->p == -1) || in->f != '0' || in->w <= len))
 		s[0] = '-';
-	return (s);
+	return (print_di(s, len, in, m));
 }
 
-int		ft_di(int n, t_info *info)
+int		ft_di(int n, t_info *in)
 {
-	int		len;
-	char	*s;
 	int		base;
-	int		m_flag;
+	int		m;
 
 	base = 10;
-	m_flag = 0;
+	m = 0;
 	if (n < 0)
 	{
-		m_flag = 1;
+		m = 1;
 		n *= -1;
 	}
-	len = get_len(n, base, info, m_flag);
-	if (!(s = i_to_s(len, n, base, info, m_flag)))
-		return (0);
-	return (print_di(s, len, info, m_flag));
+	return (i_to_s(n, base, in, m));
 }
 
-int		ft_ux(unsigned int n, t_info *info)
+int		ft_ux(unsigned int n, t_info *in)
 {
-	int		len;
-	char	*s;
 	int		base;
 
 	base = 10;
-	if (info->type == 'x' || info->type == 'X')
+	if (in->t == 'x' || in->t == 'X')
 		base = 16;
-	len = get_len(n, base, info, 0);
-	s = i_to_s(len, n, base, info, 0);
-	return (print_di(s, len, info, 0));
+	return (i_to_s(n, base, in, 0));
 }
 
-
-
-int		print_di(char *s, int len, t_info *info, int m_flag)
+int		print_di(char *s, int l, t_info *in, int m)
 {
 	int	i;
 
 	i = 0;
-	if (len < info->width)
+	if (l < in->w)
 	{
-		if (info->flags == '-')
+		if (in->f == '-')
 			ft_putstr_fd(s, 1);
-		while (i++ < info->width - len)
+		while (i++ < in->w - l)
 		{
-			if  (i == 1 && m_flag && info->flags == '0' && info->precision == -1 && info->width > len)
+			if (i == in->w - l && m && in->f == '0' && in->p >= 0 && in->w > l)
 				ft_putchar_fd('-', 1);
-			else if (i == info->width - len && m_flag && info->flags == '0' && info->precision >= 0 && info->width > len)
+			else if (i == 1 && m && in->f == '0' && in->p == -1 && in->w > l)
 				ft_putchar_fd('-', 1);
-			else if (info->flags == '0' && info->precision == -1)
+			else if (in->f == '0' && in->p == -1)
 				ft_putchar_fd('0', 1);
 			else
 				ft_putchar_fd(' ', 1);
 		}
-		if (info->flags != '-')
+		if (in->f != '-')
 			ft_putstr_fd(s, 1);
 	}
 	else
 		ft_putstr_fd(s, 1);
 	free(s);
-	return (len < info->width ? info->width : len);
+	return (l < in->w ? in->w : l);
 }
