@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/01 19:23:49 by daypark           #+#    #+#             */
-/*   Updated: 2021/05/29 03:39:37 by daypark          ###   ########.fr       */
+/*   Updated: 2021/05/29 15:20:30 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void init_info(t_info *info)
 	info->type = 0;
 }
 
-void	set_fwp(char *str, t_info *info, va_list *ap)
+void	set_fwp(char *str, t_info *info, va_list ap)
 {
 	int	i;
 	int minus;
@@ -58,7 +58,7 @@ void	set_fwp(char *str, t_info *info, va_list *ap)
 	asterisk(str, info, ap);
 }
 
-void asterisk(char *str, t_info *info, va_list *ap)
+void asterisk(char *str, t_info *info, va_list ap)
 {
 	int		i;
 
@@ -69,13 +69,13 @@ void asterisk(char *str, t_info *info, va_list *ap)
 		{
 			if (i != 0 && str[i - 1] == '.')
 			{
-				info->precision = va_arg(*ap, int);
+				info->precision = va_arg(ap, int);
 				if (info->precision < 0)
 					info->precision = -1;
 			}
 			else
 			{
-				info->width = va_arg(*ap, int);
+				info->width = va_arg(ap, int);
 				if (info->width < 0)
 				{
 					info->flags = '-';
@@ -87,18 +87,18 @@ void asterisk(char *str, t_info *info, va_list *ap)
 	}
 }
 
-int		print_by_type(va_list *ap, t_info *info)
+int		print_by_type(va_list ap, t_info *info)
 {
 	if (info->type == 'c')
-		return (ft_c(va_arg(*ap, int), info));
+		return (ft_c(va_arg(ap, int), info));
 	else if (info->type == 's')
-		return (ft_s(va_arg(*ap, char *), info));
+		return (ft_s(va_arg(ap, char *), info));
 	else if (info->type == 'd' || info->type == 'i')
-		return (ft_di(va_arg(*ap, int), info));
+		return (ft_di(va_arg(ap, int), info));
 	else if (info->type == 'x' || info->type == 'X' || info->type == 'u')
-		return (ft_ux(va_arg(*ap, unsigned int), info));
+		return (ft_ux(va_arg(ap, unsigned int), info));
 	else if (info->type == 'p')
-		return (ft_p(va_arg(*ap, unsigned long long), info));
+		return (ft_p(va_arg(ap, unsigned long long), info));
 	else if (info->type == '%')
 		return (ft_c('%', info));
 	return (0);
@@ -124,21 +124,22 @@ int		find_pct(char *fmt, t_info *info, va_list ap)
 			if (!(str = (char *)malloc(sizeof(char) * i - idx + 1)))
 				return (0);
 			ft_strlcpy(str, &fmt[idx], i - idx + 1);
-			set_fwp(str, info, &ap);
+			set_fwp(str, info, ap);
 			free(str);
-			info->type = fmt[i];
-			ret += print_by_type(&ap, info);
+			if (!fmt[i])
+				break;
+			info->type = fmt[i];	
+			ret += print_by_type(ap, info);
 		}
 		else
 		{
-			ft_putchar_fd(fmt[i], 1);
+			ft_putchar_fd(fmt[i], 1); //함수 리턴값을 1로 바꾸고 ret+=ft어쩌고
 			ret++;
 		}
 	}
 	return (ret);
 }
 
-//int		ft_printf(t_info *info, const char *fmt, ...)
 int		ft_printf(const char *fmt, ...)
 {
 	t_info	info;
@@ -150,12 +151,3 @@ int		ft_printf(const char *fmt, ...)
 	va_end(ap);
 	return (ret);
 }
-/*
-int main()
-{
-	t_info info;
-
-	printf("\nret: %d", ft_printf(&info, "% *.5i", 4, 42 ));
-	printf("\nflags:%c, width:%d, precision:%d, type:%c\n", info.flags, info.width, info.precision, info.type);
-}
-*/
