@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/01 19:22:58 by daypark           #+#    #+#             */
-/*   Updated: 2021/05/29 03:36:36 by daypark          ###   ########.fr       */
+/*   Updated: 2021/05/29 05:33:48 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,5 @@ int		get_len_p(unsigned long long n, int base, t_info *info);
 char	*p_to_s(int len, unsigned long long n, int base);
 int		ft_p(unsigned long long n, t_info *info);
 
-void asterisk(char *str, t_info *info, va_list *ap);
+void	asterisk(char *str, t_info *info, va_list *ap);
 #endif
