@@ -6,13 +6,13 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/01 19:23:49 by daypark           #+#    #+#             */
-/*   Updated: 2021/05/29 19:36:05 by daypark          ###   ########.fr       */
+/*   Updated: 2021/06/03 18:15:37 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		print_by_t(va_list ap, t_info *info)
+int		print_by_type(va_list ap, t_info *info)
 {
 	if (info->t == 'c')
 		return (ft_c(va_arg(ap, int), info));
@@ -29,7 +29,7 @@ int		print_by_t(va_list ap, t_info *info)
 	return (0);
 }
 
-void	make_str(int idx, char *fmt, t_info *info, va_list ap)
+int		make_str(int idx, char *fmt, t_info *info, va_list ap)
 {
 	char	*str;
 	int		i;
@@ -37,12 +37,13 @@ void	make_str(int idx, char *fmt, t_info *info, va_list ap)
 	i = idx;
 	while (fmt[i] && !(ft_strchr("cspdiuxX%", fmt[i])))
 		i++;
-	init_info(info);
+	set_init(info);
 	if (!(str = (char *)malloc(sizeof(char) * i - idx + 1)))
-		return ;
+		return (1);
 	ft_strlcpy(str, &fmt[idx], i - idx + 1);
 	set_f(str, info, ap);
 	free(str);
+	return (0);
 }
 
 int		find_pct(char *fmt, t_info *info, va_list ap)
@@ -60,11 +61,12 @@ int		find_pct(char *fmt, t_info *info, va_list ap)
 			idx = ++i;
 			while (fmt[i] && !(ft_strchr("cspdiuxX%", fmt[i])))
 				i++;
-			make_str(idx, fmt, info, ap);
+			if (make_str(idx, fmt, info, ap))
+				return (0);
 			if (!fmt[i])
 				break ;
 			info->t = fmt[i];
-			ret += print_by_t(ap, info);
+			ret += print_by_type(ap, info);
 		}
 		else
 			ret += ft_putchar_fd(fmt[i], 1);

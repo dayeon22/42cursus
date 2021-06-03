@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 17:11:51 by daypark           #+#    #+#             */
-/*   Updated: 2021/05/29 16:35:31 by daypark          ###   ########.fr       */
+/*   Updated: 2021/06/03 17:26:14 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int		get_len(unsigned int n, int base, t_info *in, int m)
 		len++;
 	}
 	len = (in->p > len) ? in->p : len;
-	len += m && ((in->f == '0' && in->p == -1) || in->f != '0' || in->w <= len);
-	len = (in->p == -1 && n == 0) ? 1 : len;
+	len += m && ((in->f == '0' && in->p < 0) || in->f != '0' || in->w <= len);
+	len = (in->p < 0 && n == 0) ? 1 : len;
 	return (len);
 }
 
@@ -43,7 +43,7 @@ int		i_to_s(unsigned int n, int base, t_info *in, int m)
 	i = len;
 	s[i] = 0;
 	b = _DEC;
-	if (in->t == 'x' || in->t == 'p')
+	if (in->t == 'x')
 		b = _HEX_L;
 	else if (in->t == 'X')
 		b = _HEX_U;
@@ -54,24 +54,22 @@ int		i_to_s(unsigned int n, int base, t_info *in, int m)
 	}
 	while (i)
 		s[--i] = '0';
-	if (m && ((in->f != '0' && in->p == -1) || in->f != '0' || in->w <= len))
+	if (m && ((in->f != '0' && in->p < 0) || in->f != '0' || in->w <= len))
 		s[0] = '-';
-	return (print_di(s, len, in, m));
+	return (print_diuxp(s, len, in, m));
 }
 
 int		ft_di(int n, t_info *in)
 {
-	int		base;
 	int		m;
 
-	base = 10;
 	m = 0;
 	if (n < 0)
 	{
 		m = 1;
 		n *= -1;
 	}
-	return (i_to_s(n, base, in, m));
+	return (i_to_s(n, 10, in, m));
 }
 
 int		ft_ux(unsigned int n, t_info *in)
@@ -84,7 +82,7 @@ int		ft_ux(unsigned int n, t_info *in)
 	return (i_to_s(n, base, in, 0));
 }
 
-int		print_di(char *s, int l, t_info *in, int m)
+int		print_diuxp(char *s, int l, t_info *in, int m)
 {
 	int	i;
 
@@ -97,9 +95,9 @@ int		print_di(char *s, int l, t_info *in, int m)
 		{
 			if (i == in->w - l && m && in->f == '0' && in->p >= 0 && in->w > l)
 				ft_putchar_fd('-', 1);
-			else if (i == 1 && m && in->f == '0' && in->p == -1 && in->w > l)
+			else if (i == 1 && m && in->f == '0' && in->p < 0 && in->w > l)
 				ft_putchar_fd('-', 1);
-			else if (in->f == '0' && in->p == -1)
+			else if (in->f == '0' && in->p < 0)
 				ft_putchar_fd('0', 1);
 			else
 				ft_putchar_fd(' ', 1);

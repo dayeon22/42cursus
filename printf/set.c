@@ -6,13 +6,13 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 17:11:51 by daypark           #+#    #+#             */
-/*   Updated: 2021/05/29 19:36:54 by daypark          ###   ########.fr       */
+/*   Updated: 2021/06/03 17:30:25 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	init_info(t_info *info)
+void	set_init(t_info *info)
 {
 	info->f = 0;
 	info->w = -1;
@@ -72,11 +72,7 @@ void	asterisk(char *s, t_info *info, va_list ap)
 		if (s[i] == '*')
 		{
 			if (i != 0 && s[i - 1] == '.')
-			{
 				info->p = va_arg(ap, int);
-				if (info->p < 0)
-					info->p = -1;
-			}
 			else
 			{
 				info->w = va_arg(ap, int);
