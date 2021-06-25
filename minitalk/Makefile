@@ -5,39 +5,37 @@
 #                                                     +:+ +:+         +:+      #
 #    By: daypark <daypark@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/05/05 02:10:50 by daypark           #+#    #+#              #
-#    Updated: 2021/06/04 15:12:42 by daypark          ###   ########.fr        #
+#    Created: 2021/06/25 16:37:08 by daypark           #+#    #+#              #
+#    Updated: 2021/06/25 16:49:13 by daypark          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
-SRCS = ft_printf.c set.c cs.c diux.c p.c
-OBJS = $(SRCS:.c=.o)
-LIBFT = libft
-LIBFTL = libft.a
+NAME_S = server
+SRCS_S = server.c utils.c
+OBJS_S = $(SRCS_S:.c=.o)
+NAME_C = client
+SRCS_C = client.c utils.c
+OBJS_C = $(SRCS_C:.c=.o)
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
-AR = ar
-ARFLAGS = rcs
+CFLAGS = -Wextra -Wall -Werror
 
 .PHONY : all clean fclean re
 
-all : $(NAME)
+all : $(NAME_S) $(NAME_C)
 
-$(NAME) : $(OBJS)
-	make all -C $(LIBFT)/
-	cp $(LIBFT)/$(LIBFTL) $(NAME)
-	$(AR) $(ARFLAGS) $(NAME) $(OBJS)
+$(NAME_S) : $(OBJS_S)
+	$(CC) -o $@ $^
+
+$(NAME_C) : $(OBJS_C)
+	$(CC) -o $@ $^
 
 %.o : %.c
 	$(CC) $(CFLAGS) -c $^
 
 clean :
-	rm -f $(OBJS)
-	make clean -C $(LIBFT)
+	rm -f $(OBJS_S) $(OBJS_C)
 
 fclean : clean
-	rm -f $(NAME)
-	rm -f $(LIBFT)/$(LIBFTL)
+	rm -f $(NAME_S) $(NAME_C)
 
 re : fclean all

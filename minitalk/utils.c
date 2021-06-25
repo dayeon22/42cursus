@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/21 16:32:42 by daypark           #+#    #+#             */
-/*   Updated: 2021/06/21 17:20:33 by daypark          ###   ########.fr       */
+/*   Created: 2021/06/24 16:32:42 by daypark           #+#    #+#             */
+/*   Updated: 2021/06/25 16:58:35 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-int		get_len(char *str)
+int		ft_strlen(char *str)
 {
 	int	i;
 
@@ -22,9 +22,11 @@ int		get_len(char *str)
 	return (i);
 }
 
-void	put_str(char *str)
+void	ft_putstr_fd(char *s, int fd)
 {
-	write(1, str, get_len(str));
+	if (!s || fd < 0)
+		return ;
+	write(fd, s, ft_strlen(s));
 }
 
 char	*ft_itoa(int n)
@@ -54,4 +56,28 @@ char	*ft_itoa(int n)
 		n /= 10;
 	}
 	return (res);
+}
+
+int		ft_atoi(char *s)
+{
+	int		result;
+	int		sign;
+	int		i;
+
+	result = 0;
+	i = 0;
+	sign = 1;
+	while (s[i] == ' ' || s[i] == '\n' || s[i] == '\t' || \
+			s[i] == '\v' || s[i] == '\f' || s[i] == '\r')
+		i++;
+	if (s[i] == '-' || s[i] == '+')
+		sign = (s[i] == '-') ? -1 : 1;
+	while (s[i])
+	{
+		if (!('0' <= s[i] && s[i] <= '9'))
+			return (sign * result);
+		else
+			result = result * 10 + s[i++] - '0';
+	}
+	return (result * sign);
 }

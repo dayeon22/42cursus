@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 17:11:51 by daypark           #+#    #+#             */
-/*   Updated: 2021/06/03 17:26:14 by daypark          ###   ########.fr       */
+/*   Updated: 2021/06/04 15:32:11 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,9 @@ int		print_diuxp(char *s, int l, t_info *in, int m)
 			ft_putstr_fd(s, 1);
 		while (i++ < in->w - l)
 		{
-			if (i == in->w - l && m && in->f == '0' && in->p >= 0 && in->w > l)
+			if (i == in->w - l && m && in->f == '0' && in->p >= 0)
 				ft_putchar_fd('-', 1);
-			else if (i == 1 && m && in->f == '0' && in->p < 0 && in->w > l)
+			else if (i == 1 && m && in->f == '0' && in->p < 0)
 				ft_putchar_fd('-', 1);
 			else if (in->f == '0' && in->p < 0)
 				ft_putchar_fd('0', 1);
