@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 16:18:39 by daypark           #+#    #+#             */
-/*   Updated: 2021/06/25 16:58:58 by daypark          ###   ########.fr       */
+/*   Updated: 2021/06/25 20:16:33 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <signal.h>
 
 /*
- *	server.c
+ * server.c
  */
 void	sig_handler(int sig);
 
