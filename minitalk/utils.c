@@ -6,11 +6,18 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 16:32:42 by daypark           #+#    #+#             */
-/*   Updated: 2021/06/25 16:58:35 by daypark          ###   ########.fr       */
+/*   Updated: 2021/06/28 18:01:31 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
+
+void	ft_putchar_fd(char c, int fd)
+{
+	if (fd < 0)
+		return ;
+	write(fd, &c, 1);
+}
 
 int		ft_strlen(char *str)
 {
@@ -24,7 +31,7 @@ int		ft_strlen(char *str)
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	if (!s || fd < 0)
+	if (fd < 0 || !s)
 		return ;
 	write(fd, s, ft_strlen(s));
 }

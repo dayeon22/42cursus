@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 16:18:39 by daypark           #+#    #+#             */
-/*   Updated: 2021/06/25 20:16:33 by daypark          ###   ########.fr       */
+/*   Updated: 2021/06/28 17:52:06 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	sig_handler(int sig);
 /*
  * utils.c
  */
+void	ft_putchar_fd(char c, int fd);
 int		ft_strlen(char *str);
 void	ft_putstr_fd(char *s, int fd);
 char	*ft_itoa(int n);
