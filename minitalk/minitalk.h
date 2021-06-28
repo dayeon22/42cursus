@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 16:18:39 by daypark           #+#    #+#             */
-/*   Updated: 2021/06/28 17:52:06 by daypark          ###   ########.fr       */
+/*   Updated: 2021/06/29 02:22:08 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,10 @@
 #include <stdlib.h>
 #include <signal.h>
 
-/*
- * server.c
- */
 void	sig_handler(int sig);
 
-/*
- * client.c
- */
+int		transmission(char c, int send_pid);
 
-
-/*
- * utils.c
- */
 void	ft_putchar_fd(char c, int fd);
 int		ft_strlen(char *str);
 void	ft_putstr_fd(char *s, int fd);

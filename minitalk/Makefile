@@ -6,10 +6,11 @@
 #    By: daypark <daypark@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/25 16:37:08 by daypark           #+#    #+#              #
-#    Updated: 2021/06/25 16:49:13 by daypark          ###   ########.fr        #
+#    Updated: 2021/06/29 02:55:49 by daypark          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+NAME = minitalk
 NAME_S = server
 SRCS_S = server.c utils.c
 OBJS_S = $(SRCS_S:.c=.o)
@@ -21,7 +22,9 @@ CFLAGS = -Wextra -Wall -Werror
 
 .PHONY : all clean fclean re
 
-all : $(NAME_S) $(NAME_C)
+all : $(NAME)
+
+$(NAME) : $(NAME_S) $(NAME_C)
 
 $(NAME_S) : $(OBJS_S)
 	$(CC) -o $@ $^
