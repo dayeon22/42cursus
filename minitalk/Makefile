@@ -6,7 +6,7 @@
 #    By: daypark <daypark@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/25 16:37:08 by daypark           #+#    #+#              #
-#    Updated: 2021/06/29 02:55:49 by daypark          ###   ########.fr        #
+#    Updated: 2021/07/01 16:47:08 by daypark          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,19 @@ OBJS_S = $(SRCS_S:.c=.o)
 NAME_C = client
 SRCS_C = client.c utils.c
 OBJS_C = $(SRCS_C:.c=.o)
+
+B_NAME = minitalk_bonus
+B_NAME_S = server_bonus
+B_SRCS_S = server_bonus.c utils_bonus.c
+B_OBJS_S = $(B_SRCS_S:.c=.o)
+B_NAME_C = client_bonus
+B_SRCS_C = client_bonus.c utils_bonus.c
+B_OBJS_C = $(B_SRCS_C:.c=.o)
+	
 CC = gcc
 CFLAGS = -Wextra -Wall -Werror
 
-.PHONY : all clean fclean re
+.PHONY : all clean fclean re bonus
 
 all : $(NAME)
 
@@ -36,9 +45,19 @@ $(NAME_C) : $(OBJS_C)
 	$(CC) $(CFLAGS) -c $^
 
 clean :
-	rm -f $(OBJS_S) $(OBJS_C)
+	rm -f $(OBJS_S) $(OBJS_C) $(B_OBJS_S) $(B_OBJS_C)
 
 fclean : clean
-	rm -f $(NAME_S) $(NAME_C)
+	rm -f $(NAME_S) $(NAME_C) $(B_NAME_S) $(B_NAME_C)
 
 re : fclean all
+
+bonus : $(B_NAME)
+
+$(B_NAME) : $(B_NAME_S) $(B_NAME_C)
+
+$(B_NAME_S) : $(B_OBJS_S)
+	$(CC) $(CFLAGS) -o $@ $^
+
+$(B_NAME_C) : $(B_OBJS_C)
+	$(CC) $(CFLAGS) -o $@ $^
