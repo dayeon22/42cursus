@@ -6,7 +6,7 @@
 #    By: daypark <daypark@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/25 16:37:08 by daypark           #+#    #+#              #
-#    Updated: 2021/07/01 16:47:08 by daypark          ###   ########.fr        #
+#    Updated: 2021/07/02 14:32:04 by daypark          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,6 @@ NAME_C = client
 SRCS_C = client.c utils.c
 OBJS_C = $(SRCS_C:.c=.o)
 
-B_NAME = minitalk_bonus
 B_NAME_S = server_bonus
 B_SRCS_S = server_bonus.c utils_bonus.c
 B_OBJS_S = $(B_SRCS_S:.c=.o)
@@ -52,12 +51,10 @@ fclean : clean
 
 re : fclean all
 
-bonus : $(B_NAME)
-
-$(B_NAME) : $(B_NAME_S) $(B_NAME_C)
+bonus : $(B_NAME_S) $(B_NAME_C)
 
 $(B_NAME_S) : $(B_OBJS_S)
-	$(CC) $(CFLAGS) -o $@ $^
+	$(CC) $(CFLAGS) -o $(NAME_S) $^
 
 $(B_NAME_C) : $(B_OBJS_C)
-	$(CC) $(CFLAGS) -o $@ $^
+	$(CC) $(CFLAGS) -o $(NAME_C) $^

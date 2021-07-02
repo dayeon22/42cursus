@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 11:13:17 by daypark           #+#    #+#             */
-/*   Updated: 2021/07/01 16:46:12 by daypark          ###   ########.fr       */
+/*   Updated: 2021/07/02 13:26:04 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,16 @@ int		main(int argc, char *argv[])
 	int		send_pid;
 
 	if (argc != 3)
-		return 0;
+		return (0);
 	send_pid = ft_atoi(argv[1]);
 	i = -1;
 	while (argv[2][++i])
 	{
 		if (transmission(argv[2][i], send_pid))
-			return 0;
+			return (0);
 	}
 	if (transmission('\0', send_pid))
-		return 0;
-	while (1);
+		return (0);
 }
 
 int		transmission(char c, int send_pid)
