@@ -1,5 +1,6 @@
 #include "mlx/mlx.h"
 
+
 typedef struct	s_data
 {
 	void		*img;
