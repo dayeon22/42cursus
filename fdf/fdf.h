@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 19:29:41 by daypark           #+#    #+#             */
-/*   Updated: 2021/08/18 19:20:41 by daypark          ###   ########.fr       */
+/*   Updated: 2021/08/20 05:57:17 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@
 # include "./lib/mlx/mlx.h"
 # include "./lib/libft/libft.h"
 # include <fcntl.h>
+# include <math.h>
 
 
 typedef struct	s_data //s_mlx 또는 s_fdf로 변경하기?
-{
+{ //근데 mlx와 image를 합쳐도 되나? imx하나에 img 여러개 같은데
 	//예제 코드에서 구조체에 속하지 않은 것들
 	void		*mlx;
 	void		*mlx_win;
@@ -39,19 +40,17 @@ typedef struct	s_map
 	int			height;
 }				t_map;
 
-typedef struct	s_line
+typedef struct		s_line
 {
-	int			x0;
-	int			y0;
-	int			x1;
-	int			y1;
-	int			dx;
-	int			dy;
-	int			df1;
-	int			df2;
-	int			f;
-	long		color; //unsigned long?
-}				t_line;
+	int				x0; //int vs double
+	int				y0;
+	int				x1;
+	int				y1;
+	int				dx;
+	int				dy;
+	int				f;
+	unsigned int	color;
+}					t_line;
 
 /*
  * read_file.c
@@ -68,7 +67,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 void	draw_vertical(t_data *data, int i, int j, t_map *m);
 void	draw_horizontal(t_data *data, int i, int j, t_map *m);
-void	bresenham_h(t_line *line, t_data *data);
-void	bresenham_v(t_line *line, t_data *data);
+
+void	isometric(t_line *line);
 
 #endif

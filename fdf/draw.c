@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 16:32:49 by daypark           #+#    #+#             */
-/*   Updated: 2021/08/18 19:29:07 by daypark          ###   ########.fr       */
+/*   Updated: 2021/08/20 06:06:21 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,23 +50,31 @@ void	draw(t_map *m)
 		i++;
 	}
 	mlx_loop(data.mlx);
+	//mlx_put_image_to_window() 여기서 해주기
 	//mlx_destroy_window 실행하고 종료하기
+}
+
+void	isometric(t_line *line)
+{
+	line->x0 = line->x0 * cos(0.5) - line->y0 * sin(0.5); //각도 변경하기
+	line->y0 = line->x0 * sin(0.5) + line->y0 * cos(0.5);
+	line->x1 = line->x1 * cos(0.5) - line->y1 * sin(0.5);
+	line->y1 = line->x1 * sin(0.5) + line->y1 * cos(0.5);
 }
 
 void	draw_horizontal(t_data *data, int i, int j, t_map *m)
 {
 	t_line	line;
 
-	//x, y값 설정
-	line.x0 = j * 30;
-	line.y0 = i * 30;
+	line.x0 = 300 + j * 30;
+	line.y0 = 200 + i * 30;
 	line.x1 = line.x0 + 30;
-	line.y1 = line.y0; //y좌표는 그대로
+	line.y1 = line.y0;
+
+	isometric(&line);
+
 	line.dx = line.x1 - line.x0;
 	line.dy = line.y1 - line.y0;
-
-	line.df1 = 2 * line.dy;
-	line.df2 = 2 * (line.dy - line.dx);
 	line.f = 2 * line.dy - line.dx;
 
 	int x = line.x0;
@@ -81,11 +89,11 @@ void	draw_horizontal(t_data *data, int i, int j, t_map *m)
 	{
 		my_mlx_pixel_put(data, x, y, line.color);
 		if (line.f < 0)
-			line.f += line.df1;
+			line.f += 2 * line.dy;
 		else
 		{
 			y++;
-			line.f += line.df2;
+			line.f += 2 * (line.dy - line.dx);
 		}
 		x++;
 	}
@@ -96,16 +104,15 @@ void	draw_vertical(t_data *data, int i, int j, t_map *m)
 {
 	t_line	line;
 
-	//x, y값 설정(줄 여유있으면 width, height, f까지)
-	line.x0 = j * 30;
-	line.y0 = i * 30;
+	line.x0 = 300 + j * 30;
+	line.y0 = 200 + i * 30;
 	line.x1 = line.x0;
 	line.y1 = line.y0 + 30;
-	line.dy = line.x1 - line.x0;
-	line.dx = line.y1 - line.y0;
+	
+	isometric(&line);
 
-	line.df1 = 2 * line.dy; //이러지말고 아예 width와 height를 swap?
-	line.df2 = 2 * (line.dy - line.dx);
+	line.dy = abs(line.x1 - line.x0); //음수나옴
+	line.dx = line.y1 - line.y0;
 	line.f = 2 * line.dy - line.dx;
 
 	int x = line.x0;
@@ -120,11 +127,11 @@ void	draw_vertical(t_data *data, int i, int j, t_map *m)
 	{
 		my_mlx_pixel_put(data, x, y, line.color);
 		if (line.f < 0)
-			line.f += line.df1;
+			line.f += 2 * line.dy;
 		else
 		{
-			x++;
-			line.f += line.df2;
+			x--; //왼쪽으로 가야하니까
+			line.f += 2 * (line.dy - line.dx);
 		}
 		y++;
 	}
