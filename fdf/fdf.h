@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 19:29:41 by daypark           #+#    #+#             */
-/*   Updated: 2021/08/20 05:57:17 by daypark          ###   ########.fr       */
+/*   Updated: 2021/08/30 21:42:52 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,16 @@ typedef struct	s_map
 
 typedef struct		s_line
 {
-	int				x0; //int vs double
-	int				y0;
-	int				x1;
-	int				y1;
+	float			x0; //int vs float
+	float			y0;
+	int				z0;
+	float			x1;
+	float			y1;
+	int				z1;
 	int				dx;
 	int				dy;
 	int				f;
+	double			slope;
 	unsigned int	color;
 }					t_line;
 
@@ -69,5 +72,7 @@ void	draw_vertical(t_data *data, int i, int j, t_map *m);
 void	draw_horizontal(t_data *data, int i, int j, t_map *m);
 
 void	isometric(t_line *line);
+
+//static void iso(int *x, int *y, int z);
 
 #endif
