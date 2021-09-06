@@ -3,21 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 19:36:55 by daypark           #+#    #+#             */
-/*   Updated: 2021/08/16 17:52:15 by daypark          ###   ########.fr       */
+/*   Updated: 2021/09/06 17:11:30 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <stdio.h>
-
-/*
- * map에 관한 구조체 만드는 것도 좋을 듯
- * (변수선언으로 인한 줄 수도 줄이고, 파라미터로 사용시에도 편리)
- * map, width, height 세트로 많이 사용한다면 구조체로 묶어버리기
- */
 
 int		read_map(char *file_name, t_map *m)
 {

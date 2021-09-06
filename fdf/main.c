@@ -3,21 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 16:57:56 by daypark           #+#    #+#             */
-/*   Updated: 2021/08/18 20:05:50 by daypark          ###   ########.fr       */
+/*   Updated: 2021/09/06 18:15:21 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <stdio.h>
 
-int main()
+int main(int argc, char *argv[])
 {
 	t_map	m;
 
-	//argc == 3일 때만 코드 돌아가게 하기
-	read_map("42.fdf", &m); //리턴값에 따라 처리하기(전 함수에서 처리했음 됐고)
-	draw(&m); //m에 포함된 값을 바꾸지 않을거면 굳이 포인터로 전송할 필요는 없을 듯
+	if (argc == 2)
+	{
+		read_map(argv[1], &m); //리턴값에 따라 처리하기(전 함수에서 처리했음 됐고)
+		draw(&m); //m에 포함된 값을 바꾸지 않을거면 굳이 포인터로 전송할 필요는 없을 듯
+	}
 }

@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 19:29:41 by daypark           #+#    #+#             */
-/*   Updated: 2021/08/30 21:42:52 by daypark          ###   ########.fr       */
+/*   Updated: 2021/09/06 16:52:58 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
+
+//# define 
 
 # include "./lib/mlx/mlx.h"
 # include "./lib/libft/libft.h"
@@ -73,6 +75,8 @@ void	draw_horizontal(t_data *data, int i, int j, t_map *m);
 
 void	isometric(t_line *line);
 
-//static void iso(int *x, int *y, int z);
+int key_press(int keycode, t_data *data, int *cnt);
+void	set_line(t_line *line, int i, int j, t_map *m, int type);
+unsigned int	get_color(int altitude);
 
 #endif
