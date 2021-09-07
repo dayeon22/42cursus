@@ -6,14 +6,20 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 19:29:41 by daypark           #+#    #+#             */
-/*   Updated: 2021/09/06 16:52:58 by daypark          ###   ########.fr       */
+/*   Updated: 2021/09/07 23:56:06 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-//# define 
+# define WIN_WIDTH 1280
+# define WIN_HEIGHT 720
+
+# define LEFT 123
+# define RIGHT 124
+# define DOWN 125
+# define UP 126
 
 # include "./lib/mlx/mlx.h"
 # include "./lib/libft/libft.h"
@@ -54,8 +60,14 @@ typedef struct		s_line
 	int				dy;
 	int				f;
 	double			slope;
-	unsigned int	color;
 }					t_line;
+
+typedef struct	s_move
+{
+	int			x;
+	int			y;
+	int			zoom;
+}				t_move;
 
 /*
  * read_file.c
@@ -75,7 +87,7 @@ void	draw_horizontal(t_data *data, int i, int j, t_map *m);
 
 void	isometric(t_line *line);
 
-int key_press(int keycode, t_data *data, int *cnt);
+int key_press(int keycode, t_data *data);
 void	set_line(t_line *line, int i, int j, t_map *m, int type);
 unsigned int	get_color(int altitude);
 

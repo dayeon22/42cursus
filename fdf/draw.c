@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 16:32:49 by daypark           #+#    #+#             */
-/*   Updated: 2021/09/06 18:27:07 by daypark          ###   ########.fr       */
+/*   Updated: 2021/09/07 19:56:30 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	draw(t_map *m)
 	int		j;
 
 	data.mlx = mlx_init();
-	data.mlx_win = mlx_new_window(data.mlx, 1280, 1024, "fdf"); //1280 * 1024
-	data.img = mlx_new_image(data.mlx, 1280, 1024); //1920 * 1080
+	data.mlx_win = mlx_new_window(data.mlx, WIN_WIDTH, WIN_HEIGHT, "fdf");
+	data.img = mlx_new_image(data.mlx, WIN_WIDTH, WIN_HEIGHT);
 	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, &data.line_length, &data.endian);
 
 	i = 0;
@@ -50,34 +50,41 @@ void	draw(t_map *m)
 		i++;
 	}
 	mlx_put_image_to_window(data.mlx, data.mlx_win, data.img, 0, 0);
-	int cnt = 0;
-	mlx_key_hook(data.mlx_win, &key_press, &cnt);
+	mlx_key_hook(data.mlx_win, &key_press, &data);
 	mlx_loop(data.mlx);
 	//mlx_destroy_window 실행하고 종료하기
 }
 
-int key_press(int keycode, t_data *data, int *cnt)
+int		key_press(int keycode, t_data *data)
 {
-	if (keycode == 0)
-		printf("A pushed %d\n", *cnt);
+	if (keycode == UP)
+		printf("Up pushed\n");
+	else if (keycode == DOWN)
+		printf("Down pushed\n");
+	else if (keycode == LEFT)
+		printf("Left pushed\n");
+	else if (keycode == RIGHT)
+		printf("Right pushed\n");
+	else
+		printf("Other key pushed\n");
 	data->endian = 0;
 	return (0);
 }
 
 void	isometric(t_line *line)
 {
-    int previous_x;
-    int previous_y;
+    int pre_x;
+    int pre_y;
 
-    previous_x = line->x0 * 30;
-    previous_y = line->y0 * 30;
-    line->x0 = (previous_x - previous_y) * cos(0.523599) + 640;
-    line->y0 = -line->z0 + (previous_x + previous_y) * sin(0.523599) + 512;
+    pre_x = line->x0 * 20;
+    pre_y = line->y0 * 20;
+    line->x0 = (pre_x - pre_y) * cos(0.523599) + WIN_WIDTH / 2;
+    line->y0 = -line->z0 + (pre_x + pre_y) * sin(0.523599) + WIN_HEIGHT / 2;
 
-	previous_x = line->x1 * 30;
-	previous_y = line->y1 * 30;
-	line->x1 = (previous_x - previous_y) * cos(0.523599) + 640;
-	line->y1 = -line->z1 + (previous_x + previous_y) * sin(0.523599) + 512;
+	pre_x = line->x1 * 20;
+	pre_y = line->y1 * 20;
+	line->x1 = (pre_x - pre_y) * cos(0.523599) + WIN_WIDTH / 2;
+	line->y1 = -line->z1 + (pre_x + pre_y) * sin(0.523599) + WIN_HEIGHT / 2;
 }
 
 void	set_line(t_line *line, int i, int j, t_map *m, int type) //isometric, horizontal과 합치기
@@ -125,7 +132,7 @@ void	draw_horizontal(t_data *data, int i, int j, t_map *m)
 
 	while (x != (int)line.x1) // x < line.x1
 	{
-		if (0 < x && x < 1280 && 0 < y && y < 1024)
+		if (0 < x && x < WIN_WIDTH && 0 < y && y < WIN_HEIGHT)
 			my_mlx_pixel_put(data, x, y, get_color(line.z0));
 		if (line.f < 0)
 			line.f += 2 * line.dy;
@@ -154,7 +161,7 @@ void	draw_vertical(t_data *data, int i, int j, t_map *m)
 
 	while (x != (int)line.x1) // >
 	{
-		if (0 < x && x < 1280 && 0 < y && y < 1024)
+		if (0 < x && x < WIN_WIDTH && 0 < y && y < WIN_HEIGHT)
 			my_mlx_pixel_put(data, x, y, get_color(line.z0));
 		if (line.f < 0)
 			line.f += 2 * line.dy;
