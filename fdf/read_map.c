@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 19:36:55 by daypark           #+#    #+#             */
-/*   Updated: 2021/09/06 17:11:30 by daypark          ###   ########.fr       */
+/*   Updated: 2021/09/09 17:51:40 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int		input_map(int fd, t_map *m)
 	char	*line;
 	char	**words;
 
-	m->map = (int **)malloc(sizeof(int *) * m->height);
+	m->map = (int **)malloc(sizeof(int *) * m->height);//free
 	if (!m->map)
 		return (1);
 	i = -1;

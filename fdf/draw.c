@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 16:32:49 by daypark           #+#    #+#             */
-/*   Updated: 2021/09/07 19:56:30 by daypark          ###   ########.fr       */
+/*   Updated: 2021/09/10 02:16:40 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,67 +24,68 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 //void make_win(t_map *m);
 //width,height 값 확인 후 최대크기 정함, window 생성
 
-void	draw(t_map *m)
+void	draw(t_data *data)
 {
-	t_data	data;
 	int		i;
 	int		j;
 
-	data.mlx = mlx_init();
-	data.mlx_win = mlx_new_window(data.mlx, WIN_WIDTH, WIN_HEIGHT, "fdf");
-	data.img = mlx_new_image(data.mlx, WIN_WIDTH, WIN_HEIGHT);
-	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, &data.line_length, &data.endian);
-
 	i = 0;
-	while (i < m->height)
+	while (i < data->m->height)
 	{
 		j = 0;
-		while (j < m->width)
+		while (j < data->m->width)
 		{
-			if (j != m->width - 1)
-				draw_horizontal(&data, i, j, m);
-			if (i != m->height - 1)
-				draw_vertical(&data, i, j, m);
+			if (j != data->m->width - 1)
+				draw_horizontal(data, i, j);
+			if (i != data->m->height - 1)
+				draw_vertical(data, i, j);
 			j++;
 		}
 		i++;
 	}
-	mlx_put_image_to_window(data.mlx, data.mlx_win, data.img, 0, 0);
-	mlx_key_hook(data.mlx_win, &key_press, &data);
-	mlx_loop(data.mlx);
+	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
 	//mlx_destroy_window 실행하고 종료하기
 }
 
 int		key_press(int keycode, t_data *data)
 {
-	if (keycode == UP)
-		printf("Up pushed\n");
-	else if (keycode == DOWN)
-		printf("Down pushed\n");
-	else if (keycode == LEFT)
-		printf("Left pushed\n");
-	else if (keycode == RIGHT)
-		printf("Right pushed\n");
+	if (keycode == UP && data->move->y > 0)
+		data->move->y--;
+	else if (keycode == DOWN && data->move->y < WIN_HEIGHT)
+		data->move->y++;
+	else if (keycode == LEFT && data->move->x > 0)
+		data->move->x--;
+	else if (keycode == RIGHT && data->move->x < WIN_WIDTH)
+		data->move->x++;
+	else if (keycode == PLUS)
+		data->move->zoom *= 1.1;
+	else if (keycode == MINUS)
+		data->move->zoom *= 0.9;
+	else if (keycode == ESC)
+		exit(0); //mlx_destroy_window(), free() 해야함
 	else
-		printf("Other key pushed\n");
-	data->endian = 0;
+		return (0);
+	//mlx_clear_window(data->mlx, data->mlx_win);
+	data->img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
+	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length, &data->endian);
+	draw(data);
 	return (0);
 }
 
-void	isometric(t_line *line)
+void	isometric(t_line *line, t_data *data)
 {
     int pre_x;
     int pre_y;
 
-    pre_x = line->x0 * 20;
-    pre_y = line->y0 * 20;
-    line->x0 = (pre_x - pre_y) * cos(0.523599) + WIN_WIDTH / 2;
-    line->y0 = -line->z0 + (pre_x + pre_y) * sin(0.523599) + WIN_HEIGHT / 2;
+    pre_x = line->x0 * data->move->zoom;
+    pre_y = line->y0 * data->move->zoom;
+    line->x0 = (pre_x - pre_y) * cos(0.523599) + data->move->x;
+    line->y0 = -line->z0 + (pre_x + pre_y) * sin(0.523599) + data->move->y;
 
-	pre_x = line->x1 * 20;
-	pre_y = line->y1 * 20;
-	line->x1 = (pre_x - pre_y) * cos(0.523599) + WIN_WIDTH / 2;
-	line->y1 = -line->z1 + (pre_x + pre_y) * sin(0.523599) + WIN_HEIGHT / 2;
+	pre_x = line->x1 * data->move->zoom;
+	pre_y = line->y1 * data->move->zoom;
+	line->x1 = (pre_x - pre_y) * cos(0.523599) + data->move->x;
+	line->y1 = -line->z1 + (pre_x + pre_y) * sin(0.523599) + data->move->y;
 }
 
 void	set_line(t_line *line, int i, int j, t_map *m, int type) //isometric, horizontal과 합치기
@@ -116,12 +117,12 @@ unsigned int	get_color(int altitude)
 }
 
 //horizontal, vertical로 나누지 말고 기울기를 기준으로 나눠야 함
-void	draw_horizontal(t_data *data, int i, int j, t_map *m)
+void	draw_horizontal(t_data *data, int i, int j)
 {
 	t_line	line;
 
-	set_line(&line, i, j, m, 0);
-	isometric(&line);
+	set_line(&line, i, j, data->m, 0);
+	isometric(&line, data);
 	line.dx = abs((int)line.x1 - (int)line.x0);
 	line.dy = abs((int)line.y1 - (int)line.y0);
 	int xadd = (int)line.x1 - (int)line.x0 > 0 ? 1 : -1;
@@ -145,12 +146,12 @@ void	draw_horizontal(t_data *data, int i, int j, t_map *m)
 	}
 }
 
-void	draw_vertical(t_data *data, int i, int j, t_map *m)
+void	draw_vertical(t_data *data, int i, int j)
 {
 	t_line	line;
 
-	set_line(&line, i, j, m, 1);
-	isometric(&line);
+	set_line(&line, i, j, data->m, 1);
+	isometric(&line, data);
 	line.dx = abs((int)line.x1 - (int)line.x0);
 	line.dy = abs((int)line.y1 - (int)line.y0);
 	int xadd = (int)line.x1 - (int)line.x0 > 0 ? 1 : -1;
