@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 19:36:55 by daypark           #+#    #+#             */
-/*   Updated: 2021/09/09 17:51:40 by daypark          ###   ########.fr       */
+/*   Updated: 2021/09/14 03:01:19 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,19 @@ int		read_map(char *file_name, t_map *m)
 		return (1);
 	}
 	return (input_map(fd, m));
+}
+
+int		get_idx(char *str, int c)
+{
+	int		i;
+
+	i = -1;
+	while (str[++i])
+	{
+		if (str[i] == c)
+			return (i);
+	}
+	return (-1);
 }
 
 int		input_map(int fd, t_map *m)
@@ -51,7 +64,10 @@ int		input_map(int fd, t_map *m)
 		words = ft_split(line, ' ');
 		j = -1;
 		while (++j < m->width)
+		{
+			words[j][get_idx(words[j], ',')] = '\0';
 			m->map[i][j] = ft_atoi(words[j]);
+		}
 		i++; //free(line) 해주기
 	}
 	return (0);

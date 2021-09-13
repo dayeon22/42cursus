@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 19:29:41 by daypark           #+#    #+#             */
-/*   Updated: 2021/09/10 01:34:56 by daypark          ###   ########.fr       */
+/*   Updated: 2021/09/13 17:53:43 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct	s_data //s_mlx 또는 s_fdf로 변경하기?
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
+	int			projection; //여기에둘까 딴곳에둘까
 	t_map		*m; // 포인터로 안해도 될것같은데
 	t_move		*move;
 }				t_data;
@@ -67,10 +68,9 @@ typedef struct		s_line
 	float			x1;
 	float			y1;
 	int				z1;
-	int				dx;
-	int				dy;
+	float				dx;
+	float				dy;
 	int				f;
-	double			slope;
 }					t_line;
 
 /*
@@ -90,6 +90,7 @@ void	draw_vertical(t_data *data, int i, int j);
 void	draw_horizontal(t_data *data, int i, int j);
 
 void	isometric(t_line *line, t_data *data);
+void	parallel(t_line *line, t_data *data);
 
 int key_press(int keycode, t_data *data);
 void	set_line(t_line *line, int i, int j, t_map *m, int type);
@@ -97,5 +98,8 @@ unsigned int	get_color(int altitude);
 
 void		init_move(t_move *move);
 
+void bresenham(t_data *data, t_line *line);
+
+void	bresenham_low(t_data *data, t_line *line);
 
 #endif
