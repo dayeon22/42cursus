@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 16:48:10 by daypark           #+#    #+#             */
-/*   Updated: 2021/08/09 15:57:06 by daypark          ###   ########.fr       */
+/*   Updated: 2021/09/17 01:20:43 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,24 @@
 
 char	*ft_strjoin(char *s1, char *s2)
 {
-	size_t	len;
+	size_t	len1;
+	size_t	len2;
 	char	*res;
 	size_t	i;
 	size_t	j;
 
 	if (!s1 || !s2)
 		return (NULL);
-	len = ft_strlen(s1) + ft_strlen(s2) + 1;
-	res = (char *)malloc(sizeof(char) * len);
+	len1 = ft_strlen(s1);
+	len2 = ft_strlen(s2);
+	res = (char *)malloc(sizeof(char) * len1 + len2 + 1);
 	if (!res)
 		return (NULL);
-	i = 0;
+	i = -1;
 	j = 0;
-	while (i < ft_strlen(s1))
-	{
+	while (++i < len1)
 		res[i] = s1[i];
-		i++;
-	}
-	while (j < ft_strlen(s2))
+	while (j < len2)
 		res[i++] = s2[j++];
 	res[i] = 0;
 	return (res);

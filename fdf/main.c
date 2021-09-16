@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 16:57:56 by daypark           #+#    #+#             */
-/*   Updated: 2021/09/13 19:20:10 by daypark          ###   ########.fr       */
+/*   Updated: 2021/09/17 02:00:20 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ int main(int argc, char *argv[])
 		data->mlx_win = mlx_new_window(data->mlx, WIN_WIDTH, WIN_HEIGHT, "fdf");
 		data->img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
 		data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length, &data->endian);
-
-		read_map(argv[1], data->m); //리턴값에 따라 처리하기(전 함수에서 처리했음 됐고)
+		if (read_map(argv[1], data->m))//리턴값에 따라 처리하기(전 함수에서 처리했음 됐고)
+			return (0); //에러메시지
 		init_move(data->move);
 		draw(data); //m에 포함된 값을 바꾸지 않을거면 굳이 포인터로 전송할 필요는 없을 듯
 
-		//mlx_key_hook(data->mlx_win, &key_press, data);
+		mlx_key_hook(data->mlx_win, &key_press, data);
 		mlx_hook(data->mlx_win, 2, 1L<<0, &key_press, data);
 		mlx_loop_hook(data->mlx, &key_press, data);
 		mlx_loop(data->mlx);
