@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 16:32:49 by daypark           #+#    #+#             */
-/*   Updated: 2021/09/14 02:02:01 by daypark          ###   ########.fr       */
+/*   Updated: 2021/09/17 12:38:42 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,9 @@ void	draw(t_data *data)
 		while (j < data->m->width)
 		{
 			if (j != data->m->width - 1)
-			{	
-				draw_horizontal(data, i, j);
-			}
+				set_line(data, i, j, 0);
 			if (i != data->m->height - 1)
-			{
-				draw_vertical(data, i, j);
-			}
+				set_line(data, i, j, 1);
 			j++;
 		}
 		i++;
@@ -66,6 +62,14 @@ int		key_press(int keycode, t_data *data)
 		data->move->zoom *= 1.1;
 	else if (keycode == MINUS)
 		data->move->zoom *= 0.9;
+	else if (keycode == H)
+		data->move->altitude *= 1.1;
+	else if (keycode == L)
+		data->move->altitude *= 0.9;
+	else if (keycode == I)
+		data->move->projection = ISOMETRIC;
+	else if (keycode == P)
+		data->move->projection = PARALLEL;
 	else if (keycode == ESC)
 		exit(0); //mlx_destroy_window(), free() 해야함
 	else
@@ -86,12 +90,12 @@ void	isometric(t_line *line, t_data *data)
     pre_x = line->x0 * data->move->zoom;
     pre_y = line->y0 * data->move->zoom;
     line->x0 = (pre_x - pre_y) * cos(0.523599) + data->move->x;
-    line->y0 = -line->z0 + (pre_x + pre_y) * sin(0.523599) + data->move->y;
+    line->y0 = -line->z0 * data->move->altitude+ (pre_x + pre_y) * sin(0.523599) + data->move->y;
 
 	pre_x = line->x1 * data->move->zoom;
 	pre_y = line->y1 * data->move->zoom;
 	line->x1 = (pre_x - pre_y) * cos(0.523599) + data->move->x;
-	line->y1 = -line->z1 + (pre_x + pre_y) * sin(0.523599) + data->move->y;
+	line->y1 = -line->z1 * data->move->altitude+ (pre_x + pre_y) * sin(0.523599) + data->move->y;
 }
 
 void	parallel(t_line *line, t_data *data)
@@ -102,22 +106,35 @@ void	parallel(t_line *line, t_data *data)
 	line->y1 = line->y1 * data->move->zoom + data->move->y;
 }
 
-void	set_line(t_line *line, int i, int j, t_map *m, int type) //isometric, horizontal과 합치기
+void	set_line(t_data *data, int i, int j, int type)
 {
-	line->x0 = j;
-	line->y0 = i;
-	line->z0 = m->map[i][j];
+	t_line line;
+
+	line.x0 = j;
+	line.y0 = i;
+	line.z0 = data->m->map[i][j];
 	if (type == 0)
 	{
-		line->x1 = j + 1;
-		line->y1 = i;
+		line.x1 = j + 1;
+		line.y1 = i;
 	}
 	else
 	{
-		line->x1 = j;
-		line->y1 = i + 1;
+		line.x1 = j;
+		line.y1 = i + 1;
 	}
-	line->z1 = m->map[(int)line->y1][(int)line->x1];
+	line.z1 = data->m->map[(int)line.y1][(int)line.x1];
+	if (data->move->projection == ISOMETRIC)
+		isometric(&line, data);
+	else
+		parallel(&line, data);
+  	line.dx = fabsf(line.x1 - line.x0);
+  	line.dy = fabsf(line.y1 - line.y0);
+
+	if (line.dy < line.dx)
+		bresenham_low(data, &line);
+	else
+		bresenham_high(data, &line);
 }
 
 unsigned int	get_color(int altitude)
@@ -130,55 +147,29 @@ unsigned int	get_color(int altitude)
 		return (0x00FF0000);
 }
 
-void	bresenham(t_data *data, t_line *line)
-{
-	int xadd = (int)line->x1 - (int)line->x0 > 0 ? 1 : -1;
-	int yadd = (int)line->y1 - (int)line->y0 > 0 ? 1 : -1;
-	int x = line->x0;
-	int y = line->y0;
-
-	while (x != (int)line->x1) // x < line.x1
-	{
-		if (0 < x && x < WIN_WIDTH && 0 < y && y < WIN_HEIGHT)
-		{
-			//printf("%d %d\n", x, y);
-			my_mlx_pixel_put(data, x, y, get_color(line->z0));
-		}
-		if (line->f < 0)
-			line->f = line->f + 2 * line->dx;
-		else
-		{
-			y += yadd;
-			line->f = line->f + 2 * (line->dy - line->dx);
-		}
-		x += xadd;
-	}	
-}
-
 void	bresenham_low(t_data *data, t_line *line)
 {
 	int	x;
 	int	y;
 	int	xadd;
 	int	yadd;
+	float f;
 
 	x = line->x0;
 	y = line->y0;
 	xadd = line->x1 > line->x0 ? 1 : -1;
 	yadd = line->y1 > line->y0 ? 1 : -1;
-
-	line->f = 2 * line->dy - line->dx;
-
+	f = 2 * line->dy - line->dx;
 	while (x != (int)line->x1)
 	{
 		if (0 < x && x < WIN_WIDTH && 0 < y && y < WIN_HEIGHT)
 			my_mlx_pixel_put(data, x, y, get_color(line->z0));
-		if (line->f <= 0)
-			line->f += 2 * line->dy;
+		if (f <= 0)
+			f += 2 * line->dy;
 		else
 		{
 			y += yadd;
-			line->f += 2 * (line->dy - line->dx);
+			f += 2 * (line->dy - line->dx);
 		}
 		x += xadd;
 	}
@@ -190,29 +181,28 @@ void	bresenham_high(t_data *data, t_line *line)
 	int	y;
 	int	xadd;
 	int	yadd;
+	float f;
 
 	x = line->x0;
 	y = line->y0;
 	xadd = line->x1 > line->x0 ? 1 : -1;
 	yadd = line->y1 > line->y0 ? 1 : -1;
-
-	line->f = 2 * line->dx - line->dy;
-
+	f = 2 * line->dx - line->dy;
 	while (y != (int)line->y1)
 	{
 		if (0 < x && x < WIN_WIDTH && 0 < y && y < WIN_HEIGHT)
 			my_mlx_pixel_put(data, x, y, get_color(line->z0));
-		if (line->f <= 0)
-			line->f += 2 * line->dx;
+		if (f <= 0)
+			f += 2 * line->dx;
 		else
 		{
 			x += xadd;
-			line->f += 2 * (line->dx - line->dy);
+			f += 2 * (line->dx - line->dy);
 		}
 		y += yadd;
 	}
 }
-
+/*
 //horizontal, vertical로 나누지 말고 기울기를 기준으로 나눠야 함
 void	draw_horizontal(t_data *data, int i, int j)
 {
@@ -228,32 +218,6 @@ void	draw_horizontal(t_data *data, int i, int j)
 		bresenham_low(data, &line);
 	else
 		bresenham_high(data, &line);
-
-	//printf("%f %f %f %f\n", line.x0, line.y0, line.x1, line.y1);
-
-	//bresenham(data, &line);
-
-/*
-	int xadd = (int)line.x1 - (int)line.x0 > 0 ? 1 : -1;
-	int yadd = (int)line.y1 - (int)line.y0 > 0 ? 1 : -1;
-	line.f = 2 * line.dy - line.dx;
-	int x = line.x0;
-	int y = line.y0;
-
-	while (x != (int)line.x1) // x < line.x1
-	{
-		if (0 < x && x < WIN_WIDTH && 0 < y && y < WIN_HEIGHT)
-			my_mlx_pixel_put(data, x, y, get_color(line.z0));
-		if (line.f < 0)
-			line.f += 2 * line.dy;
-		else
-		{
-			y += yadd;
-			line.f += 2 * (line.dy - line.dx);
-		}
-		x += xadd;
-	}
-*/	
 }
 
 void	draw_vertical(t_data *data, int i, int j)
@@ -270,31 +234,4 @@ void	draw_vertical(t_data *data, int i, int j)
 		bresenham_low(data, &line);
 	else
 		bresenham_high(data, &line);
-
-	//printf("%f %f %f %f\n", line.x0, line.y0, line.x1, line.y1);
-
-	//bresenham(data, &line);
-
-/*
-	int xadd = (int)line.x1 - (int)line.x0 > 0 ? 1 : -1;
-	int yadd = (int)line.y1 - (int)line.y0 > 0 ? 1 : -1;
-	line.f = 2 * line.dx - line.dy;
-	int x = line.x0;
-	int y = line.y0;
-
-	while (x != (int)line.x1) // >
-	{
-		if (0 < x && x < WIN_WIDTH && 0 < y && y < WIN_HEIGHT)
-			my_mlx_pixel_put(data, x, y, get_color(line.z0));
-		if (line.f < 0)
-			line.f += 2 * line.dy;
-		else
-		{
-			y += yadd;
-			line.f += 2 * (line.dy - line.dx);
-		}
-		x += xadd;
-	}
-*/	
-}
-
+}*/

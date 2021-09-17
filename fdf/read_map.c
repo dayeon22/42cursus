@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 19:36:55 by daypark           #+#    #+#             */
-/*   Updated: 2021/09/17 01:59:02 by daypark          ###   ########.fr       */
+/*   Updated: 2021/09/17 11:56:03 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int		count_words(char *str)
 	cnt = 0;
 	while (str[++i])
 	{
-		if (str[i] == ' ' && str[i + 1] && ft_isdigit(str[i + 1]))
+		if (str[i] == ' ' && str[i + 1] && (ft_isdigit(str[i + 1]) || str[i + 1] == '-'))
 			cnt++;
 	}
 	if (str[0] == ' ')
@@ -116,13 +116,19 @@ int		get_width_height(char *file_name, t_map *m)
 		first_width = count_words(line);
 		free(line);
 	}
+	int i = 1;
 	while (get_next_line(fd, &line) > 0)
 	{
 		m->height++;
 		m->width = count_words(line);
 		if (m->width != first_width)
+		{
+			printf("fdf file has wrong format\n");
+			printf("%d %d %d\n", i, first_width, m->width);
 			return (1);
+		}
 		free(line);
+		i++;
 	}
 	free(line);
 	return (0);

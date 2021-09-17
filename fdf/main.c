@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 16:57:56 by daypark           #+#    #+#             */
-/*   Updated: 2021/09/17 02:00:20 by daypark          ###   ########.fr       */
+/*   Updated: 2021/09/17 11:33:46 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,6 @@ void init_move(t_move *move)
 	move->x = WIN_WIDTH / 2;
 	move->y = WIN_HEIGHT / 2;
 	move->zoom = 30;
+	move->altitude = 1;
+	move->projection =  ISOMETRIC;
 }
