@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 19:29:41 by daypark           #+#    #+#             */
-/*   Updated: 2021/09/17 12:30:41 by daypark          ###   ########.fr       */
+/*   Updated: 2021/09/18 15:47:14 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,19 @@
 # define P 35
 # define ESC 53
 
-# define ISOMETRIC 150
-# define PARALLEL 151
+# define ISOMETRIC 0
+# define PARALLEL 1
+
+# define ARGC_ERROR 0
+# define OPEN_FILE_ERROR 1
+# define FDF_WRONG_FORMAT_ERROR 2
+# define ETC_ERROR 3
 
 # include "./lib/mlx/mlx.h"
 # include "./lib/libft/libft.h"
 # include <fcntl.h>
 # include <math.h>
+# include <stdlib.h>
 
 typedef struct	s_map
 {
@@ -82,10 +88,20 @@ typedef struct		s_line
 }					t_line;
 
 /*
+ * main.c
+ */
+void	init_move(t_move *move);
+int		print_error(int errorcode);
+
+/*
  * read_file.c
  */
-int		read_map(char *file_name, t_map *m);
-int		input_map(int fd, t_map *m);
+void	read_map(char *file_name, t_map *m);
+int		get_idx(char *str, int c);
+int 	double_free(char **ptr, int n);
+int		make_map(t_map *m);
+void	input_map(int fd, t_map *m);
+int		count_words(char *str);
 int		get_width_height(char *file_name, t_map *m);
 
 /*
@@ -94,19 +110,12 @@ int		get_width_height(char *file_name, t_map *m);
 void	draw(t_data *data);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
-void	draw_vertical(t_data *data, int i, int j);
-void	draw_horizontal(t_data *data, int i, int j);
-
 void	isometric(t_line *line, t_data *data);
 void	parallel(t_line *line, t_data *data);
 
 int key_press(int keycode, t_data *data);
 void	set_line(t_data *data, int i, int j, int type);
 unsigned int	get_color(int altitude);
-
-void		init_move(t_move *move);
-
-void bresenham(t_data *data, t_line *line);
 
 void	bresenham_low(t_data *data, t_line *line);
 void	bresenham_high(t_data *data, t_line *line);

@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 16:32:49 by daypark           #+#    #+#             */
-/*   Updated: 2021/09/17 12:38:42 by daypark          ###   ########.fr       */
+/*   Updated: 2021/09/18 16:26:33 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	draw(t_data *data)
 		i++;
 	}
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
-	//mlx_destroy_window 실행하고 종료하기
 }
 
 int		key_press(int keycode, t_data *data)
@@ -113,16 +112,12 @@ void	set_line(t_data *data, int i, int j, int type)
 	line.x0 = j;
 	line.y0 = i;
 	line.z0 = data->m->map[i][j];
+	line.x1 = j;
+	line.y1 = i;
 	if (type == 0)
-	{
-		line.x1 = j + 1;
-		line.y1 = i;
-	}
+		line.x1++;
 	else
-	{
-		line.x1 = j;
-		line.y1 = i + 1;
-	}
+		line.y1++;
 	line.z1 = data->m->map[(int)line.y1][(int)line.x1];
 	if (data->move->projection == ISOMETRIC)
 		isometric(&line, data);
@@ -130,7 +125,6 @@ void	set_line(t_data *data, int i, int j, int type)
 		parallel(&line, data);
   	line.dx = fabsf(line.x1 - line.x0);
   	line.dy = fabsf(line.y1 - line.y0);
-
 	if (line.dy < line.dx)
 		bresenham_low(data, &line);
 	else
@@ -202,36 +196,3 @@ void	bresenham_high(t_data *data, t_line *line)
 		y += yadd;
 	}
 }
-/*
-//horizontal, vertical로 나누지 말고 기울기를 기준으로 나눠야 함
-void	draw_horizontal(t_data *data, int i, int j)
-{
-	t_line	line;
-
-	set_line(&line, i, j, data->m, 0);
-	isometric(&line, data);
-	//parallel(&line, data);
-	line.dx = fabsf(line.x1 - line.x0);
-	line.dy = fabsf(line.y1 - line.y0);
-
-	if (line.dy < line.dx)
-		bresenham_low(data, &line);
-	else
-		bresenham_high(data, &line);
-}
-
-void	draw_vertical(t_data *data, int i, int j)
-{
-	t_line	line;
-
-	set_line(&line, i, j, data->m, 1);
-	isometric(&line, data);
-	//parallel(&line, data);
-	line.dx = fabsf(line.x1 - line.x0);
-	line.dy = fabsf(line.y1 - line.y0);
-
-	if(line.dy < line.dx)
-		bresenham_low(data, &line);
-	else
-		bresenham_high(data, &line);
-}*/

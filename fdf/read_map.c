@@ -6,27 +6,25 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 19:36:55 by daypark           #+#    #+#             */
-/*   Updated: 2021/09/17 11:56:03 by daypark          ###   ########.fr       */
+/*   Updated: 2021/09/18 16:21:34 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <stdio.h>
 
-int		read_map(char *file_name, t_map *m)
+void	read_map(char *file_name, t_map *m)
 {
 	int		fd;
-	
-	file_name = ft_strjoin("test_maps/", file_name); //leaks?(strjoin에 malloc있음)
-	if (get_width_height(file_name, m))
-		return (1);
+
+	file_name = ft_strjoin("test_maps/", file_name);
+	get_width_height(file_name, m);
 	if ((fd = open(file_name, O_RDONLY)) == -1)
-	{ //return (print_err(OPEN_FILE)); 처럼 함수를 따로 만드는것도 좋을 듯
-		printf("Failed to open file\n");
-		return (1);
-	}
-	return (input_map(fd, m));
-	return (0);
+		print_error(OPEN_FILE_ERROR);
+	free(file_name);
+	if (make_map(m) == 1)
+		print_error(ETC_ERROR);
+	input_map(fd, m);
 }
 
 int		get_idx(char *str, int c)
@@ -42,23 +40,34 @@ int		get_idx(char *str, int c)
 	return (-1);
 }
 
-int		input_map(int fd, t_map *m)
+int		make_map(t_map *m)
 {
-	int		i;
-	int		j;
-	char	*line;
-	char	**words;
+	int i;
 
-	m->map = (int **)malloc(sizeof(int *) * m->height);//free
+	m->map = (int**)malloc(sizeof(int *) * m->height); //free
 	if (!m->map)
 		return (1);
 	i = -1;
 	while (++i < m->height)
 	{
 		m->map[i] = (int *)malloc(sizeof(int) * m->width);
-		if (!m->map[i]) //실패시 free
+		if (!m->map[i])
+		{
+			while (--i >= 0)
+				free(m->map[i]);
 			return (1);
+		}
 	}
+	return (0);
+}
+
+void	input_map(int fd, t_map *m)
+{
+	int		i;
+	int		j;
+	char	*line;
+	char	**words;
+
 	i = 0;
 	while (get_next_line(fd, &line) > 0)
 	{
@@ -71,13 +80,11 @@ int		input_map(int fd, t_map *m)
 		}
 		i++;
 		free(line);
-		int k = 0;
-		while (k < m->width)
-			free(words[k++]);
+		while (j >= 0)
+			free(words[j--]);
 		free(words);
 	}
 	free(line);
-	return (0);
 }
 
 int		count_words(char *str)
@@ -89,7 +96,8 @@ int		count_words(char *str)
 	cnt = 0;
 	while (str[++i])
 	{
-		if (str[i] == ' ' && str[i + 1] && (ft_isdigit(str[i + 1]) || str[i + 1] == '-'))
+		if (str[i] == ' ' && str[i + 1] && 
+				(ft_isdigit(str[i + 1]) || str[i + 1] == '-'))
 			cnt++;
 	}
 	if (str[0] == ' ')
@@ -106,29 +114,20 @@ int		get_width_height(char *file_name, t_map *m)
 
 	m->height = 0;
 	if ((fd = open(file_name, O_RDONLY)) == -1)
-	{
-		printf("Failed to open file\n");
-		return (1);
-	}
+		print_error(OPEN_FILE_ERROR);
 	if (get_next_line(fd, &line) > 0)
 	{
 		m->height++;
 		first_width = count_words(line);
 		free(line);
 	}
-	int i = 1;
 	while (get_next_line(fd, &line) > 0)
 	{
 		m->height++;
 		m->width = count_words(line);
 		if (m->width != first_width)
-		{
-			printf("fdf file has wrong format\n");
-			printf("%d %d %d\n", i, first_width, m->width);
-			return (1);
-		}
+			print_error(FDF_WRONG_FORMAT_ERROR);
 		free(line);
-		i++;
 	}
 	free(line);
 	return (0);
