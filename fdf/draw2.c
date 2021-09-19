@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 01:40:09 by daypark           #+#    #+#             */
-/*   Updated: 2021/09/20 01:40:11 by daypark          ###   ########.fr       */
+/*   Updated: 2021/09/20 02:31:50 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ unsigned int	get_color(int altitude)
 		return (0x00FF0000);
 }
 
-void	key_udlr(int keycode, t_data *data)
+void	key_move_zoom(int keycode, t_data *data)
 {
 	if (keycode == UP)
 		data->move->y -= 5;
@@ -32,16 +32,17 @@ void	key_udlr(int keycode, t_data *data)
 		data->move->x -= 5;
 	else if (keycode == RIGHT)
 		data->move->x += 5;
-}
-
-int	key_press(int keycode, t_data *data)
-{
-	if (keycode == UP || keycode == DOWN || keycode == LEFT || keycode == RIGHT)
-		key_udlr(keycode, data);
 	else if (keycode == PLUS)
 		data->move->zoom *= 1.1;
 	else if (keycode == MINUS)
 		data->move->zoom *= 0.9;
+}
+
+int	key_press(int keycode, t_data *data)
+{
+	if (keycode == UP || keycode == DOWN || keycode == LEFT || \
+			keycode == RIGHT || keycode == PLUS || keycode == MINUS)
+		key_move_zoom(keycode, data);
 	else if (keycode == H)
 		data->move->altitude *= 1.1;
 	else if (keycode == L)
@@ -51,7 +52,11 @@ int	key_press(int keycode, t_data *data)
 	else if (keycode == P)
 		data->move->projection = PARALLEL;
 	else if (keycode == ESC)
+	{
+		mlx_destroy_image(data->mlx, data->img);
+		mlx_destroy_window(data->mlx, data->mlx_win);
 		exit(0);
+	}
 	else
 		return (0);
 	mlx_destroy_image(data->mlx, data->img);

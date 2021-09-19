@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 19:29:41 by daypark           #+#    #+#             */
-/*   Updated: 2021/09/20 01:17:29 by daypark          ###   ########.fr       */
+/*   Updated: 2021/09/20 02:28:41 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ typedef struct s_line
  */
 void			init_move(t_move *move);
 int				print_error(int errorcode);
+int				get_idx(char *str, int c);
+void			print_instructions(void);
 
 /*
  * read_file.c
@@ -104,19 +106,21 @@ int				count_words(char *str);
 int				get_width_height(char *file_name, t_map *m);
 
 /*
- * draw.c
+ * draw1.c
  */
 void			draw(t_data *data);
+void			set_line(t_data *data, int i, int j, int type);
+void			bresenham_high(t_data *data, t_line *line);
+void			bresenham_low(t_data *data, t_line *line);
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
+/*
+ * draw2.c
+ */
+unsigned int	get_color(int altitude);
+void			key_move_zoom(int keycode, t_data *data);
+int				key_press(int keycode, t_data *data);
 void			isometric(t_line *line, t_data *data);
 void			parallel(t_line *line, t_data *data);
-
-int				key_press(int keycode, t_data *data);
-void			set_line(t_data *data, int i, int j, int type);
-unsigned int	get_color(int altitude);
-
-void			bresenham_low(t_data *data, t_line *line);
-void			bresenham_high(t_data *data, t_line *line);
 
 #endif

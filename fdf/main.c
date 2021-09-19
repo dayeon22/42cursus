@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 16:57:56 by daypark           #+#    #+#             */
-/*   Updated: 2021/09/19 23:49:40 by daypark          ###   ########.fr       */
+/*   Updated: 2021/09/20 02:36:52 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,9 @@ int	main(int argc, char *argv[])
 	data->move = (t_move *)malloc(sizeof(t_move));
 	read_map(argv[1], data->m);
 	init_move(data->move);
+	print_instructions();
 	draw(data);
-	mlx_key_hook(data->mlx_win, &key_press, data);
 	mlx_hook(data->mlx_win, 2, 1L << 0, &key_press, data);
-	mlx_loop_hook(data->mlx, &key_press, data);
 	mlx_loop(data->mlx);
 }
 
@@ -68,4 +67,15 @@ int	get_idx(char *str, int c)
 			return (i);
 	}
 	return (-1);
+}
+
+void	print_instructions(void)
+{
+	ft_putendl_fd("", 1);
+	ft_putendl_fd("======== fdf instructions ========", 1);
+	ft_putendl_fd("move: arrow", 1);
+	ft_putendl_fd("zoom/unzoom: +/-", 1);
+	ft_putendl_fd("isometric/parallel: i/p", 1);
+	ft_putendl_fd("high/low: h/l", 1);
+	ft_putendl_fd("Press ESC to exit the program!", 1);
 }
