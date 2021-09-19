@@ -6,12 +6,11 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 19:36:55 by daypark           #+#    #+#             */
-/*   Updated: 2021/09/18 16:21:34 by daypark          ###   ########.fr       */
+/*   Updated: 2021/09/19 23:54:22 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdio.h>
 
 void	read_map(char *file_name, t_map *m)
 {
@@ -19,7 +18,8 @@ void	read_map(char *file_name, t_map *m)
 
 	file_name = ft_strjoin("test_maps/", file_name);
 	get_width_height(file_name, m);
-	if ((fd = open(file_name, O_RDONLY)) == -1)
+	fd = open(file_name, O_RDONLY);
+	if (fd == -1)
 		print_error(OPEN_FILE_ERROR);
 	free(file_name);
 	if (make_map(m) == 1)
@@ -27,24 +27,11 @@ void	read_map(char *file_name, t_map *m)
 	input_map(fd, m);
 }
 
-int		get_idx(char *str, int c)
+int	make_map(t_map *m)
 {
-	int		i;
+	int	i;
 
-	i = -1;
-	while (str[++i])
-	{
-		if (str[i] == c)
-			return (i);
-	}
-	return (-1);
-}
-
-int		make_map(t_map *m)
-{
-	int i;
-
-	m->map = (int**)malloc(sizeof(int *) * m->height); //free
+	m->map = (int **)malloc(sizeof(int *) * m->height);
 	if (!m->map)
 		return (1);
 	i = -1;
@@ -87,17 +74,17 @@ void	input_map(int fd, t_map *m)
 	free(line);
 }
 
-int		count_words(char *str)
+int	count_words(char *str)
 {
-	int i;
-	int cnt;
+	int	i;
+	int	cnt;
 
 	i = -1;
 	cnt = 0;
 	while (str[++i])
 	{
-		if (str[i] == ' ' && str[i + 1] && 
-				(ft_isdigit(str[i + 1]) || str[i + 1] == '-'))
+		if (str[i] == ' ' && str[i + 1] && \
+			(ft_isdigit(str[i + 1]) || str[i + 1] == '-'))
 			cnt++;
 	}
 	if (str[0] == ' ')
@@ -106,14 +93,15 @@ int		count_words(char *str)
 		return (cnt + 1);
 }
 
-int		get_width_height(char *file_name, t_map *m)
+int	get_width_height(char *file_name, t_map *m)
 {
 	char	*line;
 	int		fd;
 	int		first_width;
 
 	m->height = 0;
-	if ((fd = open(file_name, O_RDONLY)) == -1)
+	fd = open(file_name, O_RDONLY);
+	if (fd == -1)
 		print_error(OPEN_FILE_ERROR);
 	if (get_next_line(fd, &line) > 0)
 	{

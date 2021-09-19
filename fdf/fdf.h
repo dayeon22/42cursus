@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 19:29:41 by daypark           #+#    #+#             */
-/*   Updated: 2021/09/18 15:47:14 by daypark          ###   ########.fr       */
+/*   Updated: 2021/09/20 01:17:29 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,82 +42,81 @@
 # include <math.h>
 # include <stdlib.h>
 
-typedef struct	s_map
+typedef struct s_map
 {
-	int			**map;
-	int			width;
-	int			height;
-}				t_map;
+	int		**map;
+	int		width;
+	int		height;
+}			t_map;
 
-typedef struct	s_move
+typedef struct s_move
 {
-	int			x;
-	int			y;
-	float		zoom;
-	float		altitude;
-	float		projection;
-}				t_move;
+	int		x;
+	int		y;
+	float	zoom;
+	float	altitude;
+	float	projection;
+}			t_move;
 
-typedef struct	s_data //s_mlx 또는 s_fdf로 변경하기?
-{ //근데 mlx와 image를 합쳐도 되나? imx하나에 img 여러개 같은데
-	//예제 코드에서 구조체에 속하지 않은 것들
+typedef struct s_data
+{
 	void		*mlx;
 	void		*mlx_win;
-
-	//예제 코드에서 구조체에 속한 것들
 	void		*img;
 	char		*addr;
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
-	t_map		*m; // 포인터로 안해도 될것같은데
+	t_map		*m;
 	t_move		*move;
 }				t_data;
 
-typedef struct		s_line
+typedef struct s_line
 {
-	float			x0; //int vs float
-	float			y0;
-	int				z0;
-	float			x1;
-	float			y1;
-	int				z1;
-	float			dx;
-	float			dy;
-	int				f;
-}					t_line;
+	float	x0;
+	float	y0;
+	int		z0;
+	float	x1;
+	float	y1;
+	int		z1;
+	float	dx;
+	float	dy;
+	int		xadd;
+	int		yadd;
+	int		f;
+}			t_line;
 
 /*
  * main.c
  */
-void	init_move(t_move *move);
-int		print_error(int errorcode);
+void			init_move(t_move *move);
+int				print_error(int errorcode);
 
 /*
  * read_file.c
  */
-void	read_map(char *file_name, t_map *m);
-int		get_idx(char *str, int c);
-int 	double_free(char **ptr, int n);
-int		make_map(t_map *m);
-void	input_map(int fd, t_map *m);
-int		count_words(char *str);
-int		get_width_height(char *file_name, t_map *m);
+void			read_map(char *file_name, t_map *m);
+int				get_idx(char *str, int c);
+int				double_free(char **ptr, int n);
+int				make_map(t_map *m);
+void			input_map(int fd, t_map *m);
+int				count_words(char *str);
+int				get_width_height(char *file_name, t_map *m);
 
 /*
  * draw.c
  */
-void	draw(t_data *data);
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void			draw(t_data *data);
+void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
-void	isometric(t_line *line, t_data *data);
-void	parallel(t_line *line, t_data *data);
+void			isometric(t_line *line, t_data *data);
+void			parallel(t_line *line, t_data *data);
 
-int key_press(int keycode, t_data *data);
-void	set_line(t_data *data, int i, int j, int type);
+int				key_press(int keycode, t_data *data);
+void			set_line(t_data *data, int i, int j, int type);
 unsigned int	get_color(int altitude);
 
-void	bresenham_low(t_data *data, t_line *line);
-void	bresenham_high(t_data *data, t_line *line);
+void			bresenham_low(t_data *data, t_line *line);
+void			bresenham_high(t_data *data, t_line *line);
 
 #endif

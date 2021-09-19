@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = fdf
-SRCS = main.c read_map.c draw.c
+SRCS = main.c read_map.c draw1.c draw2.c
 OBJS = $(SRCS:.c=.o)
 LIB = lib
 LIBFT = libft
@@ -27,12 +27,6 @@ AFLAGS = rcs
 .PHONY : all clean fclean re
 
 all : $(NAME)
-
-#$(NAME) : $(OBJS) $(LIBFTL) $(MLXL)
-#	$(CC) -o $(NAME) $(OBJS) -L $(LIB)/$(LIBFT)/ $(LFLAGS)
-
-#$(NAME) : $(OBJS) $(LIBFTL) $(LMXL)
-#	$(CC) $^ -L $(LFLAGS) -o $@
 
 $(NAME) : $(OBJS) $(LIBFTL) $(MLXL)
 	$(CC) $(LIB)/$(LIBFT)/$(LIBFTL) $(LIB)/$(MLX)/$(MLXL) $(OBJS) $(LFLAGS) -o $@
