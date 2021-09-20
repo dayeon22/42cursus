@@ -6,12 +6,12 @@
 #    By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/23 16:59:11 by daypark           #+#    #+#              #
-#    Updated: 2021/08/16 17:51:11 by daypark          ###   ########.fr        #
+#    Updated: 2021/09/20 19:06:57 by daypark          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
-SRCS = main.c read_map.c draw1.c draw2.c
+SRCS = main.c read_map.c draw1.c draw2.c utils.c
 OBJS = $(SRCS:.c=.o)
 LIB = lib
 LIBFT = libft

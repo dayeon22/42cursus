@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 19:36:55 by daypark           #+#    #+#             */
-/*   Updated: 2021/09/19 23:54:22 by daypark          ###   ########.fr       */
+/*   Updated: 2021/09/20 17:54:01 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	make_map(t_map *m)
 		{
 			while (--i >= 0)
 				free(m->map[i]);
+			free(m->map);
 			return (1);
 		}
 	}
@@ -72,25 +73,6 @@ void	input_map(int fd, t_map *m)
 		free(words);
 	}
 	free(line);
-}
-
-int	count_words(char *str)
-{
-	int	i;
-	int	cnt;
-
-	i = -1;
-	cnt = 0;
-	while (str[++i])
-	{
-		if (str[i] == ' ' && str[i + 1] && \
-			(ft_isdigit(str[i + 1]) || str[i + 1] == '-'))
-			cnt++;
-	}
-	if (str[0] == ' ')
-		return (cnt);
-	else
-		return (cnt + 1);
 }
 
 int	get_width_height(char *file_name, t_map *m)

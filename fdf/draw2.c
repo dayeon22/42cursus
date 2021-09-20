@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/20 01:40:09 by daypark           #+#    #+#             */
-/*   Updated: 2021/09/20 02:31:50 by daypark          ###   ########.fr       */
+/*   Updated: 2021/09/20 18:40:10 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,7 @@ int	key_press(int keycode, t_data *data)
 	else if (keycode == P)
 		data->move->projection = PARALLEL;
 	else if (keycode == ESC)
-	{
-		mlx_destroy_image(data->mlx, data->img);
-		mlx_destroy_window(data->mlx, data->mlx_win);
-		exit(0);
-	}
+		terminate(data);
 	else
 		return (0);
 	mlx_destroy_image(data->mlx, data->img);
@@ -69,8 +65,8 @@ int	key_press(int keycode, t_data *data)
 
 void	isometric(t_line *line, t_data *data)
 {
-	int	pre_x;
-	int	pre_y;
+	double	pre_x;
+	double	pre_y;
 
 	pre_x = line->x0 * data->move->zoom;
 	pre_y = line->y0 * data->move->zoom;

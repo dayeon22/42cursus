@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 19:29:41 by daypark           #+#    #+#             */
-/*   Updated: 2021/09/20 02:28:41 by daypark          ###   ########.fr       */
+/*   Updated: 2021/09/20 19:12:31 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,14 @@ typedef struct s_data
 
 typedef struct s_line
 {
-	float	x0;
-	float	y0;
+	int		x0;
+	int		y0;
 	int		z0;
-	float	x1;
-	float	y1;
+	int		x1;
+	int		y1;
 	int		z1;
-	float	dx;
-	float	dy;
+	int		dx;
+	int		dy;
 	int		xadd;
 	int		yadd;
 	int		f;
@@ -89,20 +89,15 @@ typedef struct s_line
 /*
  * main.c
  */
-void			init_move(t_move *move);
-int				print_error(int errorcode);
-int				get_idx(char *str, int c);
-void			print_instructions(void);
+void			init(t_data *data);
+void			terminate(t_data *data);
 
 /*
  * read_file.c
  */
 void			read_map(char *file_name, t_map *m);
-int				get_idx(char *str, int c);
-int				double_free(char **ptr, int n);
 int				make_map(t_map *m);
 void			input_map(int fd, t_map *m);
-int				count_words(char *str);
 int				get_width_height(char *file_name, t_map *m);
 
 /*
@@ -122,5 +117,13 @@ void			key_move_zoom(int keycode, t_data *data);
 int				key_press(int keycode, t_data *data);
 void			isometric(t_line *line, t_data *data);
 void			parallel(t_line *line, t_data *data);
+
+/*
+ * utils.c
+ */
+int				count_words(char *str);
+int				get_idx(char *str, int c);
+void			print_error(int errorcode);
+void			print_instructions(void);
 
 #endif

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   draw1.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 16:32:49 by daypark           #+#    #+#             */
-/*   Updated: 2021/09/20 01:37:23 by daypark          ###   ########.fr       */
+/*   Updated: 2021/09/20 18:01:04 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,13 @@ void	set_line(t_data *data, int i, int j, int type)
 		line.x1++;
 	else
 		line.y1++;
-	line.z1 = data->m->map[(int)line.y1][(int)line.x1];
+	line.z1 = data->m->map[line.y1][line.x1];
 	if (data->move->projection == ISOMETRIC)
 		isometric(&line, data);
 	else
 		parallel(&line, data);
-	line.dx = fabsf(line.x1 - line.x0);
-	line.dy = fabsf(line.y1 - line.y0);
+	line.dx = abs(line.x1 - line.x0);
+	line.dy = abs(line.y1 - line.y0);
 	if (line.dy < line.dx)
 		bresenham_low(data, &line);
 	else
@@ -74,7 +74,7 @@ void	bresenham_high(t_data *data, t_line *line)
 	if (line->y1 < line->y0)
 		line->yadd = -1;
 	line->f = 2 * line->dx - line->dy;
-	while (y != (int)line->y1)
+	while (y != line->y1)
 	{
 		my_mlx_pixel_put(data, x, y, get_color(line->z0));
 		if (line->f <= 0)
@@ -102,7 +102,7 @@ void	bresenham_low(t_data *data, t_line *line)
 	if (line->y1 < line->y0)
 		line->yadd = -1;
 	line->f = 2 * line->dy - line->dx;
-	while (x != (int)line->x1)
+	while (x != line->x1)
 	{
 		my_mlx_pixel_put(data, x, y, get_color(line->z0));
 		if (line->f <= 0)
