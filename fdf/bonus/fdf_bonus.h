@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   fdf_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/11 19:29:41 by daypark           #+#    #+#             */
-/*   Updated: 2021/09/20 19:12:31 by daypark          ###   ########.fr       */
+/*   Updated: 2021/09/22 02:37:13 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@
 # define FDF_WRONG_FORMAT_ERROR 2
 # define ETC_ERROR 3
 
-# include "./lib/mlx/mlx.h"
-# include "./lib/libft/libft.h"
+# include "../lib/mlx/mlx.h"
+# include "../lib/libft/libft.h"
 # include <fcntl.h>
 # include <math.h>
 # include <stdlib.h>
@@ -90,7 +90,7 @@ typedef struct s_line
  * main.c
  */
 void			init(t_data *data);
-void			terminate(t_data *data);
+int				terminate(t_data *data);
 
 /*
  * read_file.c
