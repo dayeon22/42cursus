@@ -6,13 +6,13 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 13:02:14 by daypark           #+#    #+#             */
-/*   Updated: 2021/09/16 09:13:14 by daypark          ###   ########.fr       */
+/*   Updated: 2021/09/23 08:16:52 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		split_line(char **save, char **line)
+int	split_line(char **save, char **line)
 {
 	char	*newline_pos;
 	char	*temp;
@@ -32,7 +32,7 @@ int		split_line(char **save, char **line)
 	return (1);
 }
 
-int		return_all(char **save, char **line, int bytes)
+int	return_all(char **save, char **line, int bytes)
 {
 	if (bytes < 0)
 		return (-1);
@@ -55,7 +55,7 @@ char	*get_buf(char *buf, char *save)
 	return (ft_strjoin(save, buf));
 }
 
-int		get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
 	char		*buf;
 	static char	*save[OPEN_MAX];
