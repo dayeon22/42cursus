@@ -1,40 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   reverse_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/27 11:54:41 by daypark           #+#    #+#             */
-/*   Updated: 2021/09/27 15:48:53 by daypark          ###   ########.fr       */
+/*   Created: 2021/09/27 15:39:55 by daypark           #+#    #+#             */
+/*   Updated: 2021/09/27 15:44:53 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sa(t_stack *a)
+void	rra(t_stack *a)
 {
 	t_node *temp;
 
 	if (a->size <= 1)
 		return ;
-	temp = a->top->next;
-	a->top->pre = temp;
-	a->top->next = temp->next;
-	temp->pre = NULL;
-	temp->next = a->top;
-	a->top = temp;
-	if (a->size == 2)
-		a->bottom = a->top->next;
+	temp = a->bottom->pre;
+	temp->next = NULL;
+	a->bottom->next = a->top;
+	a->bottom->pre = NULL;
+	a->top->pre = a->bottom;
+	a->top = a->bottom;
+	a->bottom = temp;
 }
 
-void	sb(t_stack *b)
+void	rrb(t_stack *b)
 {
-	sa(b);
+	rra(b);
 }
 
-void	ss(t_stack *a, t_stack *b)
+void	rrr(t_stack *a, t_stack *b)
 {
-	sa(a);
-	sb(b); //sa(b)가 더 효율적일 듯
+	rra(a);
+	rrb(b); //rra(b)가 더 효율적일 듯
 }

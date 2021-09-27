@@ -1,40 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/27 11:54:41 by daypark           #+#    #+#             */
-/*   Updated: 2021/09/27 15:48:53 by daypark          ###   ########.fr       */
+/*   Created: 2021/09/27 13:46:55 by daypark           #+#    #+#             */
+/*   Updated: 2021/09/27 14:32:39 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sa(t_stack *a)
+void	pa(t_stack *a, t_stack *b)
 {
-	t_node *temp;
+	int	num;
 
-	if (a->size <= 1)
+	if (b->top == NULL)
 		return ;
-	temp = a->top->next;
-	a->top->pre = temp;
-	a->top->next = temp->next;
-	temp->pre = NULL;
-	temp->next = a->top;
-	a->top = temp;
-	if (a->size == 2)
-		a->bottom = a->top->next;
+	num = pop(b);
+	push_top(a, num);
 }
 
-void	sb(t_stack *b)
+void	pb(t_stack *a, t_stack *b)
 {
-	sa(b);
-}
-
-void	ss(t_stack *a, t_stack *b)
-{
-	sa(a);
-	sb(b); //sa(b)가 더 효율적일 듯
+	pa(b, a);
 }

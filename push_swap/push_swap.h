@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 19:48:55 by daypark           #+#    #+#             */
-/*   Updated: 2021/09/27 12:52:07 by daypark          ###   ########.fr       */
+/*   Updated: 2021/09/27 14:40:00 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ typedef struct	s_stack
 /*
  * main.c
  */
-void	push(t_stack *stack, int num);
+void	push_top(t_stack *stack, int num);
+void	push_bottom(t_stack *stack, int num);
 int		pop(t_stack *stack);
 void	print_stack(t_stack *stack);
 void	init_stack(t_stack *stack);
@@ -45,5 +46,24 @@ void	sa(t_stack *a);
 void	sb(t_stack *b);
 void	ss(t_stack *a, t_stack *b);
 
+/*
+ * push.c
+ */
+void	pa(t_stack *a, t_stack *b);
+void	pb(t_stack *a, t_stack *b);
+
+/*
+ * rotate.c
+ */
+void	ra(t_stack *a);
+void	rb(t_stack *b);
+void	rr(t_stack *a, t_stack *b);
+
+/*
+ * reverse_rotate.c
+ */
+void	rra(t_stack *a);
+void	rrb(t_stack *b);
+void	rrr(t_stack *a, t_stack *b);
 
 #endif

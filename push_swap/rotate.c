@@ -1,40 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/27 11:54:41 by daypark           #+#    #+#             */
-/*   Updated: 2021/09/27 15:48:53 by daypark          ###   ########.fr       */
+/*   Created: 2021/09/27 14:38:37 by daypark           #+#    #+#             */
+/*   Updated: 2021/09/27 15:45:04 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sa(t_stack *a)
+void	ra(t_stack *a)
 {
-	t_node *temp;
+	t_node	*temp;
 
 	if (a->size <= 1)
 		return ;
 	temp = a->top->next;
-	a->top->pre = temp;
-	a->top->next = temp->next;
 	temp->pre = NULL;
-	temp->next = a->top;
+	a->top->pre = a->bottom;
+	a->top->next = NULL;
+	a->bottom->next = a->top;
+	a->bottom = a->top;
 	a->top = temp;
-	if (a->size == 2)
-		a->bottom = a->top->next;
 }
 
-void	sb(t_stack *b)
+
+void	rb(t_stack *b)
 {
-	sa(b);
+	ra(b);
 }
 
-void	ss(t_stack *a, t_stack *b)
+void	rr(t_stack *a, t_stack *b)
 {
-	sa(a);
-	sb(b); //sa(b)가 더 효율적일 듯
+	ra(a);
+	rb(b); //ra(b)가 더 효율적일듯?
 }
