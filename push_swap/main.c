@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 19:48:46 by daypark           #+#    #+#             */
-/*   Updated: 2021/09/27 11:34:36 by daypark          ###   ########.fr       */
+/*   Updated: 2021/09/27 12:57:37 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,11 @@ int	pop(t_stack *stack)
 	temp = stack->top;
 	stack->top = stack->top->next;
 	free(temp);
+	stack->size--;
 	return (ret);
 }
 
-void	print_stack(t_stack *stack)
+void	print_stack(t_stack *stack) //작동 확인용 코드
 {
 	t_node	*temp;
 
@@ -57,6 +58,7 @@ void	print_stack(t_stack *stack)
 		printf("%d -> ", temp->value);
 		temp = temp->next;
 	}
+	printf("\n");
 }
 
 void	init_stack(t_stack *stack)
@@ -76,7 +78,14 @@ int	main()
 	push(&a, 3);
 	push(&a, 4);
 	push(&a, 5);
-	printf("pop : %d\n", pop(&a));
-	printf("pop : %d\n", pop(&a));
 	print_stack(&a);
+	printf("pop : %d\n", pop(&a));
+	printf("pop : %d\n", pop(&a));
+	pop(&a);
+	print_stack(&a);
+	sa(&a);
+	print_stack(&a);
+	printf("top : %d\n", a.top->value);
+	printf("bottom : %d\n", a.bottom->value);
+	printf("size : %d\n", a.size);
 }
