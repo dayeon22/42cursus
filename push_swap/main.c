@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 19:48:46 by daypark           #+#    #+#             */
-/*   Updated: 2021/09/27 15:47:35 by daypark          ###   ########.fr       */
+/*   Updated: 2021/09/28 11:59:35 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,49 +91,66 @@ void	init_stack(t_stack *stack)
 	stack->bottom = NULL;
 }
 
-int	main()
+int	check_duplication(t_stack *stack, int num)
 {
-	t_stack	a;
-	t_stack	b;
+	t_node	*node;
 
+	node = stack->top;
+	while (node != NULL)
+	{
+		if (node->value == num)
+			return (1);
+		node = node->next;
+	}
+	return (0);
+}
+
+int	check_int_range()
+
+int	remove_space(t_stack *stack, char *str)
+{
+	int	i;
+	int	num;
+	char **words;
+
+	words = ft_split(str, ' ');
+	i = 0;
+	while (words[i])
+	{
+		num = ft_atoi(words[i]);
+		if (check_duplication(stack, num))
+			return (1); //print_err(DUPLICATED_NUM);
+		else
+			push_bottom(stack, num);
+		i++;
+	}
+	return (0);
+}
+
+int	main(int argc, char *argv[])
+{
+	t_stack a;
+	t_stack b;
+	int		i;
+	int		num;
+
+	if (argc < 3) //2개까지 거르는게 맞나 알아보기
+		return (1); //print_err(ARGC);
 	init_stack(&a);
 	init_stack(&b);
-	push_bottom(&a, 1);
-	push_bottom(&a, 2);
-	push_bottom(&a, 3);
-	push_bottom(&a, 4);
-	push_bottom(&a, 5);
-	print_stack(&a);
 
-/*	
-	rra(&a);
-	print_stack(&a);
-	rra(&a);
-	print_stack(&a);
-	rra(&a);
-	print_stack(&a);
-	printf("%d %d\n", a.top->value, a.bottom->value);
-	rra(&a);
-	print_stack(&a);
-	rra(&a);
-	print_stack(&a);
-*/
+	i = 1;
+	while (argv[i])
+	{
+		if (ft_strchr(argv[i], ' '))
+			remove_space(&a, argv[i]);
+		num = ft_atoi(argv[i]);
+		if (check_duplication(&a, num))
+			return (1); //print_err(DUPLICATED_NUM);
+		else
+			push_bottom(&a, num);
+		i++;
+	}
 
-	pb(&a, &b);
-	pb(&a, &b);
-	print_stack(&b);
-	rrb(&b);
-	printf("%d %d\n", b.top->value, b.bottom->value);
-	print_stack(&b);
-	rrb(&b);
-	printf("%d %d\n", b.top->value, b.bottom->value);
-	print_stack(&b);
-
-	printf("stack a : ");
 	print_stack(&a);
-	printf("stack b : ");
-	print_stack(&b);
-	printf("top : %d\n", a.top->value);
-	printf("bottom : %d\n", a.bottom->value);
-	printf("size : %d\n", a.size);
 }
