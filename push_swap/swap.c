@@ -6,16 +6,22 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 11:54:41 by daypark           #+#    #+#             */
-/*   Updated: 2021/09/27 15:48:53 by daypark          ###   ########.fr       */
+/*   Updated: 2021/09/29 15:12:29 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sa(t_stack *a)
+void	sa(t_stack *a, int type)
 {
 	t_node *temp;
 
+	if (type == A)
+		ft_putendl_fd("sa", 1);
+	else if (type == B)
+		ft_putendl_fd("sb", 1);
+	else
+		ft_putendl_fd("ss", 1);
 	if (a->size <= 1)
 		return ;
 	temp = a->top->next;
@@ -28,13 +34,13 @@ void	sa(t_stack *a)
 		a->bottom = a->top->next;
 }
 
-void	sb(t_stack *b)
+void	sb(t_stack *b, int type)
 {
-	sa(b);
+	sa(b, type);
 }
 
-void	ss(t_stack *a, t_stack *b)
+void	ss(t_stack *a, t_stack *b, int type)
 {
-	sa(a);
-	sb(b); //sa(b)가 더 효율적일 듯
+	sa(a, type);
+	sa(b, type);
 }

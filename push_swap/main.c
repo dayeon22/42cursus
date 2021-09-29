@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 19:48:46 by daypark           #+#    #+#             */
-/*   Updated: 2021/09/28 11:59:35 by daypark          ###   ########.fr       */
+/*   Updated: 2021/09/29 18:55:43 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	push_bottom(t_stack *stack, int num)
 		new->next = NULL;
 		stack->top = new;
 		stack->bottom = new;
+		stack->min = num;
+		stack->max = num;
 	}
 	else
 	{
@@ -87,6 +89,9 @@ void	print_stack(t_stack *stack) //작동 확인용 코드
 void	init_stack(t_stack *stack)
 {
 	stack->size = 0;
+	stack->min = 0;
+	stack->max = 0;
+	stack->digit = 0;
 	stack->top = NULL;
 	stack->bottom = NULL;
 }
@@ -96,16 +101,18 @@ int	check_duplication(t_stack *stack, int num)
 	t_node	*node;
 
 	node = stack->top;
+	if (num > stack->max)
+		stack->max = num;
+	if (num < stack->min)
+		stack->min = num;
 	while (node != NULL)
 	{
 		if (node->value == num)
-			return (1);
+			return (1); //print_err(DUPLICATED_NUM);
 		node = node->next;
 	}
 	return (0);
 }
-
-int	check_int_range()
 
 int	remove_space(t_stack *stack, char *str)
 {
@@ -134,7 +141,7 @@ int	main(int argc, char *argv[])
 	int		i;
 	int		num;
 
-	if (argc < 3) //2개까지 거르는게 맞나 알아보기
+	if (argc == 1)
 		return (1); //print_err(ARGC);
 	init_stack(&a);
 	init_stack(&b);
@@ -151,6 +158,8 @@ int	main(int argc, char *argv[])
 			push_bottom(&a, num);
 		i++;
 	}
-
-	print_stack(&a);
+//	print_stack(&a);
+//	printf("min : %d, max : %d\n", a.min, a.max);
+	sort_stack(&a, &b);
+//	print_stack(&a);
 }
