@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 19:48:55 by daypark           #+#    #+#             */
-/*   Updated: 2021/09/29 18:53:45 by daypark          ###   ########.fr       */
+/*   Updated: 2021/09/30 22:48:56 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,22 @@
 # define B 2
 # define ALL 3
 
-#include "./libft/libft.h"
-#include <stdio.h> //지우기
+# include "./libft/libft.h"
+# include <stdio.h> //지우기
 
-typedef struct	s_node
+typedef struct s_node
 {
 	int				value;
 	struct s_node	*pre;
 	struct s_node	*next;
 }				t_node;
 
-typedef struct	s_stack
+typedef struct s_stack
 {
 	int		size;
 	int		min;
 	int		max;
 	int		digit;
-//	int		negative_count;
 	t_node	*top;
 	t_node	*bottom;
 }				t_stack;
@@ -48,13 +47,17 @@ void	print_stack(t_stack *stack);
 void	init_stack(t_stack *stack);
 int		check_duplication(t_stack *stack, int num);
 int		remove_space(t_stack *stack, char *str);
+void	print_error();
+int		sort_check(t_stack *stack);
 
 /*
  * sort.c
  */
 void	radix_sort(t_stack *a, t_stack *b);
-void	get_max_digit(t_stack *a);
-void	sort_stack(t_stack *a, t_stack *b);
+void	set_digit(t_stack *a);
+void	sort_negative(t_stack *a, t_stack *b);
+void	sort_three(t_stack *a);
+void	sort_five(t_stack *a, t_stack *b);
 
 /*
  * swap.c

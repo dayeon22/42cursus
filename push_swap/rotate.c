@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 14:38:37 by daypark           #+#    #+#             */
-/*   Updated: 2021/09/29 17:03:44 by daypark          ###   ########.fr       */
+/*   Updated: 2021/09/30 18:08:20 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	ra(t_stack *a, int type)
 	a->bottom = a->top;
 	a->top = temp;
 }
-
 
 void	rb(t_stack *b, int type)
 {

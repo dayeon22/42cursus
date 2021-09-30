@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 15:39:55 by daypark           #+#    #+#             */
-/*   Updated: 2021/09/29 15:15:30 by daypark          ###   ########.fr       */
+/*   Updated: 2021/09/30 18:09:01 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	rra(t_stack *a, int type)
 {
-	t_node *temp;
+	t_node	*temp;
 
 	if (type == A)
 		ft_putendl_fd("rra", 1);

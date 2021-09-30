@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 19:48:46 by daypark           #+#    #+#             */
-/*   Updated: 2021/09/29 18:55:43 by daypark          ###   ########.fr       */
+/*   Updated: 2021/09/30 23:56:08 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	push_bottom(t_stack *stack, int num)
 {
-	t_node *new;
+	t_node	*new;
 
 	new = (t_node *)malloc(sizeof(t_node)); //실패시
 	new->value = num;
@@ -39,7 +39,7 @@ void	push_bottom(t_stack *stack, int num)
 
 void	push_top(t_stack *stack, int num)
 {
-	t_node *new;
+	t_node	*new;
 
 	new = (t_node *)malloc(sizeof(t_node)); //실패시
 	new->value = num;
@@ -100,15 +100,15 @@ int	check_duplication(t_stack *stack, int num)
 {
 	t_node	*node;
 
-	node = stack->top;
 	if (num > stack->max)
 		stack->max = num;
 	if (num < stack->min)
 		stack->min = num;
+	node = stack->top;
 	while (node != NULL)
 	{
 		if (node->value == num)
-			return (1); //print_err(DUPLICATED_NUM);
+			return (1);
 		node = node->next;
 	}
 	return (0);
@@ -116,9 +116,9 @@ int	check_duplication(t_stack *stack, int num)
 
 int	remove_space(t_stack *stack, char *str)
 {
-	int	i;
-	int	num;
-	char **words;
+	int		i;
+	int		num;
+	char	**words;
 
 	words = ft_split(str, ' ');
 	i = 0;
@@ -126,7 +126,7 @@ int	remove_space(t_stack *stack, char *str)
 	{
 		num = ft_atoi(words[i]);
 		if (check_duplication(stack, num))
-			return (1); //print_err(DUPLICATED_NUM);
+			print_error();
 		else
 			push_bottom(stack, num);
 		i++;
@@ -134,32 +134,57 @@ int	remove_space(t_stack *stack, char *str)
 	return (0);
 }
 
+void	print_error()
+{
+	ft_putendl_fd("Error", 2);
+}
+
+int	sort_check(t_stack *stack)
+{
+	t_node	*temp;
+
+	temp = stack->top;
+	while (temp && temp->next)
+	{
+		if (temp->value > temp->next->value)
+			return (1);
+		temp = temp->next;
+	}
+	return (0);
+}
+
 int	main(int argc, char *argv[])
 {
-	t_stack a;
-	t_stack b;
+	t_stack	a;
+	t_stack	b;
 	int		i;
 	int		num;
 
 	if (argc == 1)
-		return (1); //print_err(ARGC);
+		print_error();
 	init_stack(&a);
 	init_stack(&b);
-
-	i = 1;
-	while (argv[i])
+	i = 0;
+	while (argv[++i])
 	{
 		if (ft_strchr(argv[i], ' '))
+		{
 			remove_space(&a, argv[i]);
+			continue ;
+		}
+		//아래 코드를 check_duplication()에 넣어버리기
 		num = ft_atoi(argv[i]);
 		if (check_duplication(&a, num))
-			return (1); //print_err(DUPLICATED_NUM);
+			print_error();
 		else
 			push_bottom(&a, num);
-		i++;
 	}
-//	print_stack(&a);
-//	printf("min : %d, max : %d\n", a.min, a.max);
-	sort_stack(&a, &b);
-//	print_stack(&a);
+	if (a.size == 3)
+		sort_three(&a);
+	else if (a.size == 5)
+		sort_five(&a, &b);
+	else
+		radix_sort(&a, &b);
+
+	print_stack(&a);
 }

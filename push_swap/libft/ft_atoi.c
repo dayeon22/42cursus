@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 05:28:13 by daypark           #+#    #+#             */
-/*   Updated: 2021/09/28 11:59:31 by daypark          ###   ########.fr       */
+/*   Updated: 2021/09/29 19:41:43 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 int	check_over_range(unsigned long long result, int sign)
 {
 	if (result > LLONG_MAX - 1 && sign == -1)
-		return (0); //print_err(EXCEED_INT_RANGE);
+		return (0);
 	if (result > LLONG_MAX && sign == 1)
-		return (-1); //print_err(EXCEED_INT_RANGE);
+		return (-1);
 	return (result * sign);
 }
 
