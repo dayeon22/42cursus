@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 13:10:10 by daypark           #+#    #+#             */
-/*   Updated: 2021/09/30 23:56:47 by daypark          ###   ########.fr       */
+/*   Updated: 2021/10/01 18:06:03 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,47 +83,39 @@ void	sort_three(t_stack *a)
 	first = a->top->value;
 	second = a->top->next->value;
 	third = a->bottom->value;
-//	printf("2:");
-//	print_stack(a);
 	if (!sort_check(a))
 		return ;
-	if (second == a->min && third == a->max)
+	if (first > second && second < third && third > first)
 		sa(a, A);
-	else if (first == a->max && second == a->min)
+	else if (first > second && second < third && third < first)
 		ra(a, A);
-	else if (second == a->max && third == a->min)
+	else if (first < second && second > third && third < first)
 		rra(a, A);
-	else if (first == a->max && third == a->min)
+	else if (first > second && second > third && third < first)
 	{
 		sa(a, A);
 		rra(a, A);
 	}
-	else if (first == a->min && second == a->max)
+	else if (first < second && second > third && third > first)
 	{
 		sa(a, A);
 		ra(a, A);
 	}
-//	printf("3:");
-//	print_stack(a);
 }
 
 void	sort_five(t_stack *a, t_stack *b)
 {
-	pb(a, b, B);
-	pb(a, b, B);
-//	printf("1:");
-//	print_stack(a);
-
-	sort_three(a);
-
-//	printf("4:");
-//	print_stack(a);
-	while (b->size > 0 || sort_check(a))
+	while (a->size > 3)
 	{
-		if (a->top->value < b->top->value)
-		//a->top->value > b->top->value && a->top->next->value < b->top->value
-			ra(a, A);
+		if (a->top->value == a->max || a->top->value == a->min)
+			pb(a, b, B);
 		else
-			pa(a, b, A);
+			ra(a, A);
 	}
+	sort_three(a);
+	if (b->top->value > b->bottom->value)
+		sb(b, B);
+	pa(a, b, A);
+	pa(a, b, A);
+	ra(a, A);
 }

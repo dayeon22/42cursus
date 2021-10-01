@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 11:54:41 by daypark           #+#    #+#             */
-/*   Updated: 2021/09/30 18:08:33 by daypark          ###   ########.fr       */
+/*   Updated: 2021/10/01 17:13:36 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	sa(t_stack *a, int type)
 	if (a->size <= 1)
 		return ;
 	temp = a->top->next;
+	if (a->size >= 3)
+		temp->next->pre = a->top;
 	a->top->pre = temp;
 	a->top->next = temp->next;
 	temp->pre = NULL;
