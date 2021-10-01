@@ -6,12 +6,12 @@
 #    By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/25 19:49:02 by daypark           #+#    #+#              #
-#    Updated: 2021/09/28 16:29:33 by daypark          ###   ########.fr        #
+#    Updated: 2021/10/01 23:32:34 by daypark          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
-SRCS = main.c swap.c push.c rotate.c reverse_rotate.c sort.c
+SRCS = main.c utils.c swap.c push.c rotate.c reverse_rotate.c sort.c
 OBJS = $(SRCS:.c=.o)
 
 LIBFT = libft

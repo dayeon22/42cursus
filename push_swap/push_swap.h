@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 19:48:55 by daypark           #+#    #+#             */
-/*   Updated: 2021/09/30 22:48:56 by daypark          ###   ########.fr       */
+/*   Updated: 2021/10/01 23:36:35 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # define ALL 3
 
 # include "./libft/libft.h"
-# include <stdio.h> //지우기
 
 typedef struct s_node
 {
@@ -40,14 +39,18 @@ typedef struct s_stack
 /*
  * main.c
  */
-void	push_top(t_stack *stack, int num);
+void	check_duplication(t_stack *stack, int num);
+void	remove_space(t_stack *stack, char *str);
+void	print_error(t_stack *stack);
+void	terminate(t_stack *stack);
+
+/*
+ * utils.c
+ */
 void	push_bottom(t_stack *stack, int num);
+void	push_top(t_stack *stack, int num);
 int		pop(t_stack *stack);
-void	print_stack(t_stack *stack);
 void	init_stack(t_stack *stack);
-int		check_duplication(t_stack *stack, int num);
-int		remove_space(t_stack *stack, char *str);
-void	print_error();
 int		sort_check(t_stack *stack);
 
 /*
