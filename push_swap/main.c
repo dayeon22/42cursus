@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 19:48:46 by daypark           #+#    #+#             */
-/*   Updated: 2021/10/01 23:50:16 by daypark          ###   ########.fr       */
+/*   Updated: 2021/10/02 00:57:07 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	main(int argc, char *argv[])
 		sort_five(&a, &b);
 	else
 		radix_sort(&a, &b);
+	terminate(&a);
 }
 
 void	check_duplication(t_stack *stack, int num)
