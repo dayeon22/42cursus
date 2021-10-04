@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 19:48:55 by daypark           #+#    #+#             */
-/*   Updated: 2021/10/01 23:36:35 by daypark          ###   ########.fr       */
+/*   Updated: 2021/10/04 16:12:57 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,16 @@ typedef struct s_stack
  */
 void	check_duplication(t_stack *stack, int num);
 void	remove_space(t_stack *stack, char *str);
+
+/*
+ * utils.c
+ */
+int		is_all_space(char *str);
 void	print_error(t_stack *stack);
 void	terminate(t_stack *stack);
 
 /*
- * utils.c
+ * stack_utils.c
  */
 void	push_bottom(t_stack *stack, int num);
 void	push_top(t_stack *stack, int num);

@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 13:10:10 by daypark           #+#    #+#             */
-/*   Updated: 2021/10/01 18:06:03 by daypark          ###   ########.fr       */
+/*   Updated: 2021/10/04 16:06:47 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ void	sort_three(t_stack *a)
 
 void	sort_five(t_stack *a, t_stack *b)
 {
+	if (!sort_check(a))
+		return ;
 	while (a->size > 3)
 	{
 		if (a->top->value == a->max || a->top->value == a->min)

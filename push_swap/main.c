@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 19:48:46 by daypark           #+#    #+#             */
-/*   Updated: 2021/10/02 00:57:07 by daypark          ###   ########.fr       */
+/*   Updated: 2021/10/04 15:59:33 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,19 @@ int	main(int argc, char *argv[])
 	t_stack	b;
 	int		i;
 
-	if (argc == 1)
-		print_error(&a);
 	init_stack(&a);
 	init_stack(&b);
+	if (argc == 1)
+		return (0);
 	i = 0;
 	while (argv[++i])
 	{
+		if (!ft_strcmp(argv[i], "") || is_all_space(argv[i]))
+			print_error(&a);
 		if (ft_strchr(argv[i], ' '))
-		{
 			remove_space(&a, argv[i]);
-			continue ;
-		}
-		check_duplication(&a, ft_atoi(argv[i]));
+		else
+			check_duplication(&a, ft_atoi(argv[i]));
 	}
 	if (a.size == 3)
 		sort_three(&a);
@@ -68,25 +68,4 @@ void	remove_space(t_stack *stack, char *str)
 	i = -1;
 	while (words[++i])
 		check_duplication(stack, ft_atoi(words[i]));
-}
-
-void	print_error(t_stack *stack)
-{
-	ft_putendl_fd("Error", 2);
-	terminate(stack);
-}
-
-void	terminate(t_stack *stack)
-{
-	t_node	*node;
-	t_node	*temp;
-
-	node = stack->top;
-	while (node)
-	{
-		temp = node;
-		node = node->next;
-		free(temp);
-	}
-	exit(1);
 }

@@ -1,47 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/04 15:55:50 by daypark           #+#    #+#             */
-/*   Updated: 2021/10/04 16:08:37 by daypark          ###   ########.fr       */
+/*   Created: 2021/10/03 17:51:56 by daypark           #+#    #+#             */
+/*   Updated: 2021/10/03 17:52:10 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	print_error(t_stack *stack)
-{
-	ft_putendl_fd("Error", 2);
-	terminate(stack);
-}
-
-void	terminate(t_stack *stack)
-{
-	t_node	*node;
-	t_node	*temp;
-
-	node = stack->top;
-	while (node)
-	{
-		temp = node;
-		node = node->next;
-		free(temp);
-	}
-	exit(1);
-}
-
-int	is_all_space(char *str)
+int	ft_strcmp(const char *s1, const char *s2)
 {
 	int	i;
 
 	i = -1;
-	while (str[++i])
+	while (s1[++i] || s2[i])
 	{
-		if (str[i] != ' ')
-			return (0);
+		if (s1[i] > s2[i])
+			return (1);
+		else if (s1[i] < s2[i])
+			return (-1);
 	}
-	return (1);
+	return (0);
 }
