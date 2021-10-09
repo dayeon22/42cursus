@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 16:36:52 by daypark           #+#    #+#             */
-/*   Updated: 2021/10/05 16:49:07 by daypark          ###   ########.fr       */
+/*   Updated: 2021/10/09 18:37:34 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,24 @@ int	ft_atoi(const char *str)
 			result = result * 10 + str[i++] - '0';
 	}
 	return (result * sign);
+}
+
+long long	timestamp(void)
+{
+	struct timeval	time;
+
+	gettimeofday(&time, NULL); //실패시(if (gettimeofday() != 0))
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
+}
+
+int	left_fork(t_phil *phil)
+{
+	return (phil->number);
+}
+
+int	right_fork(t_phil *phil)
+{
+	if (phil->number - 1 < 1)
+		return (phil->data->phil_num);
+	return (phil->number - 1);
 }
