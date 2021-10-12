@@ -6,12 +6,18 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 15:00:27 by daypark           #+#    #+#             */
-/*   Updated: 2021/10/09 18:45:49 by daypark          ###   ########.fr       */
+/*   Updated: 2021/10/12 23:31:00 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILOSOPHERS_H
 # define PHILOSOPHERS_H
+
+# define DIED -1
+# define ALIVE 1
+//# define EATING 1
+//# define SLEEPING 2
+//# define THINKING 3
 
 # include <stdio.h>
 # include <pthread.h>
@@ -25,6 +31,9 @@ typedef struct	s_phil
 {
 	int				number;
 	pthread_t		pthread;
+	int				status;
+	int				eat_cnt;
+	long long		last_eat;
 	struct s_data	*data;
 }					t_phil;
 
