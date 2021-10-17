@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 16:36:52 by daypark           #+#    #+#             */
-/*   Updated: 2021/10/14 01:14:36 by daypark          ###   ########.fr       */
+/*   Updated: 2021/10/17 17:06:16 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,20 +66,23 @@ long long	timestamp(void)
 
 int	left(t_phil *phil, int type)
 {
-	int	phil_idx;
-
-	phil_idx = phil->number - 1;
 	if (type == FORK)
-		return (phil_idx);
+		return (phil->number - 1);
 	else
-		return ((phil_idx + 1) % phil->data->phil_num);
+		return ((phil->number) % phil->data->phil_num);
 }
 
 int	right(t_phil *phil, int type)
 {
-	int	phil_idx;
-
 	type = 0;
-	phil_idx = phil->number - 1;
-	return ((phil_idx + phil->data->phil_num - 1) % phil->data->phil_num);
+	return ((phil->number + phil->data->phil_num) % phil->data->phil_num);
+}
+
+void	msleep(int ms)
+{
+	long long	endtime;
+
+	endtime = ms + timestamp();
+	while (timestamp() < endtime)
+		usleep(100);
 }

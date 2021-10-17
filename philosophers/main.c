@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 12:26:30 by daypark           #+#    #+#             */
-/*   Updated: 2021/10/14 01:18:29 by daypark          ###   ########.fr       */
+/*   Updated: 2021/10/17 18:11:30 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	main(int argc, char *argv[])
 	if (arg_check(argc, argv, &data))
 		return (0); //print_error();
 	init_data(&data);
+	data.start_time = timestamp();
 	create_phils(&data); //실패시 print_error();
 	while (!death_check(&data) && !eat_all(&data))
 		usleep(5);
@@ -73,12 +74,10 @@ void	*act(void *arg)
 	t_phil	*phil;
 
 	phil = (t_phil *)arg;
+	usleep(50);
 	while (1)
 	{
-		if (phil->data->phil[left(phil, PHIL)].status != EATING &&
-				phil->data->phil[right(phil, PHIL)].status != EATING &&
-				phil->data->phil[left(phil, PHIL)].status != FORKING &&
-				phil->data->phil[right(phil, PHIL)].status != FORKING)
+		if (phil->number % 2)
 		{
 			pthread_mutex_lock(&phil->data->fork[left(phil, FORK)]);
 			print_status(phil, FORKING);
@@ -86,12 +85,27 @@ void	*act(void *arg)
 			print_status(phil, FORKING);
 			phil->last_eat = timestamp();
 			print_status(phil, EATING);
-			usleep(phil->data->eat_time * 1000);
+			msleep(phil->data->eat_time);
 			phil->eat_cnt++;
 			pthread_mutex_unlock(&phil->data->fork[left(phil, FORK)]);
 			pthread_mutex_unlock(&phil->data->fork[right(phil, FORK)]);
 			print_status(phil, SLEEPING);
-			usleep(phil->data->sleep_time * 1000);
+			msleep(phil->data->sleep_time);
+		}
+		else
+		{
+			pthread_mutex_lock(&phil->data->fork[right(phil, FORK)]);
+			print_status(phil, FORKING);
+			pthread_mutex_lock(&phil->data->fork[left(phil, FORK)]);
+			print_status(phil, FORKING);
+			phil->last_eat = timestamp();
+			print_status(phil, EATING);
+			msleep(phil->data->eat_time);
+			phil->eat_cnt++;
+			pthread_mutex_unlock(&phil->data->fork[right(phil, FORK)]);
+			pthread_mutex_unlock(&phil->data->fork[left(phil, FORK)]);
+			print_status(phil, SLEEPING);
+			msleep(phil->data->sleep_time);
 		}
 	}
 	return (phil);
@@ -99,17 +113,20 @@ void	*act(void *arg)
 
 void	print_status(t_phil *phil, int status)
 {
+	long long	ms;
+
+	ms = timestamp() - phil->data->start_time;
 	phil->status = status;
 	if (status == FORKING)
-		printf("%lld %d has taken a fork\n", timestamp(), phil->number);
+		printf("%lldms\t%d has taken a fork\n", ms, phil->number);
 	else if (status == EATING)
-		printf("%lld %d is eating\n", timestamp(), phil->number);
+		printf("%lldms\t%d is eating\n", ms, phil->number);
 	else if (status == SLEEPING)
-		printf("%lld %d is sleeping\n", timestamp(), phil->number);
+		printf("%lldms\t%d is sleeping\n", ms, phil->number);
 	else if (status == THINKING)
-		printf("%lld %d is thinking\n", timestamp(), phil->number);
+		printf("%lldms\t%d is thinking\n", ms, phil->number);
 	else if (status == DIED)
-		printf("%lld %d died\n", timestamp(), phil->number);
+		printf("%lldms\t%d died\n", ms, phil->number);
 }
 
 int	create_phils(t_data *data)
@@ -139,7 +156,7 @@ int	arg_check(int argc, char **argv, t_data *data)
 	if (argc == 6)
 		data->must_eat = ft_atoi(argv[5]);
 	data->phil = (t_phil *)malloc(sizeof(t_phil) * data->phil_num);
-	data->fork = 
+	data->fork = \
 		(pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * data->phil_num);
 	if (!data->phil || !data->fork)
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 15:00:27 by daypark           #+#    #+#             */
-/*   Updated: 2021/10/14 01:10:39 by daypark          ###   ########.fr       */
+/*   Updated: 2021/10/17 15:33:24 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # include <stdlib.h>
 # include <sys/time.h>
 
-typedef struct	s_phil
+typedef struct s_phil
 {
 	int				number;
 	pthread_t		pthread;
@@ -36,15 +36,16 @@ typedef struct	s_phil
 	int				eat_cnt;
 	long long		last_eat;
 	struct s_data	*data;
-}					t_phil;
+}				t_phil;
 
-typedef struct	s_data
+typedef struct s_data
 {
 	int				phil_num;
 	int				die_time;
 	int				eat_time;
 	int				sleep_time;
 	int				must_eat;
+	long long		start_time;
 	t_phil			*phil;
 	pthread_mutex_t	*fork;
 }				t_data;
@@ -56,7 +57,7 @@ int			arg_check(int argc, char **argv, t_data *data);
 void		init_data(t_data *data);
 int			create_phils(t_data *data);
 void		*act(void *arg);
-void		print_status(t_phil *phil,  int status);
+void		print_status(t_phil *phil, int status);
 void		terminate(t_data *data);
 int			death_check(t_data *data);
 int			eat_all(t_data *data);
@@ -69,5 +70,6 @@ int			ft_atoi(const char *str);
 long long	timestamp(void);
 int			left(t_phil *phil, int type);
 int			right(t_phil *phil, int type);
+void		msleep(int ms);
 
 #endif
