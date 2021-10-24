@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 15:00:27 by daypark           #+#    #+#             */
-/*   Updated: 2021/10/17 15:33:24 by daypark          ###   ########.fr       */
+/*   Updated: 2021/10/24 13:15:47 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,14 @@
 # define EATING 1
 # define SLEEPING 2
 # define THINKING 3
+# define REACHED 4
 
 # define FORK 4
 # define PHIL 5
+
+# define ARGC_ERROR 1
+# define NUM_ERROR 2
+# define ETC_ERROR 3
 
 # include <stdio.h>
 # include <pthread.h>
@@ -32,7 +37,6 @@ typedef struct s_phil
 {
 	int				number;
 	pthread_t		pthread;
-	int				status; //안쓰는중
 	int				eat_cnt;
 	long long		last_eat;
 	struct s_data	*data;
@@ -46,8 +50,11 @@ typedef struct s_data
 	int				sleep_time;
 	int				must_eat;
 	long long		start_time;
+	int				phil_died;
+	int				phil_eat_all;
 	t_phil			*phil;
 	pthread_mutex_t	*fork;
+	pthread_mutex_t	print_mutex;
 }				t_data;
 
 /*
@@ -58,7 +65,7 @@ void		init_data(t_data *data);
 int			create_phils(t_data *data);
 void		*act(void *arg);
 void		print_status(t_phil *phil, int status);
-void		terminate(t_data *data);
+void		terminate(t_data *data, int errorcode);
 int			death_check(t_data *data);
 int			eat_all(t_data *data);
 
@@ -71,5 +78,8 @@ long long	timestamp(void);
 int			left(t_phil *phil, int type);
 int			right(t_phil *phil, int type);
 void		msleep(int ms);
+int			check(char *str);
+int			print_error(t_data *data, int errorcode);
+void		putstr_fd(char *str, int fd);
 
 #endif
