@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 12:26:30 by daypark           #+#    #+#             */
-/*   Updated: 2021/10/24 13:28:34 by daypark          ###   ########.fr       */
+/*   Updated: 2021/10/24 14:51:00 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,59 +29,6 @@ int	main(int argc, char *argv[])
 		usleep(100);
 	terminate(&data, 0);
 	return (0);
-}
-
-void	terminate(t_data *data, int errorcode)
-{
-	int	i;
-
-	i = -1;
-	if (errorcode == ETC_ERROR || errorcode == 0)
-	{
-		while (++i < data->phil_num)
-		{
-			usleep(100);
-			pthread_mutex_destroy(&data->fork[i]);
-		}
-		pthread_mutex_destroy(&data->print_mutex);
-		free(data->phil);
-		free(data->fork);
-	}
-}
-
-int	death_check(t_data *data)
-{
-	int			i;
-	long long	current_time;
-
-	i = -1;
-	current_time = timestamp();
-	while (++i < data->phil_num)
-	{
-		if (current_time - data->phil[i].last_eat >= data->die_time)
-		{
-			print_status(&data->phil[i], DIED);
-			data->phil_died = 1;
-			return (1);
-		}
-	}
-	return (0);
-}
-
-int	eat_all(t_data *data)
-{
-	int	i;
-
-	i = -1;
-	if (data->must_eat == -1)
-		return (0);
-	while (++i < data->phil_num)
-	{
-		if (data->phil[i].eat_cnt < data->must_eat)
-			return (0);
-	}
-	data->phil_eat_all = 1;
-	return (1);
 }
 
 void	*act(void *arg)
@@ -107,28 +54,6 @@ void	*act(void *arg)
 		usleep(100);
 	}
 	return (phil);
-}
-
-void	print_status(t_phil *phil, int status)
-{
-	long long	ms;
-
-	pthread_mutex_lock(&phil->data->print_mutex);
-	ms = timestamp() - phil->data->start_time;
-	if (!phil->data->phil_died && !phil->data->phil_eat_all)
-	{
-		if (status == FORKING)
-			printf("%lldms\t%d has taken a fork\n", ms, phil->number);
-		if (status == EATING)
-			printf("%lldms\t%d is eating\n", ms, phil->number);
-		if (status == SLEEPING)
-			printf("%lldms\t%d is sleeping\n", ms, phil->number);
-		if (status == THINKING)
-			printf("%lldms\t%d is thinking\n", ms, phil->number);
-		if (status == DIED)
-			printf("%lldms\t%d died\n", ms, phil->number);
-	}
-	pthread_mutex_unlock(&phil->data->print_mutex);
 }
 
 int	create_phils(t_data *data)

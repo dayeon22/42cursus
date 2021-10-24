@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 15:00:27 by daypark           #+#    #+#             */
-/*   Updated: 2021/10/24 13:15:47 by daypark          ###   ########.fr       */
+/*   Updated: 2021/10/24 14:54:13 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,25 +61,33 @@ typedef struct s_data
  * main.c
  */
 int			arg_check(int argc, char **argv, t_data *data);
-void		init_data(t_data *data);
 int			create_phils(t_data *data);
+void		init_data(t_data *data);
 void		*act(void *arg);
-void		print_status(t_phil *phil, int status);
-void		terminate(t_data *data, int errorcode);
-int			death_check(t_data *data);
-int			eat_all(t_data *data);
 
 /*
  * utils.c
  */
 int			ft_strcmp(const char *s1, const char *s2);
 int			ft_atoi(const char *str);
+int			check(char *str);
 long long	timestamp(void);
+void		msleep(int ms);
+
+/*
+ * phil_utils.c
+ */
 int			left(t_phil *phil, int type);
 int			right(t_phil *phil, int type);
-void		msleep(int ms);
-int			check(char *str);
+int			death_check(t_data *data);
+int			eat_all(t_data *data);
+void		terminate(t_data *data, int errorcode);
+
+/*
+ * print.c
+ */
 int			print_error(t_data *data, int errorcode);
+void		print_status(t_phil *phil, int status);
 void		putstr_fd(char *str, int fd);
 
 #endif
