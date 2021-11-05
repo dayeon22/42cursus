@@ -3,7 +3,7 @@
 #		src/ft_signal.c
 #OBJS =	$(SRCS:.c=.o)
 
-SRC = main.c ft_shlvl.c ft_signal.c
+SRC = main.c ft_shlvl.c ft_signal.c ft_command.c
 SRCS = $(addprefix src/,$(SRC))
 OBJS = $(SRCS:.c=.o)
 

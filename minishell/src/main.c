@@ -19,11 +19,12 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 	if (!(copy_envp(&env, envp)))
 		return (0);
-	signal(SIGINT, signal_handler);
-	signal(SIGQUIT, signal_handler);
 	while (1)
 	{
 		line = get_readline(&env);
+		printf("%s\n", line);
+		// 이쯤에서 파싱
+		run_command(line);
 	}
 	return (0);
 }
