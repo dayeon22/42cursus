@@ -15,10 +15,23 @@
 # include <stdlib.h>
 # include "../libft/libft.h"
 
+# define PIPE -1
+# define DOLLAR -2
+# define RIGHT -3
+# define LEFT -4
+# define SPC -5
+
+typedef struct s_cmd
+{
+	char			*command;
+	struct s_cmd	*next;
+}					t_cmd;
+
 typedef struct s_env
 {
 	char			**envp;
 	int				env_len;
+	struct termios	old_term;
 	struct termios	new_term;
 }					t_env;
 /*main.c*/
@@ -28,11 +41,16 @@ int				copy_envp(t_env *env, char **envp);
 void			set_shlvl(t_env *env, int index, int i);
 int				extend_envp(t_env *env);
 /*ft_signal*/
-void			signal_setup(int signum);
-void			setup_signal_handlers(void);
-void			set_termios(t_env *env);
-char			*get_readline(t_env *env);
-/*builtin.c*/
-int				run_command(char *line);
-int				run_builtins(char **words);
+void			get_termios_signal(t_env *env);
+/*ft_readline*/
+void			get_readline(t_env *env);
+/*ft_command.c*/
+//int				run_command(char **words, t_env *env);
+//int				run_builtins(char **words, t_env *env);
+/* parse.c */
+void			parse(char *line, t_cmd *cmd);
+void			handle_signle_quotes(char *line, char *new_line, int *i, int *j);
+void			handle_double_quotes(char *line, char *new_line, int *i, int *j);
+void			handle_special_characters(char *line, char *new_line, int *i, int *j);
+void			replace_symbol(char *line);
 #endif

@@ -12,19 +12,13 @@ void	free_env(t_env *env)
 
 int	main(int argc, char **argv, char **envp)
 {
-	char	*line;
 	t_env	env;
 
 	(void)argc;
 	(void)argv;
 	if (!(copy_envp(&env, envp)))
 		return (0);
-	while (1)
-	{
-		line = get_readline(&env);
-		printf("%s\n", line);
-		// 이쯤에서 파싱
-		run_command(line);
-	}
+	get_termios_signal(&env);
+	get_readline(&env);
 	return (0);
 }

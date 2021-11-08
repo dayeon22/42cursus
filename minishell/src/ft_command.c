@@ -1,42 +1,47 @@
 #include "../include/minishell.h"
 
-int	run_command(char *line)
+/*
+int	run_command(char **words, t_env *env)
 {
-	char	**words;
 	int		pid;
-
-	// builtin 제작을 위한 임시 코드
-	words = ft_split(line, ' ');
-	
-	int i = 0;
-	while (words[i])
-		printf("%s", words[i++]);
+	int		stat_loc;
 
 	pid = fork();
-	if (pid == -1)
+	if (pid < 0)
 		return (1); //error 출력
 	else if (pid == 0)
 	{
-		printf("This is child process\n");
-		run_builtins(words);
+		//parse()
+		//run_builtins(words, env);
+		exit(0);
 	}
 	else
 	{
-		sleep(3);
-		// 부모 프로세스
-		return (0);
+		wait(&stat_loc);
+		if (stat_loc < 0)
+			return (0); //error 출력
 	}
 	return (0);
 }
 
-int	run_builtins(char **words)
+int	run_builtins(char **words, t_env *env)
 {
+	char	**argv;
+
+	argv = (char **)malloc(sizeof(char *) * 2);
+	argv[1] = NULL;
 	if (!ft_strcmp(words[0], "echo"))
-		printf("echo()\n");
-		//ft_echo(words);
+	{
+		argv[0] = ft_strdup("echo");
+		execve("/bin/echo", argv, env->envp);
+	}
 //	else if (!ft_strcmp(words[0], "cd"))
 //		ft_cd(words);
-//	else if (!ft_strcmp(words[0], "pwd"))
+	else if (!ft_strcmp(words[0], "pwd"))
+	{
+		argv[0] = ft_strdup("pwd");
+		execve("/bin/pwd", argv, env->envp);
+	}
 //		ft_pwd(words);
 //	else if (!ft_strcmp(words[0], "export"))
 //		ft_export(words);
@@ -48,3 +53,4 @@ int	run_builtins(char **words)
 //		ft_exit(words);
 	return (0);
 }
+*/

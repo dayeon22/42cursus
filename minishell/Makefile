@@ -1,11 +1,6 @@
-#SRCS =	src/main.c \
-#		src/ft_shlvl.c \
-#		src/ft_signal.c
-#OBJS =	$(SRCS:.c=.o)
-
-SRC = main.c ft_shlvl.c ft_signal.c ft_command.c
-SRCS = $(addprefix src/,$(SRC))
-OBJS = $(SRCS:.c=.o)
+SRC =	main.c ft_shlvl.c ft_signal.c ft_readline.c ft_command.c parse.c
+SRCS =	$(addprefix src/,$(SRC))
+OBJS =	$(SRCS:.c=.o)
 
 CC = gcc
 CFLAGS = -Wextra -Wall -Werror
