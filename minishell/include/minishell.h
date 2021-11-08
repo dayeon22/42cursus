@@ -49,8 +49,8 @@ void			get_readline(t_env *env);
 //int				run_builtins(char **words, t_env *env);
 /* parse.c */
 void			parse(char *line, t_cmd *cmd);
-void			handle_signle_quotes(char *line, char *new_line, int *i, int *j);
-void			handle_double_quotes(char *line, char *new_line, int *i, int *j);
-void			handle_special_characters(char *line, char *new_line, int *i, int *j);
+void			handle_signle_quotes(char **line, char **new_line);
+void			handle_double_quotes(char **line, char **new_line);
+void			handle_special_characters(char **line, char **new_line);
 void			replace_symbol(char *line);
 #endif
