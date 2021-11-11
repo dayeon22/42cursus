@@ -1,37 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/29 20:00:58 by daypark           #+#    #+#             */
-/*   Updated: 2021/03/21 12:49:22 by daypark          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "libft.h"
-
-static int	count_words(char const *s, char c)
-{
-	int		w_num;
-	int		flag;
-
-	w_num = 0;
-	flag = 0;
-	while (*s)
-	{
-		if (*s != c && flag == 0)
-		{
-			flag = 1;
-			w_num++;
-		}
-		else if (*s == c)
-			flag = 0;
-		s++;
-	}
-	return (w_num);
-}
 
 static char	**free_words(char **words)
 {
@@ -44,37 +11,99 @@ static char	**free_words(char **words)
 	return (NULL);
 }
 
-static char	**malloc_words(char ***words, int size)
+static int	count_words(char *s, char c)
 {
-	return (*words = (char **)malloc(sizeof(char *) * size));
+	int	cnt;
+	int	flag;
+	int	quote;
+
+	cnt = 0;
+	flag = 0;
+	while (*s)
+	{
+		if (*s == '\'' || *s == '\"')
+		{
+			quote = *s++;
+			while (*s != quote)
+				s++;
+		}
+		if (*s != c && flag == 0)
+		{
+			flag = 1;
+			cnt++;
+		}
+		else if (*s == c)
+			flag = 0;
+		s++;
+	}
+	return (cnt);
 }
 
-static char	*malloc_words_idx(char **words, int size)
+static int	get_word_len(char *s, char c)
 {
-	return (*words = (char *)malloc(sizeof(char) * size));
+	int		len;
+	char	quote;
+
+	len = 0;
+	while (*s && *s != c)
+	{
+		if (*s == '\'' || *s == '\"')
+		{
+			quote = *s++;
+			while (*s && *s++ != quote)
+				len++;
+		}
+		if (*s && *s++ != c)
+			len++;
+	}
+	return (len);
 }
 
-char	**ft_split(char const *s, char c)
+static int	fill_words_idx(char	**words_idx, char *s, char c)
 {
-	char		**words;
-	char const	*temp;
-	size_t		idx;
-	size_t		len;
+	int		s_inc;
+	char	quote;
+	char	*w;
+
+	s_inc = 0;
+	w = *words_idx;
+	while (*s && *s != c)
+	{
+		if (*s != '\'' && *s != '\"' && ++s_inc)
+			*w++ = *s++;
+		else
+		{
+			quote = *s++;
+			while (*s && *s != quote && ++s_inc)
+				*w++ = *s++;
+			s++;
+			s_inc += 2;
+		}
+	}
+	*w = '\0';
+	return (s_inc);
+}
+
+char	**ft_split(char *s, char c)
+{
+	char	**words;
+	int		idx;
+	int		len;
 
 	idx = 0;
-	if (!s || !(malloc_words(&words, count_words(s, c) + 1)))
+	words = (char **)malloc(sizeof(char *) * (count_words(s, c) + 1));
+	if (!s || !words)
 		return (NULL);
 	while (*s)
 	{
 		if (*s != c)
 		{
-			temp = s;
-			len = 0;
-			while (*s && *s++ != c)
-				len++;
-			if (!(malloc_words_idx(&words[idx], len + 1)))
+			len = get_word_len(s, c);
+			words[idx] = (char *)malloc(sizeof(char) * (len + 1));
+			if (!words[idx])
 				return (free_words(words));
-			ft_strlcpy(*(words + idx++), temp, len + 1);
+			s += fill_words_idx(&words[idx], s, c);
+			idx++;
 		}
 		else
 			s++;
