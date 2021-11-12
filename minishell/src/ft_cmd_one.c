@@ -72,9 +72,9 @@ int	cmd_start(t_env *env, t_split *sp)
 	if (!cmd_count)
 		return (1);
 	check_builtin(env, sp);
-	if (cmd_count == 1)
-		check = single_list_cmd(sp, env);
-	else
+//	if (cmd_count == 1)
+//		check = single_list_cmd(sp, env);
+//	else
 		check = 0;
 	return (check);
 }

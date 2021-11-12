@@ -76,4 +76,13 @@ void			sp_list_clear(t_split *sp);
 void			free_exit(t_split *sp, t_env *env, int code);
 /*ft_builtin.c*/
 int		check_builtin(t_env *env, t_split *sp);
+/*ft_env.c*/
+void			ft_env(t_env *env, t_split *sp);
+/*ft_unset.c*/
+void			ft_unset(t_env *env, t_split *sp);
+int				find_env(t_env *env, char *str);
+/*ft_export.c*/
+void			ft_export(t_env *env, t_split *sp);
+/*ft_utils.c*/
+void			double_free(char **words);
 #endif

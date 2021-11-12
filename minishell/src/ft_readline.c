@@ -22,6 +22,7 @@ void	get_readline(t_env *env, t_split *sp)
 		add_history(rl);
 		sp = split_read_line(rl, sp);
 
+		/*
 		// split test code
 		int	i;
 		while (sp)
@@ -32,7 +33,7 @@ void	get_readline(t_env *env, t_split *sp)
 					printf("str: %s\n", sp->str[i]);
 			sp = sp->next;
 		}
-
+		*/
 		if (check_list(sp))
 		{
 			cmd_start(env, sp);
