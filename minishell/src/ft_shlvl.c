@@ -62,6 +62,7 @@ int	copy_envp(t_env *env, char **envp)
 	if (index == -1)
 		++i;
 	env->env_len = i;
+	env->exit_n = 0;
 	env->envp = (char **)malloc(sizeof(char *) * i + 1);
 	if (!env->envp)
 		return (0);

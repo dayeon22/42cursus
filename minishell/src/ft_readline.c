@@ -19,25 +19,31 @@ void	get_readline(t_env *env, t_split *sp)
 		rl = readline("minishell$ ");
 		if (!rl)
 			signal_d_exit(env);
-		add_history(rl);
-		sp = split_read_line(rl, sp);
-
-		/*
-		// split test code
-		int	i;
-		while (sp)
+		if (ft_strlen(rl) > 0)
 		{
-			i = -1;
-			if (sp->str)
-				while (sp->str[++i])
-					printf("str: %s\n", sp->str[i]);
-			sp = sp->next;
-		}
-		*/
-		if (check_list(sp))
-		{
-			cmd_start(env, sp);
+			add_history(rl);
+			sp = split_read_line(rl, sp);
+			if (sp && check_list(sp))
+			{
+				cmd_start(env, sp);
+			}
 		}
 		free(rl);
 	}
 }
+
+/*
+int	i;
+while (sp)
+{
+	i = -1;
+	if (sp->str)
+		while (sp->str[++i])
+			printf("str: %s\n", sp->str[i]);
+	i = -1;
+	if (sp->quotes)
+		while (sp->quotes[++i])
+			printf("quotes: %c\n", sp->quotes[i]);
+	sp = sp->next;
+}
+*/

@@ -11,7 +11,7 @@ static char	**free_words(char **words)
 	return (NULL);
 }
 
-static int	count_words(char *s, char c)
+int	count_words(char *s, char c)
 {
 	int	cnt;
 	int	flag;

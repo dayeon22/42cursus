@@ -13,47 +13,42 @@ static int	str_split_init(char *rl, int point, int *i, t_split *sp)
 		free(cut);
 		return (error_printf("malloc error", 127));
 	}
+/*
+	int	j;
+	j = -1;
+	while (sp->str[++j])
+		printf("str[%d] : %s\n", j, sp->str[j]);
+	j = -1;
+	while (sp->quotes[++j])
+		printf("%c\n", sp->quotes[j]);
+	printf("=============\n");
+*/
 	free(cut);
+	sp->type = CHAR_WORD;
 	return (1);
 }
 
-static int	quotes_check(char *rl, int *i, t_split *sp)
+static int	word_input(char *rl, int *i, t_split *sp, int size)
 {
-	char	quote;
-
-	quote = rl[*i];
-	(*i)++;
-	while (rl[*i])
-	{
-		if (rl[*i] == quote)
-		{
-			sp->quotes = quote;
-			return (1);
-		}
-		(*i)++;
-	}
-	return (error_printf("There is only one quote error.", 127));
-}
-
-static int	word_input(char *rl, int *i, t_split *sp)
-{
-	int		point;
+	int	point;
 
 	point = *i;
-	while (rl[*i])
+	sp->quotes = (char *)ft_calloc(sizeof(char), doallr_count(rl) + 1);
+	if (!sp->quotes)
+		return (error_printf("malloc error", 1));
+	while (rl[*i] && rl[*i] != '|' && rl[*i] != '<' && rl[*i] != '>')
 	{
-		if (rl[*i] == '|' || rl[*i] == '<' || rl[*i] == '>')
-			break ;
-		else if (rl[*i] == '\\' || rl[*i] == ';')
+		if (rl[*i] == '\\' || rl[*i] == ';')
 			return (error_printf("backslash or semicolon error", 127));
-		if (rl[*i] == '\"' || rl[*i] == '\'')
-			if (!quotes_check(rl, i, sp))
+		else if (rl[*i] == '\"' || rl[*i] == '\'')
+			if (!quotes_check(rl, i, sp, &size))
 				return (0);
 		(*i)++;
+		if (*i > 0 && rl[*i - 1] == '$' && !ft_isspace(rl[*i]))
+			sp->quotes[size++] = '0';
 	}
 	if (!str_split_init(rl, point, i, sp))
 		return (0);
-	sp->type = CHAR_WORD;
 	return (1);
 }
 
@@ -70,7 +65,7 @@ static int	redir_check(char *rl, int *i, t_split *sp)
 	else if (rl[*i] == '>' && (*i)++)
 		sp->type = CHAR_GREAT;
 	else
-		if (!word_input(rl, i, sp))
+		if (!word_input(rl, i, sp, 0))
 			return (0);
 	return (1);
 }
@@ -83,15 +78,15 @@ t_split	*split_read_line(char *rl, t_split *sp)
 	i = 0;
 	if (!rl)
 		return (0);
+	if (!rl[space_clear(rl, &i)])
+		return (0);
 	sp = sp_new_init();
 	tmp = sp;
 	if (!sp)
 		return (0);
 	while (rl[i])
 	{
-		while (ft_isspace(rl[i]))
-			++i;
-		if (!rl[i])
+		if (!rl[space_clear(rl, &i)])
 			return (sp);
 		if (!redir_check(rl, &i, tmp))
 			return (0);

@@ -4,13 +4,17 @@ void	ft_env(t_env *env, t_split *sp)
 {
 	int	i;
 
-	i = 0;
 	if (sp->str[1])
 	{
-		printf("No such file of directory\n");
+		ft_putstr_fd("No such file or directory\n", 2);
 		return ;
 	}
-	while (env->envp[i])
-		printf("%s\n", env->envp[i++]);
+	i = -1;
+	while (env->envp[++i])
+	{
+		if (!ft_strchr(env->envp[i], '='))
+			continue ;
+		printf("%s\n", env->envp[i]);
+	}
 	(void)sp;
 }

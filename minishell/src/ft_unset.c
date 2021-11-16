@@ -1,5 +1,9 @@
 #include "../include/minishell.h"
 
+/* 
+ * str과 name이 같은 환경변수가 t_env의 몇번째 인덱스에 있는지 찾는 함수.
+ * 환경변수가 존재한다면 인덱스를, 존재하지 않는다면 -1을 리턴한다.
+ */
 int	find_env(t_env *env, char *str)
 {
 	int		i;
@@ -10,7 +14,7 @@ int	find_env(t_env *env, char *str)
 	{
 		equal_pos = ft_strchr(env->envp[i], '=');
 		if (!equal_pos)
-			continue ;
+			equal_pos = ft_strchr(env->envp[i], '\0');
 		if (!ft_strncmp(env->envp[i], str, equal_pos - env->envp[i]))
 			return (i);
 	}

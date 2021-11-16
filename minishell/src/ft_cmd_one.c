@@ -69,12 +69,13 @@ int	cmd_start(t_env *env, t_split *sp)
 	int	check;
 
 	cmd_count = sp_list_size(sp);
+	(void)env;
 	if (!cmd_count)
 		return (1);
-	check_builtin(env, sp);
-//	if (cmd_count == 1)
-//		check = single_list_cmd(sp, env);
-//	else
-		check = 0;
+	check = check_builtin(env, sp);
+	if (cmd_count == 1 && check == 1)
+		check = single_list_cmd(sp, env);
+	else
+	check = 0;
 	return (check);
 }

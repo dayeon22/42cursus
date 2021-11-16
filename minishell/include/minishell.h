@@ -22,11 +22,13 @@
 # define CHAR_GREAT -4
 # define CHAR_DGREAT -5
 # define CHAR_WORD -6
+# define PWD_SIZE 1024
 
 typedef struct s_env
 {
 	char			**envp;
 	int				env_len;
+	int				exit_n;
 	struct termios	old_term;
 	struct termios	new_term;
 }					t_env;
@@ -35,7 +37,7 @@ typedef struct s_split
 {
 	char			**str;
 	int				type;
-	int				quotes;
+	char			*quotes;
 	struct s_split	*next;
 }				t_split;
 
@@ -51,6 +53,10 @@ void			get_termios_signal(t_env *env);
 void			get_readline(t_env *env, t_split *sp);
 /*ft_split_rl.c*/
 t_split			*split_read_line(char *rl, t_split *sp);
+/*ft_split_utils.c*/
+int				doallr_count(char *rl);
+int				quotes_check(char *rl, int *i, t_split *sp, int *size);
+int				space_clear(char *rl, int *i);
 /*ft_init*/
 int				error_printf(char *str, int code);
 int				ft_isspace(int sp);
@@ -60,6 +66,7 @@ int				check_list(t_split *sp);
 t_split			*sp_new_init(void);
 void			sp_add_back(t_split **sp, t_split *new);
 int				sp_list_size(t_split *sp);
+t_split			*sp_list_del(t_split *sp);
 /*ft_cmd_one.c*/
 int				cmd_start(t_env *env, t_split *sp);
 int				single_list_cmd(t_split *sp, t_env *env);
@@ -75,7 +82,7 @@ void			free_two(char **str);
 void			sp_list_clear(t_split *sp);
 void			free_exit(t_split *sp, t_env *env, int code);
 /*ft_builtin.c*/
-int		check_builtin(t_env *env, t_split *sp);
+int				check_builtin(t_env *env, t_split *sp);
 /*ft_env.c*/
 void			ft_env(t_env *env, t_split *sp);
 /*ft_unset.c*/
@@ -85,4 +92,21 @@ int				find_env(t_env *env, char *str);
 void			ft_export(t_env *env, t_split *sp);
 /*ft_utils.c*/
 void			double_free(char **words);
+/*ft_exit*/
+void			ft_exit(t_env *env, t_split *sp);
+/*ft_pwd.c*/
+void			ft_pwd(t_env *env, t_split *sp);
+/*ft_cd_one.c*/
+void			ft_cd(t_env *env, t_split *sp);
+/*ft_cd_two.c*/
+void			env_pwd_input(t_env *env, char *path);
+void			env_oldpwd_input(t_env *env, char *path, char c);
+/*ft_free.c*/
+void			free_all(t_env *env, t_split *sp, int index);
+void			free_env(t_env *env);
+void			free_two(char **str);
+void			free_exit(t_split *sp, t_env *env, int code);
+/*ft_utils_one.c*/
+int				ft_isspace(int sp);
+char			*select_path(t_env *env, char *str);
 #endif

@@ -1,12 +1,30 @@
-SRC =	main.c ft_shlvl.c ft_signal.c \
-		ft_readline.c ft_split_rl.c \
-		ft_init.c ft_list_utils.c \
-		ft_check_list.c ft_cmd_one.c \
-		ft_cmd_two.c ft_error.c ft_builtin.c \
-		ft_env.c ft_unset.c ft_export.c \
-		ft_utils.c
-SRCS =	$(addprefix src/,$(SRC))
-OBJS =	$(SRCS:.c=.o)
+SRC =	ft_builtin.c \
+		ft_cd_one.c \
+		ft_cd_two.c \
+		ft_check_list.c \
+		ft_cmd_one.c \
+		ft_cmd_two.c \
+		ft_env.c \
+		ft_error.c \
+		ft_exit.c \
+		ft_export.c \
+		ft_free.c \
+		ft_list_utils.c \
+		ft_pwd.c \
+		ft_readline.c \
+		ft_shlvl.c \
+		ft_signal.c \
+		ft_split_rl.c \
+		ft_split_utils.c \
+		ft_unset.c \
+		ft_utils_one.c \
+		ft_utils.c \
+		main.c
+OBJ =	$(SRC:.c=.o)
+D_SRC =	src
+D_OBJ =	obj
+SRCS =	$(addprefix $(D_SRC)/,$(SRC))
+OBJS =	$(addprefix $(D_OBJ)/, $(OBJ))
 
 CC = gcc
 CFLAGS = -Wextra -Wall -Werror
@@ -16,35 +34,38 @@ NAME = minishell
 LIBS = -lreadline
 INCS = -I include -I libft
 
-# Cluster
+# For Cluster
 #LIBS += -L $(HOME)/.brew/opt/readline/lib
 #INCS += -I $(HOME)/.brew/opt/readline/include
 
-# Local Mac
+# For Macbook
 LIBS += -L /opt/homebrew/opt/readline/lib
 INCS += -I /opt/homebrew/opt/readline/include
 
-LIBFT = libft
+D_LIBFT = libft
 LIBFTL = libft.a
 
 all : $(NAME)
 
-$(NAME) : $(LIBFT)/$(LIBFTL) $(OBJS)
-	$(CC) $(CFLAGS) $(LIBFT)/$(LIBFTL) $(OBJS) $(LIBS) -o $@
+$(NAME) : $(D_LIBFT)/$(LIBFTL) $(D_OBJ) $(OBJS)
+	$(CC) $(CFLAGS) $(D_LIBFT)/$(LIBFTL) $(OBJS) $(LIBS) -o $@
 
-$(LIBFT)/$(LIBFTL) :
-	make all -C $(LIBFT)/
+$(D_LIBFT)/$(LIBFTL) :
+	make all -C $(D_LIBFT)/
 
-%.o : %.c
+$(D_OBJ) :
+	mkdir $@
+
+$(D_OBJ)/%.o : $(D_SRC)/%.c
 	$(CC) $(CFLAGS) -c $(INCS) $< -o $@
 
 clean :
-	rm -f $(OBJS)
-	make clean -C $(LIBFT)
+	rm -rf $(D_OBJ)
+	make clean -C $(D_LIBFT)
 
 fclean : clean
 	rm -f $(NAME)
-	rm -f $(LIBFT)/$(LIBFTL)
+	rm -f $(D_LIBFT)/$(LIBFTL)
 
 re : fclean all
 

@@ -9,7 +9,7 @@ t_split	*sp_new_init(void)
 		return (NULL);
 	new->str = NULL;
 	new->type = 0;
-	new->quotes = -99;
+	new->quotes = 0;
 	new->next = NULL;
 	return (new);
 }
@@ -47,4 +47,37 @@ int	sp_list_size(t_split *sp)
 		cnt++;
 	}
 	return (cnt);
+}
+
+t_split	*sp_list_del(t_split *sp)
+{
+	t_split	*cp;
+
+	cp = sp;
+	if (sp->next)
+		sp = sp->next;
+	free_two(cp->str);
+	if (!cp->next)
+	{
+		free(cp);
+		return (NULL);
+	}
+	free(cp);
+	return (sp);
+}
+
+void	sp_list_clear(t_split *sp)
+{
+	t_split	*cp;
+
+	while (1)
+	{
+		cp = sp;
+		if (sp->next)
+			sp = sp->next;
+		free_two(cp->str);
+		free(cp);
+		if (!sp->next)
+			break ;
+	}
 }
