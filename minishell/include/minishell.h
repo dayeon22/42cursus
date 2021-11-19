@@ -15,6 +15,7 @@
 # include <readline/history.h>
 # include <stdlib.h>
 # include "../libft/libft.h"
+
 /*|, <, <<, >, >>*/
 # define CHAR_PIPE -1
 # define CHAR_LESS -2
@@ -35,78 +36,17 @@ typedef struct s_env
 
 typedef struct s_split
 {
+	int				num;
 	char			**str;
 	int				type;
 	char			*quotes;
+	char			**dollar;
+	char			**c_vlaue;
+	int				c_len;
+	struct s_env	*t_env;
 	struct s_split	*next;
 }				t_split;
 
-/*main.c*/
-void			free_env(t_env *env);
-/*ft_shlvl*/
-int				copy_envp(t_env *env, char **envp);
-void			set_shlvl(t_env *env, int index, int i);
-int				extend_envp(t_env *env);
-/*ft_signal*/
-void			get_termios_signal(t_env *env);
-/*ft_readline*/
-void			get_readline(t_env *env, t_split *sp);
-/*ft_split_rl.c*/
-t_split			*split_read_line(char *rl, t_split *sp);
-/*ft_split_utils.c*/
-int				doallr_count(char *rl);
-int				quotes_check(char *rl, int *i, t_split *sp, int *size);
-int				space_clear(char *rl, int *i);
-/*ft_init*/
-int				error_printf(char *str, int code);
-int				ft_isspace(int sp);
-/*ft_check_list.c*/
-int				check_list(t_split *sp);
-/*ft_list_utils.c*/
-t_split			*sp_new_init(void);
-void			sp_add_back(t_split **sp, t_split *new);
-int				sp_list_size(t_split *sp);
-t_split			*sp_list_del(t_split *sp);
-/*ft_cmd_one.c*/
-int				cmd_start(t_env *env, t_split *sp);
-int				single_list_cmd(t_split *sp, t_env *env);
-void			exec_bin_path(t_split *sp, t_env *env);
-int				lookup_bin_path(char *order, char **path, char **envp);
-char			**envp_lookup(char **envp, char *find);
-/*ft_cmd_two.c*/
-int				bin_complete(char *order, char **bin_path, char **path);
-char			*connection_order(char *str, char *order);
-int				command_exit(int status);
-/*ft_error.c*/
-void			free_two(char **str);
-void			sp_list_clear(t_split *sp);
-void			free_exit(t_split *sp, t_env *env, int code);
-/*ft_builtin.c*/
-int				check_builtin(t_env *env, t_split *sp);
-/*ft_env.c*/
-void			ft_env(t_env *env, t_split *sp);
-/*ft_unset.c*/
-void			ft_unset(t_env *env, t_split *sp);
-int				find_env(t_env *env, char *str);
-/*ft_export.c*/
-void			ft_export(t_env *env, t_split *sp);
-/*ft_utils.c*/
-void			double_free(char **words);
-/*ft_exit*/
-void			ft_exit(t_env *env, t_split *sp);
-/*ft_pwd.c*/
-void			ft_pwd(t_env *env, t_split *sp);
-/*ft_cd_one.c*/
-void			ft_cd(t_env *env, t_split *sp);
-/*ft_cd_two.c*/
-void			env_pwd_input(t_env *env, char *path);
-void			env_oldpwd_input(t_env *env, char *path, char c);
-/*ft_free.c*/
-void			free_all(t_env *env, t_split *sp, int index);
-void			free_env(t_env *env);
-void			free_two(char **str);
-void			free_exit(t_split *sp, t_env *env, int code);
-/*ft_utils_one.c*/
-int				ft_isspace(int sp);
-char			*select_path(t_env *env, char *str);
+# include "./functions.h"
+
 #endif

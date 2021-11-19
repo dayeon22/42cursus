@@ -1,29 +1,5 @@
 #include "../include/minishell.h"
 
-void	free_all(t_env *env, t_split *sp, int index)
-{
-	int	i;
-
-	if (index == 2)
-	{
-		i = -1;
-		if (*env->envp)
-			while (env->envp[++i])
-				free(env->envp[i]);
-		if (env->envp)
-			free(env->envp);
-	}
-	if (sp)
-	{
-		while (sp)
-		{
-			sp = sp_list_del(sp);
-			if (!sp)
-				break ;
-		}
-	}
-}
-
 void	free_env(t_env *env)
 {
 	int	i;
@@ -31,7 +7,14 @@ void	free_env(t_env *env)
 	i = -1;
 	while (++i < env->env_len)
 		free(env->envp[i]);
-	free(env->envp);
+	if (env->envp)
+		free(env->envp);
+}
+
+void	free_one(char *str)
+{
+	if (str)
+		free(str);
 }
 
 void	free_two(char **str)
@@ -47,7 +30,20 @@ void	free_two(char **str)
 		len++;
 	while (++i < len)
 		free(str[i]);
-	free(str);
+	if (str)
+		free(str);
+}
+
+
+void	free_all(t_env *env, t_split *sp, int index)
+{
+	if (index == 2)
+		free_env(env);
+	free_two(sp->str);
+	free_one(sp->quotes);
+	free_two(sp->dollar);
+	free_two(sp->c_vlaue);
+	sp_list_del(sp);
 }
 
 void	free_exit(t_split *sp, t_env *env, int code)

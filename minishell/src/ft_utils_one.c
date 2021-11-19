@@ -1,13 +1,31 @@
 #include "../include/minishell.h"
 
-int	ft_isspace(int sp)
+int sp_str_len(t_split *sp)
 {
-	if ((sp >= 9 && sp <= 13) || sp == 32)
-		return (1);
-	return (0);
+    int len;
+
+    len = 0;
+    while (sp->str[len])
+        len++;
+    return (len);
 }
 
-char	*select_path(t_env *env, char *str)
+int ft_isspace(int sp)
+{
+	if ((sp >= 9 && sp <= 13) || sp == 32)
+        return (1);
+    return (0);
+}
+
+int ft_isquotes(char sp)
+{
+	if (sp == '\'' || sp == '\"' || sp == '$')
+        return (1);
+    return (0);
+}
+
+
+char    *select_path(t_env *env, char *str)
 {
     int i;
 

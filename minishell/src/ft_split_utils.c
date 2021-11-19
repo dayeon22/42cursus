@@ -1,25 +1,10 @@
 #include "../include/minishell.h"
 
-int space_clear(char *rl, int *i)
+int	space_clear(char *rl, int *i)
 {
 	while (ft_isspace(rl[*i]))
 		(*i)++;
 	return (*i);
-}
-
-int	doallr_count(char *rl)
-{
-	int	i;
-	int	len;
-
-	i = -1;
-	len = 0;
-	while (rl[++i])
-	{
-		if (i > 0 && rl[i - 1] == '$' && !ft_isspace(rl[i]))
-			++len;
-	}
-	return (len);
 }
 
 int	quotes_check(char *rl, int *i, t_split *sp, int *size)
@@ -31,7 +16,11 @@ int	quotes_check(char *rl, int *i, t_split *sp, int *size)
 	while (rl[*i])
 	{
 		if (rl[*i - 1] == '$' && !ft_isspace(rl[*i]))
+		{
+			if (!sp_dollar_count(sp, rl, *i, *size))
+				return (error_printf("malloc error", 127));
 			sp->quotes[(*size)++] = quote;
+		}
 		if (rl[*i] == quote)
 			return (1);
 		(*i)++;

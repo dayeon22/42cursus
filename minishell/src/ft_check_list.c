@@ -1,6 +1,6 @@
 #include "../include/minishell.h"
 
-int	check_redir_order(t_split *sp)
+static int	check_redir_order(t_split *sp)
 {
 	while (sp)
 	{
@@ -17,7 +17,7 @@ int	check_redir_order(t_split *sp)
 	return (1);
 }
 
-int	check_pipe_order(t_split *sp)
+static int	check_pipe_order(t_split *sp)
 {
 	if (sp->type == CHAR_PIPE)
 		return (0);

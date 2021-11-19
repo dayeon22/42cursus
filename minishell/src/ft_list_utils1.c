@@ -1,6 +1,6 @@
 #include "../include/minishell.h"
 
-t_split	*sp_new_init(void)
+t_split	*sp_new_init(t_env *env)
 {
 	t_split	*new;
 
@@ -10,6 +10,9 @@ t_split	*sp_new_init(void)
 	new->str = NULL;
 	new->type = 0;
 	new->quotes = 0;
+	new->dollar = 0;
+	new->c_len = 0;
+	new->t_env = env;
 	new->next = NULL;
 	return (new);
 }
@@ -36,19 +39,6 @@ void	sp_add_back(t_split **sp, t_split *new)
 	return ;
 }
 
-int	sp_list_size(t_split *sp)
-{
-	int		cnt;
-
-	cnt = 0;
-	while (sp)
-	{
-		sp = sp->next;
-		cnt++;
-	}
-	return (cnt);
-}
-
 t_split	*sp_list_del(t_split *sp)
 {
 	t_split	*cp;
@@ -56,7 +46,6 @@ t_split	*sp_list_del(t_split *sp)
 	cp = sp;
 	if (sp->next)
 		sp = sp->next;
-	free_two(cp->str);
 	if (!cp->next)
 	{
 		free(cp);

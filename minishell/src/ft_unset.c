@@ -7,16 +7,26 @@
 int	find_env(t_env *env, char *str)
 {
 	int		i;
-	char	*equal_pos;
+	char	*env_equal_pos;
+	char	*str_equal_pos;
+	int		compare_len;
 
 	i = -1;
+//	if (env_name_check(str))
+//		return (-1); //print_err("%s : not a valid identifier", str);
 	while (env->envp[++i])
 	{
-		equal_pos = ft_strchr(env->envp[i], '=');
-		if (!equal_pos)
-			equal_pos = ft_strchr(env->envp[i], '\0');
-		if (!ft_strncmp(env->envp[i], str, equal_pos - env->envp[i]))
-			return (i);
+		env_equal_pos = ft_strchr(env->envp[i], '=');
+		if (!env_equal_pos)
+			env_equal_pos = ft_strchr(env->envp[i], '\0');
+		str_equal_pos = ft_strchr(env->envp[i], '=');
+		if (!str_equal_pos)
+			str_equal_pos = ft_strchr(env->envp[i], '\0');
+		compare_len = str_equal_pos - str;
+		if (env_equal_pos - env->envp[i] > compare_len)
+			compare_len = env_equal_pos - env->envp[i];
+		if (!ft_strncmp(env->envp[i], str, compare_len))
+			return (1);
 	}
 	return (-1);
 }

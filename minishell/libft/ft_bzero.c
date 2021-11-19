@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 17:50:41 by daypark           #+#    #+#             */
-/*   Updated: 2021/01/16 13:05:31 by daypark          ###   ########.fr       */
+/*   Updated: 2021/11/19 15:05:55 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	ft_memset(s, 0, n);
+	ft_memset((void *)s, 0, n);
 }

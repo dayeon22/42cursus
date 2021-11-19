@@ -22,7 +22,8 @@ void	get_readline(t_env *env, t_split *sp)
 		if (ft_strlen(rl) > 0)
 		{
 			add_history(rl);
-			sp = split_read_line(rl, sp);
+			sp = split_read_line(rl, sp, env);
+			apply_dollar(sp);
 			if (sp && check_list(sp))
 			{
 				cmd_start(env, sp);
@@ -31,19 +32,28 @@ void	get_readline(t_env *env, t_split *sp)
 		free(rl);
 	}
 }
-
 /*
-int	i;
-while (sp)
-{
-	i = -1;
-	if (sp->str)
-		while (sp->str[++i])
-			printf("str: %s\n", sp->str[i]);
-	i = -1;
-	if (sp->quotes)
-		while (sp->quotes[++i])
-			printf("quotes: %c\n", sp->quotes[i]);
-	sp = sp->next;
-}
+			int	i;
+			while (sp)
+			{
+				printf("num: %d\n", sp->num);
+				i = -1;
+				if (sp->str)
+					while (sp->str[++i])
+						printf("str: %s\n", sp->str[i]);
+				i = -1;
+				if (sp->quotes)
+					while (sp->quotes[++i])
+						printf("quotes: %c\n", sp->quotes[i]);
+				i = -1;
+				if (sp->dollar)
+					while (sp->dollar[++i])
+						printf("dollar: %s\n", sp->dollar[i]);
+				i = -1;
+				if (sp->c_vlaue)
+					while (++i < sp->c_len)
+						printf("c_vlaue: %s\n", sp->c_vlaue[i]);
+				printf("c_len: %d\n", sp->c_len);
+				sp = sp->next;
+			}
 */

@@ -4,12 +4,15 @@ SRC =	ft_builtin.c \
 		ft_check_list.c \
 		ft_cmd_one.c \
 		ft_cmd_two.c \
+		ft_dollar.c \
 		ft_env.c \
 		ft_error.c \
-		ft_exit.c \
+		ft_exit_one.c \
+		ft_exit_two.c \
 		ft_export.c \
 		ft_free.c \
-		ft_list_utils.c \
+		ft_list_utils1.c \
+		ft_list_utils2.c \
 		ft_pwd.c \
 		ft_readline.c \
 		ft_shlvl.c \

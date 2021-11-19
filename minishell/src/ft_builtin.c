@@ -2,7 +2,6 @@
 
 int	check_builtin(t_env *env, t_split *sp)
 {
-	/*
 	if (!ft_strcmp(sp->str[0], "echo"))
 		printf("ft_echo()\n");
 	else if (!ft_strcmp(sp->str[0], "cd"))
@@ -19,10 +18,5 @@ int	check_builtin(t_env *env, t_split *sp)
 		ft_exit(env, sp);
 	else
 		return (1);
-		*/
-
-	(void)env; //임시코드
-	(void)sp; //임시코드
-
 	return (0);
 }
