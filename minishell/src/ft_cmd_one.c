@@ -76,6 +76,6 @@ int	cmd_start(t_env *env, t_split *sp)
 	if (cmd_count == 1 && check == 1)
 		check = single_list_cmd(sp, env);
 	else
-	check = 0;
+		check = 0;
 	return (check);
 }

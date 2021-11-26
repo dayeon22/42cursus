@@ -9,7 +9,9 @@ void			ft_cd(t_env *env, t_split *sp);
 
 /*ft_cd_two.c*/
 void			env_pwd_input(t_env *env, char *path);
-void			env_oldpwd_input(t_env *env, char *path, char c);
+void			env_oldpwd_input(t_env *env, char *path);
+int				cd_mark_minus(t_env *env, t_split *sp, int len);
+int				cd_mark_wave(t_env *env, t_split *sp, int len);
 
 /*ft_check_list.c*/
 int				check_list(t_split *sp);
@@ -26,16 +28,24 @@ int				command_exit(int status);
 char			*connection_order(char *str, char *order);
 int				bin_complete(char *order, char **bin_path, char **path);
 
-/*ft_dollar.c*/
+/*ft_dollar_one.c*/
 int				get_dollar_env(t_split *sp, char *str, int size);
 int				sp_dollar_count(t_split *sp, char *s, int i, int size);
 int				dollar_count(char *rl);
+int             sp_special_dollar(t_split *sp, char *s, int *i, int size);
 
+/*ft_dollar_two.c*/
+int				dollar_all_len(t_split *sp, char *str);
+void			dollar_while(t_split *sp, char *s, char *cp);
+char			*dollar_change(t_split *sp, char *s, char *cp);
+
+/*ft_echo.c*/
+int				ft_echo(t_env *env, t_split *sp);
 /*ft_env.c*/
 void			ft_env(t_env *env, t_split *sp);
 
 /*ft_error.c*/
-int				error_printf(char *str, int code);
+int				error_printf(t_env *env, char *str, int code);
 
 /*ft_exit_one.c*/
 void			ft_exit(t_env *env, t_split *sp);
@@ -43,15 +53,16 @@ void			ft_exit(t_env *env, t_split *sp);
 /*ft_exit_two.c*/
 int				env_len(t_env *env);
 int				numeric_error(char *str);
+void			exit_error_collect(t_env *env, t_split *sp, int num);
 
 /*ft_export.c*/
 void			ft_export(t_env *env, t_split *sp);
 void			change_env(t_env *env, char *str, int env_idx);
 void			add_env(t_env *env, char *str);
 int				env_name_check(char *str);
+
+/*ft_export_two.c*/
 void			print_sorted_env(t_env *env);
-void			print_env(char **envp);
-void			sort_env(char **envp, int envp_len);
 
 /*ft_free.c*/
 void			free_env(t_env *env);
@@ -61,7 +72,7 @@ void			free_all(t_env *env, t_split *sp, int index);
 void			free_exit(t_split *sp, t_env *env, int code);
 
 /*ft_list_utils1.c*/
-t_split			*sp_new_init(t_env *env);
+t_split			*sp_new_init(t_env *env, t_int *c_int);
 void			sp_add_back(t_split **sp, t_split *new);
 t_split			*sp_list_del(t_split *sp);
 void			sp_list_clear(t_split *sp);
@@ -92,7 +103,7 @@ int				space_clear(char *rl, int *i);
 int				quotes_check(char *rl, int *i, t_split *sp, int *size);
 
 /*ft_init*/
-int				error_printf(char *str, int code);
+int				error_printf(t_env *env, char *str, int code);
 int				ft_isspace(int sp);
 
 /*ft_unset.c*/
@@ -104,13 +115,13 @@ void			ft_unset(t_env *env, t_split *sp);
 int				sp_str_len(t_split *sp);
 int				ft_isspace(int sp);
 int				ft_isquotes(char sp);
+int             ft_special(char c);
 char			*select_path(t_env *env, char *str);
 
 /*ft_utils.c*/
 void			double_free(char **words);
 
-
-
-char	**apply_dollar(t_split *sp);
+/*ft_dollar_two.c*/
+char			**apply_dollar(t_split *sp);
 
 #endif

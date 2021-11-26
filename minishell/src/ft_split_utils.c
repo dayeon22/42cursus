@@ -15,15 +15,15 @@ int	quotes_check(char *rl, int *i, t_split *sp, int *size)
 	(*i)++;
 	while (rl[*i])
 	{
-		if (rl[*i - 1] == '$' && !ft_isspace(rl[*i]))
+		if (rl[*i - 1] == '$' && !ft_isspace(rl[*i]) && !ft_isquotes(rl[*i]))
 		{
 			if (!sp_dollar_count(sp, rl, *i, *size))
-				return (error_printf("malloc error", 127));
+				return (error_printf(sp->e, "malloc error", 127));
 			sp->quotes[(*size)++] = quote;
 		}
 		if (rl[*i] == quote)
 			return (1);
 		(*i)++;
 	}
-	return (error_printf("There is only one quote error.", 127));
+	return (error_printf(sp->e, "There is only one quote error.", 127));
 }

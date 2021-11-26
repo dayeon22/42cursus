@@ -21,8 +21,8 @@ int	sp_word_size(t_split *sp)
 	while (sp)
 	{
 		sp = sp->next;
-        if (sp->type == CHAR_WORD)
-		    cnt++;
+		if (sp->type == CHAR_WORD)
+			cnt++;
 	}
 	return (cnt);
 }

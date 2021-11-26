@@ -4,12 +4,16 @@ SRC =	ft_builtin.c \
 		ft_check_list.c \
 		ft_cmd_one.c \
 		ft_cmd_two.c \
-		ft_dollar.c \
+		ft_dollar_one.c \
+		ft_dollar_two.c \
+		ft_dollar_three.c \
+		ft_echo.c \
 		ft_env.c \
 		ft_error.c \
 		ft_exit_one.c \
 		ft_exit_two.c \
-		ft_export.c \
+		ft_export_one.c \
+		ft_export_two.c \
 		ft_free.c \
 		ft_list_utils1.c \
 		ft_list_utils2.c \
@@ -38,12 +42,12 @@ LIBS = -lreadline
 INCS = -I include -I libft
 
 # For Cluster
-#LIBS += -L $(HOME)/.brew/opt/readline/lib
-#INCS += -I $(HOME)/.brew/opt/readline/include
+LIBS += -L $(HOME)/.brew/opt/readline/lib
+INCS += -I $(HOME)/.brew/opt/readline/include
 
 # For Macbook
-LIBS += -L /opt/homebrew/opt/readline/lib
-INCS += -I /opt/homebrew/opt/readline/include
+#LIBS += -L /opt/homebrew/opt/readline/lib
+#INCS += -I /opt/homebrew/opt/readline/include
 
 D_LIBFT = libft
 LIBFTL = libft.a

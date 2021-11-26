@@ -34,6 +34,16 @@ typedef struct s_env
 	struct termios	new_term;
 }					t_env;
 
+typedef struct s_int
+{
+	int			one;
+	int			two;
+	int			tree;
+	int			four;
+	int			a_len;
+}				t_int;
+
+
 typedef struct s_split
 {
 	int				num;
@@ -43,7 +53,8 @@ typedef struct s_split
 	char			**dollar;
 	char			**c_vlaue;
 	int				c_len;
-	struct s_env	*t_env;
+	struct s_env	*e;
+	struct s_int	*i;
 	struct s_split	*next;
 }				t_split;
 

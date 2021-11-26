@@ -13,6 +13,7 @@ static void	signal_d_exit(t_env *env)
 void	get_readline(t_env *env, t_split *sp)
 {
 	char	*rl;
+	char	**temp;
 
 	while (1)
 	{
@@ -23,7 +24,9 @@ void	get_readline(t_env *env, t_split *sp)
 		{
 			add_history(rl);
 			sp = split_read_line(rl, sp, env);
-			apply_dollar(sp);
+			temp = sp->str;
+			sp->str = apply_dollar(sp); //if (sp->str != NULL)
+			free_two(temp);
 			if (sp && check_list(sp))
 			{
 				cmd_start(env, sp);

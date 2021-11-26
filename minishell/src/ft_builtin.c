@@ -3,7 +3,7 @@
 int	check_builtin(t_env *env, t_split *sp)
 {
 	if (!ft_strcmp(sp->str[0], "echo"))
-		printf("ft_echo()\n");
+		ft_echo(env, sp);
 	else if (!ft_strcmp(sp->str[0], "cd"))
 		ft_cd(env, sp);
 	else if (!ft_strcmp(sp->str[0], "pwd"))

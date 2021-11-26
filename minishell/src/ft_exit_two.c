@@ -23,3 +23,19 @@ int	numeric_error(char *str)
 			return (0);
 	return (1);
 }
+
+void	exit_error_collect(t_env *env, t_split *sp, int num)
+{
+	if (num)
+	{
+		ft_putstr_fd("minishell: exit: too many arguments\n", 2);
+		env->exit_n = 2;
+	}
+	else
+	{
+		ft_putstr_fd("minishell: exit: ", 2);
+		ft_putstr_fd(sp->str[1], 2);
+		ft_putstr_fd(": numeric argument required\n", 2);
+		env->exit_n = 255;
+	}
+}

@@ -40,8 +40,8 @@ int	check_list(t_split *sp)
 	if (!sp)
 		return (0);
 	if (!check_pipe_order(sp))
-		return (error_printf("pipeline order error", 127));
+		return (error_printf(sp->e, "pipeline order error", 127));
 	if (!check_redir_order(sp))
-		return (error_printf("redir order error", 127));
+		return (error_printf(sp->e, "redir order error", 127));
 	return (1);
 }

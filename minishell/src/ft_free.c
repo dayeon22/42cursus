@@ -14,7 +14,10 @@ void	free_env(t_env *env)
 void	free_one(char *str)
 {
 	if (str)
+	{
 		free(str);
+		str = 0;
+	}
 }
 
 void	free_two(char **str)
@@ -34,16 +37,11 @@ void	free_two(char **str)
 		free(str);
 }
 
-
 void	free_all(t_env *env, t_split *sp, int index)
 {
 	if (index == 2)
 		free_env(env);
-	free_two(sp->str);
-	free_one(sp->quotes);
-	free_two(sp->dollar);
-	free_two(sp->c_vlaue);
-	sp_list_del(sp);
+	sp_list_clear(sp);
 }
 
 void	free_exit(t_split *sp, t_env *env, int code)
