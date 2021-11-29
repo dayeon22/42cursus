@@ -26,7 +26,7 @@ int	find_env(t_env *env, char *str)
 		if (env_equal_pos - env->envp[i] > compare_len)
 			compare_len = env_equal_pos - env->envp[i];
 		if (!ft_strncmp(env->envp[i], str, compare_len))
-			return (1);
+			return (i);
 	}
 	return (-1);
 }

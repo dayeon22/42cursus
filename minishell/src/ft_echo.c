@@ -63,7 +63,6 @@ static int	echo_sense(t_env *env, t_split *sp, int len)
 		else
 			return (echo_other(env, sp));
 	}
-	env->exit_n = 0;
 	return (1);
 }
 

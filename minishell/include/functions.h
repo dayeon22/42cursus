@@ -124,4 +124,7 @@ void			double_free(char **words);
 /*ft_dollar_two.c*/
 char			**apply_dollar(t_split *sp);
 
+/*ft_pipe.c*/
+int				run_pipe(t_split *sp, t_env *env);
+
 #endif

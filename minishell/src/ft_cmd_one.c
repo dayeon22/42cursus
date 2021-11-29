@@ -69,9 +69,11 @@ int	cmd_start(t_env *env, t_split *sp)
 	int	check;
 
 	cmd_count = sp_list_size(sp);
-	(void)env;
+//	printf("%d\n", cmd_count);
 	if (!cmd_count)
 		return (1);
+	if (cmd_count > 1)
+		return (run_pipe(sp, env));
 	check = check_builtin(env, sp);
 	if (cmd_count == 1 && check == 1)
 		check = single_list_cmd(sp, env);

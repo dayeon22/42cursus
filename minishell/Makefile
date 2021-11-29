@@ -26,6 +26,7 @@ SRC =	ft_builtin.c \
 		ft_unset.c \
 		ft_utils_one.c \
 		ft_utils.c \
+		ft_pipe.c \
 		main.c
 OBJ =	$(SRC:.c=.o)
 D_SRC =	src
@@ -42,12 +43,12 @@ LIBS = -lreadline
 INCS = -I include -I libft
 
 # For Cluster
-LIBS += -L $(HOME)/.brew/opt/readline/lib
-INCS += -I $(HOME)/.brew/opt/readline/include
+#LIBS += -L $(HOME)/.brew/opt/readline/lib
+#INCS += -I $(HOME)/.brew/opt/readline/include
 
 # For Macbook
-#LIBS += -L /opt/homebrew/opt/readline/lib
-#INCS += -I /opt/homebrew/opt/readline/include
+LIBS += -L /opt/homebrew/opt/readline/lib
+INCS += -I /opt/homebrew/opt/readline/include
 
 D_LIBFT = libft
 LIBFTL = libft.a

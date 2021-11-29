@@ -43,7 +43,6 @@ typedef struct s_int
 	int			a_len;
 }				t_int;
 
-
 typedef struct s_split
 {
 	int				num;
