@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: daypark <daypark@student.42seoul.k>        +#+  +:+       +#+         #
+#    By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/12/19 15:18:54 by daypark           #+#    #+#              #
-#    Updated: 2022/01/15 18:03:51 by daypark          ###   ########.fr        #
+#    Created: 2022/01/15 17:41:34 by daypark           #+#    #+#              #
+#    Updated: 2022/01/15 18:03:36 by daypark          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = megaphone
-SRCS = megaphone.cpp
+NAME = phonebook
+SRCS = PhoneBook.cpp Account.cpp
 OBJS = $(SRCS:.cpp=.o)
 CC = cpp
 FLAGS = -Wall -Wextra -Werror
