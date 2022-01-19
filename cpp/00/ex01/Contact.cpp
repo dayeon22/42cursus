@@ -6,14 +6,13 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 10:35:21 by daypark           #+#    #+#             */
-/*   Updated: 2022/01/19 16:21:32 by daypark          ###   ########.fr       */
+/*   Updated: 2022/01/19 16:55:53 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
 
-void Contact::addOneContact()
-{
+void Contact::addOneContact(){
 	while (1)
 	{
 		std::cout << "Firstname: ";
@@ -39,4 +38,8 @@ void Contact::addOneContact()
 		}
 		std::cout << "Fill it again!" << std::endl;
 	}
+}
+
+void Contact::printOneContact(){
+	std::cout << this->first_name << std::endl;
 }

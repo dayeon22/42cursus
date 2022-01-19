@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 10:35:42 by daypark           #+#    #+#             */
-/*   Updated: 2022/01/19 11:26:11 by daypark          ###   ########.fr       */
+/*   Updated: 2022/01/19 16:54:14 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,10 @@ private:
 	std::string phone_number;
 	std::string darkest_secret;
 public:
-	Contact();
-	~Contact();
+	//Contact();
+	//~Contact();
 	void addOneContact();
+	void printOneContact();
 };
 
 #endif

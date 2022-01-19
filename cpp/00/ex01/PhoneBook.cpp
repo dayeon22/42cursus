@@ -6,25 +6,33 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 10:35:40 by daypark           #+#    #+#             */
-/*   Updated: 2022/01/19 15:59:33 by daypark          ###   ########.fr       */
+/*   Updated: 2022/01/19 16:55:17 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-void PhoneBook::addContact()
-{
-	this->contacts[total % 8].addOneContact(); //total를 0으로 초기화 해줘야함(phonebook 생성자에서?)
+PhoneBook::PhoneBook(){
+	total = 0;
+}
+
+void PhoneBook::addContact(){
+	this->contacts[total % 8].addOneContact();
 	total++;
 }
 
-void PhoneBook::displayContact()
-{
+void PhoneBook::displayContact(){
+	int max = total;
 	
+	if (max > 8)
+		max = 8;
+	for (int i = 0; i < max; i++)
+	{
+		this->contacts[i].printOneContact();
+	}
 }
 
-int main()
-{
+int main(){
 	PhoneBook phoneBook;
 	std::string command;
 	

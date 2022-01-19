@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 10:35:36 by daypark           #+#    #+#             */
-/*   Updated: 2022/01/19 16:21:13 by daypark          ###   ########.fr       */
+/*   Updated: 2022/01/19 16:42:24 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ private:
 	// int index;  // 새로 입력할 위치 인덱스(추가하던지 말던지)
 public:
 	PhoneBook();
-	~PhoneBook();
+	//~PhoneBook();
 	void addContact();
 	void displayContact();
 };
