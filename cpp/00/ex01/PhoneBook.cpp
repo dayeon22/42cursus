@@ -3,73 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/15 17:41:23 by daypark           #+#    #+#             */
-/*   Updated: 2022/01/15 18:45:01 by daypark          ###   ########.fr       */
+/*   Created: 2022/01/19 10:35:40 by daypark           #+#    #+#             */
+/*   Updated: 2022/01/19 15:59:33 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <string>
+#include "PhoneBook.hpp"
 
-
-
-int main(){
-
+void PhoneBook::addContact()
+{
+	this->contacts[total % 8].addOneContact(); //total를 0으로 초기화 해줘야함(phonebook 생성자에서?)
+	total++;
 }
 
-class PhoneBook{
-	private:
-		int index;
-		std::string firstName;
-		std::string lastName;
-		std::string nickName;
-		std::string phoneNumber;
-		std::string darkestSecret;
-	public:
-		void addContact(int index){
-			while (1)
-			{
-				std::cout << "Firstname: ";
-				if (std::getline(std::cin, firstName) == NULL)
-					break ;
-				std::cout << "Lastname: ";
-				if (std::getline(std::cin, lastName) == NULL)
-					break ;
-				std::cout << "Nickname: ";
-				if (std::getline(std::cin, nickName) == NULL)
-					break;
-				std::cout << "Phone Number: ";
-				if (std::getline(std::cin, phoneNumber) == NULL)
-					break;
-				std::cout << "Darkest Secret: ";
-				if (std::getline(std::cin, darkestSecret) == NULL)
-					break;
-				if (firstName.length() != 0 && lastName.length() != 0 && nickName.length() != 0 && phoneNumber.length() != 0 && darkestSecret.length() != 0)
-				{
-					this->index = index; //이렇게 쓰는거 맞나?
-					std::cout << "Add Success!" << std::endl;
-					break ;
-				}
-				std::cout << "Fill it again!" << std::endl;
-			}
-		}
-		void displayContacts()
-		{
-			std::cout << index;
-			std::cout << firstName;
-			std::cout << lastName;
-			std::cout << nickName;
-			std::cout << std::endl;
-		}
-};
+void PhoneBook::displayContact()
+{
+	
+}
 
-int main(){
-	PhoneBook phoneBook[8];
+int main()
+{
+	PhoneBook phoneBook;
 	std::string command;
-	int index = 0;
-
+	
 	while (1)
 	{
 		std::cout << "command: ";
@@ -77,19 +35,11 @@ int main(){
 		if (command == "EXIT")
 			return 0;
 		else if (command == "ADD")
-		{
-			phoneBook[index].addContact(index);
-			//index + 1 % 8이 있으면 소멸자로 소멸해줘야 함
-			index = (index + 1) % 8;
-		}
+			phoneBook.addContact();
 		else if (command == "SEARCH")
-		{
-			for (int i = 0; i < 8; i++)
-			{
-				phoneBook[i].displayContacts();
-			}
-		}
+			phoneBook.displayContact();
 		if (std::cin.fail())
 			return 0;
 	}
+	return 0;
 }

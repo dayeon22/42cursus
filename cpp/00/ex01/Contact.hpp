@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/15 18:17:13 by daypark           #+#    #+#             */
-/*   Updated: 2022/01/15 18:23:40 by daypark          ###   ########.fr       */
+/*   Created: 2022/01/19 10:35:42 by daypark           #+#    #+#             */
+/*   Updated: 2022/01/19 11:26:11 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,18 @@
 #include <iostream>
 #include <string>
 
-class Contact{
-	private:
-		int index;
-		std::string first_name;
-		std::string last_name;
-		std::string nick_name;
-		std::string phone_number;
-		std::string darkest_secret;
-	public:
-		// 생성자(string firstname, string lstname, ...) 처럼 생성자를 따로 만들까?
-}
+class Contact
+{
+private:
+	std::string first_name;
+	std::string last_name;
+	std::string nick_name;
+	std::string phone_number;
+	std::string darkest_secret;
+public:
+	Contact();
+	~Contact();
+	void addOneContact();
+};
 
 #endif

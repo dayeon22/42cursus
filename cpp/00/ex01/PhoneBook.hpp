@@ -3,26 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/15 18:12:42 by daypark           #+#    #+#             */
-/*   Updated: 2022/01/15 18:20:03 by daypark          ###   ########.fr       */
+/*   Created: 2022/01/19 10:35:36 by daypark           #+#    #+#             */
+/*   Updated: 2022/01/19 16:21:13 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
 
-#include <iostream>
-#include <string>
+#include "Contact.hpp"
 
-class PhoneBook{
-	private:
-		Contact contacts[8];
-		int number_of_contact;
-	public:
-		void addContact();
-		void displayContact(Contact contacts[]); //매개변수 이런식으로 하는게 맞는지
-}
+class PhoneBook
+{
+private:
+	Contact contacts[8];
+	int total;  // 총 인원
+	// int index;  // 새로 입력할 위치 인덱스(추가하던지 말던지)
+public:
+	PhoneBook();
+	~PhoneBook();
+	void addContact();
+	void displayContact();
+};
 
 #endif

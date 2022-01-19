@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+         #
+#    By: daypark <daypark@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/01/15 17:41:34 by daypark           #+#    #+#              #
-#    Updated: 2022/01/15 18:03:36 by daypark          ###   ########.fr        #
+#    Created: 2022/01/19 10:59:11 by daypark           #+#    #+#              #
+#    Updated: 2022/01/19 16:03:26 by daypark          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = phonebook
-SRCS = PhoneBook.cpp Account.cpp
+SRCS = PhoneBook.cpp Contact.cpp
 OBJS = $(SRCS:.cpp=.o)
 CC = cpp
 FLAGS = -Wall -Wextra -Werror
