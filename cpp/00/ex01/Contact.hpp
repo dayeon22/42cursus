@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 10:35:42 by daypark           #+#    #+#             */
-/*   Updated: 2022/01/19 16:54:14 by daypark          ###   ########.fr       */
+/*   Updated: 2022/01/21 14:54:07 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 #include <iostream>
 #include <string>
+#include <iomanip>
+#include <limits>
 
 class Contact
 {
@@ -29,6 +31,7 @@ public:
 	//~Contact();
 	void addOneContact();
 	void printOneContact();
+	void printAlign(std::string str);
 };
 
 #endif
