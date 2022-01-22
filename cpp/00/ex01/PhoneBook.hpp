@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 10:35:36 by daypark           #+#    #+#             */
-/*   Updated: 2022/01/19 16:42:24 by daypark          ###   ########.fr       */
+/*   Updated: 2022/01/22 19:31:06 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,9 @@ class PhoneBook
 {
 private:
 	Contact contacts[8];
-	int total;  // 총 인원
-	// int index;  // 새로 입력할 위치 인덱스(추가하던지 말던지)
+	int total;
 public:
 	PhoneBook();
-	//~PhoneBook();
 	void addContact();
 	void displayContact();
 };

@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Contact.hpp                                        :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/19 10:35:42 by daypark           #+#    #+#             */
-/*   Updated: 2022/01/22 19:31:02 by daypark          ###   ########.fr       */
+/*   Created: 2022/01/22 18:00:47 by daypark           #+#    #+#             */
+/*   Updated: 2022/01/22 18:01:59 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONTACT_HPP
-# define CONTACT_HPP
+#include "PhoneBook.hpp"
 
-#include <iostream>
-#include <string>
-#include <iomanip>
-#include <limits>
-
-class Contact
-{
-private:
-	std::string first_name;
-	std::string last_name;
-	std::string nick_name;
-	std::string phone_number;
-	std::string darkest_secret;
-public:
-	void addOneContact();
-	void printRow();
-	void printAlign(std::string str);
-	void printOneContact();
-};
-
-#endif
+int main(){
+	PhoneBook phoneBook;
+	std::string command;
+	
+	while (1)
+	{
+		std::cout << "command: ";
+		std::getline(std::cin, command);
+		if (command == "EXIT")
+			return 0;
+		else if (command == "ADD")
+			phoneBook.addContact();
+		else if (command == "SEARCH")
+			phoneBook.displayContact();
+	}
+	return 0;
+}

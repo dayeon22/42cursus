@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 10:35:21 by daypark           #+#    #+#             */
-/*   Updated: 2022/01/21 16:36:22 by daypark          ###   ########.fr       */
+/*   Updated: 2022/01/22 19:08:00 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,22 @@ void Contact::addOneContact(){
 	}
 }
 
+void Contact::printOneContact(){
+	std::cout << "Firstname: " << this->first_name << std::endl;
+	std::cout << "Lastname: " << this->last_name << std::endl;
+	std::cout << "Nickname: " << this->nick_name << std::endl;
+	std::cout << "Phone Number: " << this->phone_number << std::endl;
+	std::cout << "Darkest Secret: " << this->darkest_secret << std::endl;
+}
+
 void Contact::printAlign(std::string str){
 	if (str.length() > 10)
-		std::cout << std::setw(10) << str.substr(0, 9) << ".|";
+		std::cout << std::setw(9) << str.substr(0, 9) << ".|";
 	else
 		std::cout << std::setw(10) << str << "|";
 }
 
-void Contact::printOneContact(){
+void Contact::printRow(){
 	printAlign(this->first_name);
 	printAlign(this->last_name);
 	printAlign(this->nick_name);

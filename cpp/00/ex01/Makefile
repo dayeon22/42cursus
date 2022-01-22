@@ -6,12 +6,12 @@
 #    By: daypark <daypark@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 10:59:11 by daypark           #+#    #+#              #
-#    Updated: 2022/01/19 16:32:10 by daypark          ###   ########.fr        #
+#    Updated: 2022/01/22 18:03:48 by daypark          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = phonebook
-SRCS = PhoneBook.cpp Contact.cpp
+SRCS = PhoneBook.cpp Contact.cpp main.cpp
 OBJS = $(SRCS:.cpp=.o)
 CC = c++
 FLAGS = -Wall -Wextra -Werror
