@@ -40,17 +40,17 @@ public:
 
 private:
 
-	static int	_nbAccounts;
-	static int	_totalAmount;
-	static int	_totalNbDeposits;
-	static int	_totalNbWithdrawals;
+	static int	_nbAccounts;  // 계좌 수
+	static int	_totalAmount;  // 총액
+	static int	_totalNbDeposits;  // 입금 수
+	static int	_totalNbWithdrawals;  // 인출 수
 
 	static void	_displayTimestamp( void );
 
-	int				_accountIndex;
-	int				_amount;
-	int				_nbDeposits;
-	int				_nbWithdrawals;
+	int				_accountIndex;  // 계좌 인덱스
+	int				_amount;  // 계좌 잔액
+	int				_nbDeposits;  // 입금 수
+	int				_nbWithdrawals;  // 인출 수
 
 	Account( void );
 
