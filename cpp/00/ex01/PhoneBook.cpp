@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 10:35:40 by daypark           #+#    #+#             */
-/*   Updated: 2022/01/22 19:27:06 by daypark          ###   ########.fr       */
+/*   Updated: 2022/01/26 18:23:04 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void PhoneBook::displayContact(){
 		if (0 <= index && index < max)
 		{
 			this->contacts[index].printOneContact();
-			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // 디펜스
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 			return ;
 		}
 		std::cout << "input the number between 0 to " << max - 1 << std::endl;
