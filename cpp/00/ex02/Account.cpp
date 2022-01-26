@@ -3,33 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   Account.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 14:20:32 by daypark           #+#    #+#             */
-/*   Updated: 2022/01/25 19:20:16 by daypark          ###   ########.fr       */
+/*   Updated: 2022/01/26 18:01:23 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Account.hpp"
 #include <ctime>
 #include <iostream>
+#include <iomanip>
+
+int Account::_nbAccounts = 0;
+int Account::_totalAmount = 0;
+int Account::_totalNbDeposits = 0;
+int Account::_totalNbWithdrawals = 0;
 
 void Account::_displayTimestamp(void){
 	time_t timer = time(NULL);
 	struct tm* t = localtime(&timer);
+	
+	std::cout << "[" << std::setw(2) << std::setfill('0') << t->tm_year - 100;
+	std::cout << std::setw(2) << std::setfill('0') << t->tm_mon + 1;
+	std::cout << std::setw(2) << std::setfill('0') << t->tm_mday << "_";
+	std::cout << std::setw(2) << std::setfill('0') << t->tm_hour;
+	std::cout << std::setw(2) << std::setfill('0') << t->tm_min;
+	std::cout << std::setw(2) << std::setfill('0') << t->tm_sec << "] ";
+}
 
-	//std::setfill(), std::setw() 이용해서 0 넣을 수 있을 듯
-	std::cout << "[" << t->tm_year << t->tm_mon << t->tm_mday << "_";
-	std::cout << t->tm_hour << t->tm_min << t->tm_sec << "] ";
+Account::Account(){ //기본생성자 안만들어도 될것같은데
+	_displayTimestamp();
+	_accountIndex = _nbAccounts++;
+	_amount = 0;
+	_nbDeposits = 0;
+	_nbWithdrawals = 0;
+	std::cout << "index:" << _accountIndex;
+	std::cout << ";amount:" << _amount;
+	std::cout << ";created" << std::endl;
 }
 
 Account::Account(int initial_deposit){
+	_displayTimestamp();
 	_accountIndex = _nbAccounts++;
 	_amount = initial_deposit;
 	_nbDeposits = 0;
 	_nbWithdrawals = 0;
 	_totalAmount += initial_deposit;
-	_displayTimestamp();
 	std::cout << "index:" << _accountIndex;
 	std::cout << ";amount:" << _amount;
 	std::cout << ";created" << std::endl;
@@ -85,6 +105,8 @@ bool Account::makeWithdrawal(int withdrawal){
 
 Account::~Account(void){
 	_displayTimestamp();
+	_nbAccounts--;
+	_totalAmount -= _amount;
 	std::cout << "index:" << _accountIndex;
 	std::cout << ";amount:" << _amount;
 	std::cout << ";closed"<< std::endl;
