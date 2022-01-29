@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 14:20:32 by daypark           #+#    #+#             */
-/*   Updated: 2022/01/26 18:01:23 by daypark          ###   ########.fr       */
+/*   Updated: 2022/01/26 18:20:40 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,6 @@ void Account::_displayTimestamp(void){
 	std::cout << std::setw(2) << std::setfill('0') << t->tm_hour;
 	std::cout << std::setw(2) << std::setfill('0') << t->tm_min;
 	std::cout << std::setw(2) << std::setfill('0') << t->tm_sec << "] ";
-}
-
-Account::Account(){ //기본생성자 안만들어도 될것같은데
-	_displayTimestamp();
-	_accountIndex = _nbAccounts++;
-	_amount = 0;
-	_nbDeposits = 0;
-	_nbWithdrawals = 0;
-	std::cout << "index:" << _accountIndex;
-	std::cout << ";amount:" << _amount;
-	std::cout << ";created" << std::endl;
 }
 
 Account::Account(int initial_deposit){
@@ -112,10 +101,8 @@ Account::~Account(void){
 	std::cout << ";closed"<< std::endl;
 }
 
-int Account::checkAmount(void) const{ // 리턴값 이게 맞나?
-	if (_amount >= 0)
-		return 1;
-	return 0;
+int Account::checkAmount(void) const{
+	return _amount;
 }
 
 int Account::getNbAccounts(void){

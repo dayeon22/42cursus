@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: daypark <daypark@student.42seoul.k>        +#+  +:+       +#+         #
+#    By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/19 15:18:54 by daypark           #+#    #+#              #
-#    Updated: 2022/01/15 18:03:51 by daypark          ###   ########.fr        #
+#    Updated: 2022/01/26 18:30:38 by daypark          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = megaphone
 SRCS = megaphone.cpp
 OBJS = $(SRCS:.cpp=.o)
-CC = cpp
+CC = c++
 FLAGS = -Wall -Wextra -Werror
 
 .PHONY: all
