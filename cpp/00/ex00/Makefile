@@ -6,7 +6,7 @@
 #    By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/19 15:18:54 by daypark           #+#    #+#              #
-#    Updated: 2022/01/26 18:30:38 by daypark          ###   ########.fr        #
+#    Updated: 2022/02/10 13:30:13 by daypark          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = megaphone
 SRCS = megaphone.cpp
 OBJS = $(SRCS:.cpp=.o)
 CC = c++
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -std=c++98
 
 .PHONY: all
 all : $(NAME)

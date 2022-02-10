@@ -5,13 +5,13 @@
 #                                                     +:+ +:+         +:+      #
 #    By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/01/19 10:59:11 by daypark           #+#    #+#              #
-#    Updated: 2022/02/10 13:30:08 by daypark          ###   ########.fr        #
+#    Created: 2022/01/29 16:56:27 by daypark           #+#    #+#              #
+#    Updated: 2022/02/10 13:29:53 by daypark          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = phonebook
-SRCS = PhoneBook.cpp Contact.cpp main.cpp
+NAME = zombie
+SRCS = main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
 OBJS = $(SRCS:.cpp=.o)
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98

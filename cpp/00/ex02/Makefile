@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: daypark <daypark@student.42.fr>            +#+  +:+       +#+         #
+#    By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 18:42:04 by daypark           #+#    #+#              #
-#    Updated: 2022/01/25 18:45:40 by daypark          ###   ########.fr        #
+#    Updated: 2022/02/10 13:30:03 by daypark          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = account
 SRCS = Account.cpp tests.cpp
 OBJS = $(SRCS:.cpp=.o)
 CC = c++
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -std=c++98
 
 .PHONY: all
 all : $(NAME)
