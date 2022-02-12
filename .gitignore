@@ -16,3 +16,8 @@ printf_lover_v2
 push_swap_tester
 
 .DS_Store
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json

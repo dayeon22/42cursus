@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 14:44:42 by daypark           #+#    #+#             */
-/*   Updated: 2022/02/10 15:18:48 by daypark          ###   ########.fr       */
+/*   Updated: 2022/02/12 17:27:25 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 
 class HumanB{
 private:
-	std::string humanName_;
-	std::string weaponType_;
+	std::string name_;
+	Weapon *weapon_;
 public:
-	HumanB(std::string humanName);
+	HumanB(std::string name);
 	void setWeapon(Weapon &weapon);
 	void attack();
 };
