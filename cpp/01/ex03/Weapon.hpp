@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Weapon.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 14:15:03 by daypark           #+#    #+#             */
-/*   Updated: 2022/02/10 15:26:00 by daypark          ###   ########.fr       */
+/*   Updated: 2022/02/13 16:00:48 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ private:
 	std::string type_;
 public:
 	Weapon(std::string type);
-	std::string getType(); // returns a const reference to this string해야함! 근데뭔뜻?
-	void setType(std::string type);
+	const std::string getType();
+	void setType(const std::string type);
 };
 
 #endif

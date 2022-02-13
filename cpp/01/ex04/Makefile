@@ -5,13 +5,13 @@
 #                                                     +:+ +:+         +:+      #
 #    By: daypark <daypark@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/02/10 10:20:22 by daypark           #+#    #+#              #
-#    Updated: 2022/02/13 12:41:53 by daypark          ###   ########.fr        #
+#    Created: 2022/02/13 18:25:12 by daypark           #+#    #+#              #
+#    Updated: 2022/02/13 18:25:22 by daypark          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = weapon
-SRCS = main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
+NAME = sed
+SRCS = main.cpp
 OBJS = $(SRCS:.cpp=.o)
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   HumanA.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 14:44:42 by daypark           #+#    #+#             */
-/*   Updated: 2022/02/10 15:28:24 by daypark          ###   ########.fr       */
+/*   Updated: 2022/02/13 12:24:43 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 
 class HumanA{
 private:
-	std::string humanName_;
+	std::string name_;
 	Weapon &weapon_;
 public:
-	HumanA(std::string hunamName, Weapon &weapon);
+	HumanA(std::string name, Weapon &weapon);
 	void attack();
 };
 

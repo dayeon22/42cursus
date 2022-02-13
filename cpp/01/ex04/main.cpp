@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanB.cpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/10 14:44:15 by daypark           #+#    #+#             */
-/*   Updated: 2022/02/13 15:34:09 by daypark          ###   ########.fr       */
+/*   Created: 2022/02/13 18:17:39 by daypark           #+#    #+#             */
+/*   Updated: 2022/02/13 18:55:07 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanB.hpp"
+#include <iostream>
+#include <fstream>
 
-HumanB::HumanB(std::string name){
-	name_ = name;
-}
-
-void HumanB::setWeapon(Weapon &weapon){
-	weapon_ = &weapon;
-}
-
-void HumanB::attack(){
-	std::cout << name_ << " attacks with his " << weapon_->getType() << std::endl;
+int main(int argc, char *argv[]){
+	if (argc != 4){
+		std::cerr << "usage: ./sed file_name str_to_be_replaced str_to_replace" << std::endl;
+		return 0;
+	}
+	std::ifstream fin(argv[1]);
+	if (fin.fail()){
+		std::cerr << "failed to read file" << std::endl;
+	}
+	fin.close();
 }

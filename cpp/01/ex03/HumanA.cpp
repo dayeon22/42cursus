@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   HumanA.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 14:44:15 by daypark           #+#    #+#             */
-/*   Updated: 2022/02/12 16:38:08 by daypark          ###   ########.fr       */
+/*   Updated: 2022/02/13 16:00:57 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "HumanA.hpp"
 
-HumanA::HumanA(std::string humanName, Weapon &weapon) : weapon_(weapon){
-	humanName_ = humanName;
+HumanA::HumanA(std::string name, Weapon &weapon) : weapon_(weapon){
+	name_ = name;
 	weapon_ = weapon;
 }
 
 void HumanA::attack(){
-	std::cout << humanName_ << " attacks with his " << weapon_.getType() << std::endl;
+	std::cout << name_ << " attacks with his " << weapon_.getType() << std::endl;
 }
