@@ -6,14 +6,14 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 18:17:39 by daypark           #+#    #+#             */
-/*   Updated: 2022/02/16 11:47:35 by daypark          ###   ########.fr       */
+/*   Updated: 2022/02/17 17:21:54 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <fstream>
 
-int printErr(std::stirng errMsg){
+int printErr(std::string errMsg){
 	std::cerr << errMsg << std::endl;
 	return 0;
 }
