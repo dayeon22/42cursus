@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:30:35 by daypark           #+#    #+#             */
-/*   Updated: 2022/02/17 18:36:17 by daypark          ###   ########.fr       */
+/*   Updated: 2022/03/07 10:34:45 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 int main(){
 	Karen karen;
 
-	karen.complain("debug");
-	karen.complain("info");
-	karen.complain("warning");
-	karen.complain("error");
+	karen.complain("DEBUG");
+	karen.complain("INFO");
+	karen.complain("WARNING");
+	karen.complain("ERROR");
+	karen.complain("CRITICAL");
 }
