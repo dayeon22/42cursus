@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fixed.hpp                                          :+:      :+:    :+:   */
+/*   Point.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/20 10:57:34 by daypark           #+#    #+#             */
-/*   Updated: 2022/03/21 16:45:22 by daypark          ###   ########.fr       */
+/*   Created: 2022/03/21 16:34:34 by daypark           #+#    #+#             */
+/*   Updated: 2022/03/21 17:26:12 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FIXED_HPP
-# define FIXED_HPP
+#ifndef POINT_HPP
+# define POINT_HPP
 
-#include <iostream>
+#include "Fixed.hpp"
 
-class Fixed
-{
+class Point {
 private:
-	int value_;
-	const static int bits_ = 8;
+	Fixed const x_;
+	Fixed const y_;
 public:
-	Fixed();
-	Fixed(const Fixed &fixed);
-	~Fixed();
-	Fixed &operator=(const Fixed &fixed);
-	int getRawBits(void) const;
-	void setRawBits(int const raw);
+	Point();
+	Point(const float x, const float y);
+	Point(const Point &point);
+	~Point();
+	Point &operator=(const Point &point);
 };
 
 #endif

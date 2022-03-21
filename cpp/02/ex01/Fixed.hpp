@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 10:57:34 by daypark           #+#    #+#             */
-/*   Updated: 2022/03/21 15:21:33 by daypark          ###   ########.fr       */
+/*   Updated: 2022/03/21 16:45:54 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ public:
 	Fixed();
 	Fixed(const int value);
 	Fixed(const float value);
-	Fixed (const Fixed &fixed);
+	Fixed(const Fixed &fixed);
 	~Fixed();
-	Fixed & operator=(const Fixed &fixed);
+	Fixed &operator=(const Fixed &fixed);
 	int getRawBits(void) const;
 	void setRawBits(int const raw);
 	float toFloat(void) const;
