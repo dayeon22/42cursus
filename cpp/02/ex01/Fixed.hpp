@@ -6,9 +6,12 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 10:57:34 by daypark           #+#    #+#             */
-/*   Updated: 2022/03/20 18:50:19 by daypark          ###   ########.fr       */
+/*   Updated: 2022/03/21 15:21:33 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef FIXED_HPP
+# define FIXED_HPP
 
 #include <iostream>
 #include <cmath>
@@ -32,3 +35,5 @@ public:
 };
 
 std::ostream & operator<<(std::ostream &outputStream, const Fixed &fixed);
+
+#endif
