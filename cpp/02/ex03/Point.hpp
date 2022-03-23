@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 16:34:34 by daypark           #+#    #+#             */
-/*   Updated: 2022/03/21 17:26:12 by daypark          ###   ########.fr       */
+/*   Updated: 2022/03/23 15:19:51 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ public:
 	Point(const Point &point);
 	~Point();
 	Point &operator=(const Point &point);
+	Fixed getX(void);
+	Fixed getY(void);
 };
 
 #endif
