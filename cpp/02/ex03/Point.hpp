@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 16:34:34 by daypark           #+#    #+#             */
-/*   Updated: 2022/03/23 15:19:51 by daypark          ###   ########.fr       */
+/*   Updated: 2022/03/24 09:53:40 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@ public:
 	Point(const Point &point);
 	~Point();
 	Point &operator=(const Point &point);
-	Fixed getX(void);
-	Fixed getY(void);
+	Fixed getX(void) const;
+	Fixed getY(void) const;
 };
+
+bool bsp(Point const a, Point const b, Point const c, Point const point);
 
 #endif

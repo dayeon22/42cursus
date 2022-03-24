@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 16:48:27 by daypark           #+#    #+#             */
-/*   Updated: 2022/03/23 15:21:28 by daypark          ###   ########.fr       */
+/*   Updated: 2022/03/24 08:32:10 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ Point &Point::operator=(const Point &point) {
 	return *this;
 }
 
-Fixed Point::getX() {
+Fixed Point::getX() const {
 	return this->x_;
 }
 
-Fixed Point::getY() {
+Fixed Point::getY() const {
 	return this->y_;
 }
