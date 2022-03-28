@@ -6,11 +6,11 @@
 #    By: daypark <daypark@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/24 11:02:25 by daypark           #+#    #+#              #
-#    Updated: 2022/03/24 11:02:26 by daypark          ###   ########.fr        #
+#    Updated: 2022/03/28 09:43:42 by daypark          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = handtrap
+NAME = claptrap
 SRCS = main.cpp ClapTrap.cpp
 OBJS = $(SRCS:.cpp=.o)
 CC = c++
