@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wrongmain.cpp                                      :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/09 17:41:42 by daypark           #+#    #+#             */
-/*   Updated: 2022/04/09 20:16:31 by daypark          ###   ########.fr       */
+/*   Created: 2022/04/09 15:27:18 by daypark           #+#    #+#             */
+/*   Updated: 2022/04/09 21:07:27 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "WrongAnimal.hpp"
-#include "WrongCat.hpp"
+#ifndef CAT_HPP
+# define CAT_HPP
 
-int main() {
-	const WrongAnimal* meta = new WrongAnimal();
-	const WrongAnimal* i = new WrongCat();
-	
-	std::cout << i->getType() << " " << std::endl;
-	i->makeSound();
-	meta->makeSound();
-	return 0;
-}
+#include "Animal.hpp"
+#include "Brain.hpp"
+
+class Cat : public Animal
+{
+private:
+	Brain *brain_;
+public:
+	Cat();
+	Cat(const Cat &cat);
+	~Cat();
+	Cat &operator=(const Cat &cat);
+	virtual std::string getType() const;
+	virtual void makeSound() const;
+};
+
+#endif
