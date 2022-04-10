@@ -6,21 +6,21 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 16:46:01 by daypark           #+#    #+#             */
-/*   Updated: 2022/04/09 21:17:30 by daypark          ###   ########.fr       */
+/*   Updated: 2022/04/10 17:19:39 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Dog.hpp"
 
 Dog::Dog() {
+	std::cout << "[Dog] Default constructor called" << std::endl;
 	type_ = "Dog";
 	brain_ = new Brain();
-	std::cout << "[Dog] Default constructor called" << std::endl;
 }
 
 Dog::Dog(const Dog &dog) {
 	std::cout << "[Dog] Copy constructor called" << std::endl;
-	type_ = dog.type_;
+	*this = dog;
 }
 
 Dog::~Dog() {
@@ -30,7 +30,7 @@ Dog::~Dog() {
 
 Dog &Dog::operator=(const Dog &dog) {
 	type_ = dog.type_;
-	brain_ = dog.brain_;
+	brain_ = new Brain(*dog.brain_);
 	return *this;
 }
 
@@ -40,4 +40,8 @@ std::string Dog::getType() const {
 
 void Dog::makeSound() const {
 	std::cout << "bark" << std::endl;
+}
+
+Brain *Dog::getBrain() {
+	return brain_;
 }

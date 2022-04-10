@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 18:52:06 by daypark           #+#    #+#             */
-/*   Updated: 2022/04/09 22:03:16 by daypark          ###   ########.fr       */
+/*   Updated: 2022/04/10 17:17:01 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ Brain::Brain() {
 }
 
 Brain::Brain(const Brain &brain) {
+	std::cout << "[Brain] Copy constructor called" << std::endl;
 	*this = brain;
 }
 
@@ -28,11 +29,16 @@ Brain::~Brain() {
 }
 
 Brain &Brain::operator=(const Brain &brain) {
-	std::cout << "12222222" << std::endl;
-	Brain *newBrain = new Brain();
-
 	for (int i = 0; i < 100; i++) {
-		newBrain->ideas_[i] = brain.ideas_[i];
+		this->ideas_[i] = brain.ideas_[i];
 	}
-	return *newBrain;
+	return *this;
+}
+
+std::string Brain::getIdeas(int index) {
+	return ideas_[index];
+}
+
+void Brain::setIdeas(int index, std::string idea) {
+	ideas_[index] = idea;
 }

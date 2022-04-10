@@ -6,16 +6,16 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 15:28:34 by daypark           #+#    #+#             */
-/*   Updated: 2022/04/09 22:01:08 by daypark          ###   ########.fr       */
+/*   Updated: 2022/04/10 17:15:03 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
 
 Cat::Cat() {
+	std::cout << "[Cat] Default constructor called" << std::endl;
 	type_ = "Cat";
 	brain_ = new Brain();
-	std::cout << "[Cat] Default constructor called" << std::endl;
 }
 
 Cat::Cat(const Cat &cat) {
@@ -30,7 +30,7 @@ Cat::~Cat() {
 
 Cat &Cat::operator=(const Cat &cat) {
 	type_ = cat.type_;
-	brain_ = cat.brain_;
+	brain_ = new Brain(*cat.brain_);
 	return *this;
 }
 
@@ -40,4 +40,8 @@ std::string Cat::getType() const {
 
 void Cat::makeSound() const {
 	std::cout << "meow" << std::endl;
+}
+
+Brain *Cat::getBrain() {
+	return brain_;
 }
