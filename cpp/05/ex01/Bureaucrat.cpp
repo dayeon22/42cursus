@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 02:25:27 by daypark           #+#    #+#             */
-/*   Updated: 2022/05/02 13:38:16 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/03 09:01:18 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : name_(name), grade_(grade)
     checkGrade();
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &bureaucrat) : name_(bureaucrat.name_), grade_(bureaucrat.grade_) {
+Bureaucrat::Bureaucrat(const Bureaucrat &bureaucrat) : name_(bureaucrat.getName()), grade_(bureaucrat.getGrade()) {
     
 }
 
@@ -61,6 +61,11 @@ void Bureaucrat::checkGrade() {
 std::ostream &operator<<(std::ostream &outputStream, const Bureaucrat &bureaucrat) {
     std::cout << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade();
     return outputStream;
+}
+
+void Bureaucrat::signForm() {
+    std::cout << name_ << " signed "; // 여기서 form의 이름을 출력해야하는데 어떻게 하는지 모르겠음
+    //실패시에도 실패했다고 출력해야하는데 그 방법 모르겠음!
 }
 
 const char *Bureaucrat::GradeTooLowException::what() const throw() {
