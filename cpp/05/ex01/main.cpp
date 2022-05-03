@@ -3,30 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 02:24:20 by daypark           #+#    #+#             */
-/*   Updated: 2022/05/02 12:25:00 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/03 11:41:00 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
-int main() {
+int main() {    
    try {
-        Bureaucrat bureaucrat("daypark", 1);
-        bureaucrat.decrementGrade();
+        Bureaucrat bureaucrat("daypark", 42);
         std::cout << bureaucrat << std::endl;
         
-        //Bureaucrat bureaucrat1("daypark", 0);
+        //Form form1("form1", 0, 1);
         
-        //Bureaucrat bureaucrat2("aaa", 151);
+        //Form form2("form2", 1, 151);
         
-        //Bureaucrat bureaucrat3("bbb", 1);
-        //bureaucrat3.incrementGrade();
+        //Form form3("form3", 1, 1);
+        //form3.beSigned(bureaucrat);
+
+        Form form4("form4", 1, 44);
+        std::cout << form4 << std::endl;
+        form4.beSigned(bureaucrat);
+        bureaucrat.signForm(form4);
         
-        //Bureaucrat bureaucrat4("ccc", 150);
-        //bureaucrat4.decrementGrade();
    } catch (std::exception &e) {
        std::cerr << e.what() << std::endl;
    }

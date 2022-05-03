@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 15:31:43 by daypark           #+#    #+#             */
-/*   Updated: 2022/05/02 18:45:07 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/03 11:23:53 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <iostream>
 #include <string>
 #include <exception>
+#include "Form.hpp"
 
 class Bureaucrat {
 private:
@@ -32,7 +33,7 @@ public:
     void incrementGrade();
     void decrementGrade();
     void checkGrade();
-    void signForm();
+    void signForm(Form &form);
     class GradeTooLowException : public std::exception {
         const char *what() const throw();
     };

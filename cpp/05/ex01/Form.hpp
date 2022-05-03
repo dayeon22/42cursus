@@ -3,24 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 12:31:32 by daypark           #+#    #+#             */
-/*   Updated: 2022/05/02 18:39:42 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/03 11:43:57 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FORM_HPP
 # define FORM_HPP
 
-#include "Bureaucrat.hpp"
+#include <iostream>
+#include <string>
+
+class Bureaucrat;
 
 class Form {
 private:
     const std::string name_;
     bool isSigned_;
-    int grade_;
-    int requiredGrade_;
+    const int grade_;
+    const int requiredGrade_;
 public:
     Form();
     Form(std::string name, int grade, int requiredGrade);
@@ -28,11 +31,11 @@ public:
     ~Form();
     Form &operator=(const Form &form);
     
-    std::string getName();
-    bool getIsSigned();
-    int getGrade();
-    int getRequiredGrade();
-    void beSigned(Bureaucrat bureaucrat);
+    std::string getName() const;
+    bool getIsSigned() const;
+    int getGrade() const;
+    int getRequiredGrade() const;
+    void beSigned(Bureaucrat &bureaucrat);
     void checkGrade();
     
     class GradeTooLowException : public std::exception {

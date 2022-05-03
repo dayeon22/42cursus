@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   Form.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 12:54:14 by daypark           #+#    #+#             */
-/*   Updated: 2022/05/03 09:01:18 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/03 11:51:00 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
+#include "Bureaucrat.hpp"
 
 Form::Form() : name_("default"), isSigned_(false), grade_(150), requiredGrade_(150) {
 
@@ -29,47 +30,44 @@ Form::~Form() {
 
 }
 
-Form &operator=(const Form form) {
-    isSigned_ = form.isSigned_;
-    grade_ = form.grade_;
-    requiredGrade_ = form.requiredGrade_;
+Form &Form::operator=(const Form &form) {
     return *this;
 }
 
-std::string Form::getName() {
+std::string Form::getName() const{
     return name_;
 }
 
-bool Form::getIsSigned() {
+bool Form::getIsSigned() const{
     return isSigned_;
 }
 
-int Form::getGrade() {
+int Form::getGrade() const{
     return grade_;
 }
 
-int Form::getRequiredGrade() {
+int Form::getRequiredGrade() const{
     return requiredGrade_;
 }
 
-void Form::beSigned(Bureaucrat bureaucrat) {
-    if (requiredGrade_ > bureaucrat.getGrade())
+void Form::beSigned(Bureaucrat &bureaucrat) {
+    if (requiredGrade_ < bureaucrat.getGrade())
         throw GradeTooLowException();
     else
-        bureaucrat.signForm();
-        //isSigned_ = true;
+        isSigned_ = true;
 }
 
 void Form::checkGrade() {
-    if (grade_ < 1)
+    if (grade_ < 1 || requiredGrade_ < 1)
         throw GradeTooHighException();
-    else if (grade_ > 150)
+    else if (grade_ > 150 || requiredGrade_ > 150)
         throw GradeTooLowException();
 }
 
-std::ostream &operator<<(std::otream &outputStream, const Form &form) {
-    std::cout << form.getName() << ", " << form.getIsSigned() << ", " 
-    << form.getGrade() << ", " << form.getRequiredGrade() << std::endl;
+std::ostream &operator<<(std::ostream &outputStream, const Form &form) {
+    std::cout << "name: " << form.getName() << ", is signed: " << form.getIsSigned() << ", grade: " 
+    << form.getGrade() << ", required grade: " << form.getRequiredGrade();
+    return outputStream;
 }
 
 const char *Form::GradeTooLowException::what() const throw() {

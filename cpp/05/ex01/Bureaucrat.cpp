@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 02:25:27 by daypark           #+#    #+#             */
-/*   Updated: 2022/05/03 09:01:18 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/03 10:24:23 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,11 @@ std::ostream &operator<<(std::ostream &outputStream, const Bureaucrat &bureaucra
     return outputStream;
 }
 
-void Bureaucrat::signForm() {
-    std::cout << name_ << " signed "; // 여기서 form의 이름을 출력해야하는데 어떻게 하는지 모르겠음
-    //실패시에도 실패했다고 출력해야하는데 그 방법 모르겠음!
+void Bureaucrat::signForm(Form &form) {
+    if (form.getIsSigned() == true)
+        std::cout << name_ << " signed " << form.getName() << std::endl;
+    else
+        std::cout << name_ << " couldn't sign " << form.getName() << " because of grade." << std::endl;
 }
 
 const char *Bureaucrat::GradeTooLowException::what() const throw() {
