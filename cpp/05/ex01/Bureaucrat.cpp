@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 02:25:27 by daypark           #+#    #+#             */
-/*   Updated: 2022/05/03 10:24:23 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/03 15:17:55 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,13 @@ std::ostream &operator<<(std::ostream &outputStream, const Bureaucrat &bureaucra
 }
 
 void Bureaucrat::signForm(Form &form) {
-    if (form.getIsSigned() == true)
+    try {
+        form.beSigned(*this);
         std::cout << name_ << " signed " << form.getName() << std::endl;
-    else
-        std::cout << name_ << " couldn't sign " << form.getName() << " because of grade." << std::endl;
+    }
+    catch(const std::exception& e) {
+        std::cerr << name_ << " couldn't sign " << form.getName() << " because " << e.what() << std::endl;
+    }
 }
 
 const char *Bureaucrat::GradeTooLowException::what() const throw() {
