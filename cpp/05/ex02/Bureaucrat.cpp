@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 02:25:27 by daypark           #+#    #+#             */
-/*   Updated: 2022/05/08 02:05:23 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/08 16:40:25 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,18 @@ void Bureaucrat::signForm(Form &form) {
         form.beSigned(*this);
         std::cout << name_ << " signed " << form.getTarget() << std::endl;
     }
-    catch(const std::exception& e) {
+    catch(const std::exception &e) {
         std::cerr << name_ << " couldn't sign " << form.getTarget() << " because " << e.what() << std::endl;
+    }
+}
+
+void Bureaucrat::executeForm(Form const &form) {
+    try {
+        form.execute(*this);
+        std::cout << name_ << " executed " << form.getTarget();
+    }
+    catch(const std::exception &e) {
+        std::cerr << name_ << " couldn't execute " << form.getTarget() << " because " << e.what() << std::endl;
     }
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 16:06:04 by daypark           #+#    #+#             */
-/*   Updated: 2022/05/08 02:09:15 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/08 15:42:44 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,50 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
 }
 
 void ShrubberyCreationForm::execute(Bureaucrat const &executor) const {
-	// if (getIsSigned() == true)
-	// 	std::cout
-	if (getIsSigned() == false || executor.getGrade() > getExecuteGrade())
-		throw CannotExecuteException();
+	if (getIsSigned() == false)
+		throw NotSignedException();
+	else if (executor.getGrade() > getExecuteGrade())
+		throw GradeTooLowException();
+	
+	std::ofstream ofs;
+	std::string asciiTree =
+	"                                                      .\n"
+    "                                          .         ;  \n"
+    "             .              .              ;%     ;;   \n"
+    "               ,           ,                :;%  %;   \n"
+    "                :         ;                   :;%;'     .,   \n"
+    "       ,.        %;     %;            ;        %;'    ,;\n"
+    "         ;       ;%;  %%;        ,     %;    ;%;    ,%'\n"
+    "          %;       %;%;      ,  ;       %;  ;%;   ,%;' \n"
+    "           ;%;      %;        ;%;        % ;%;  ,%;'\n"
+    "            `%;.     ;%;     %;'         `;%%;.%;'\n"
+    "             `:;%.    ;%%. %@;        %; ;@%;%'\n"
+    "                `:%;.  :;bd%;          %;@%;'\n"
+    "                  `@%:.  :;%.         ;@@%;'   \n"
+    "                    `@%.  `;@%.      ;@@%;         \n"
+    "                      `@%%. `@%%    ;@@%;        \n"
+    "                        ;@%. :@%%  %@@%;       \n"
+    "                          %@bd%%%bd%%:;     \n"
+    "                            #@%%%%%:;;\n"
+    "                            %@@%%%::;\n"
+    "                            %@@@%(o);  . '         \n"
+    "                            %@@@o%;:(.,'         \n"
+    "                        `.. %@@@o%::;         \n"
+    "                           `)@@@o%::;         \n"
+    "                            %@@(o)::;        \n"
+    "                           .%@@@@%::;         \n"
+    "                           ;%@@@@%::;.          \n"
+    "                          ;%@@@@%%:;;;. \n"
+    "                      ...;%@@@@@%%:;;;;,..    \n";
+
+	ofs.open(getTarget() + "_shrubbery");
+	if (ofs.fail()) {
+		throw CannotOpenFileException();
+	}
+	ofs << asciiTree;
+	ofs.close();
+}
+
+const char *ShrubberyCreationForm::CannotOpenFileException::what() const throw() {
+    return "Exception: CannotExecuteFileException";
 }

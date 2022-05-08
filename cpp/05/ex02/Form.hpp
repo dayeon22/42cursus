@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 12:31:32 by daypark           #+#    #+#             */
-/*   Updated: 2022/05/08 02:02:34 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/08 16:56:57 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ class Bureaucrat;
 
 class Form {
 private:
-    const std::string target_; // 추가해줬음(생성자 등 바꿀거 바꾸기)
+    const std::string target_;
     const std::string type_;
     bool isSigned_;
     const int signGrade_;
@@ -47,7 +47,7 @@ public:
     class GradeTooHighException : public std::exception {
         const char *what() const throw();
     };
-    class CannotExecuteException : public std::exception {
+    class NotSignedException : public std::exception {
         const char *what() const throw();
     };
 };

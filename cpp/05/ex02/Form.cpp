@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 12:54:14 by daypark           #+#    #+#             */
-/*   Updated: 2022/05/05 18:14:29 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/08 16:55:24 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int Form::getExecuteGrade() const {
 }
 
 void Form::beSigned(Bureaucrat &bureaucrat) {
-    if (executeGrade_ < bureaucrat.getGrade())
+    if (signGrade_ < bureaucrat.getGrade())
         throw GradeTooLowException();
     else
         isSigned_ = true;
@@ -82,6 +82,6 @@ const char *Form::GradeTooHighException::what() const throw() {
     return "Exception: GradeTooHighException";
 }
 
-const char *Form::CannotExecuteException::what() const throw() {
+const char *Form::NotSignedException::what() const throw() {
     return "Exception: CannotExecuteException";
 }

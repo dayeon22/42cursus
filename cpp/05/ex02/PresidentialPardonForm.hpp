@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
+/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 16:06:07 by daypark           #+#    #+#             */
-/*   Updated: 2022/05/08 15:42:16 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/08 16:07:17 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHRUBBERYCREATIONFORM_HPP
-# define SHRUBBERYCREATIONFORM_HPP
+#ifndef PRESIDENTIALPARDONFORM_HPP
+# define PRESIDENTIALPARDONFORM_HPP
 
 #include "Form.hpp"
-#include <fstream>
 
-class ShrubberyCreationForm : public Form {
+class PresidentialPardonForm : public Form {
 public:
-	ShrubberyCreationForm();
-	ShrubberyCreationForm(std::string target);
-	ShrubberyCreationForm(const ShrubberyCreationForm &sc);
-	~ShrubberyCreationForm();
-	ShrubberyCreationForm &operator=(const ShrubberyCreationForm &sc);
+	PresidentialPardonForm();
+	PresidentialPardonForm(std::string target);
+	PresidentialPardonForm(const PresidentialPardonForm &pp);
+	~PresidentialPardonForm();
+	PresidentialPardonForm &operator=(const PresidentialPardonForm &pp);
 
 	void execute(Bureaucrat const &executor) const;
-
-	class CannotOpenFileException : public std::exception {
-		const char *what() const throw();
-    };
 };
 
 #endif
