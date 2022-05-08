@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 12:54:14 by daypark           #+#    #+#             */
-/*   Updated: 2022/05/03 17:13:19 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/05 18:14:29 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ Form::Form() : target_("default"), isSigned_(false), signGrade_(150), executeGra
 
 }
 
-Form::Form(std::string target, int signGrade, int executeGrade) : 
+Form::Form(std::string target, std::string type_, int signGrade, int executeGrade) : 
     target_(target), isSigned_(false), signGrade_(signGrade), executeGrade_(executeGrade) {
     checkGrade();
 }
@@ -34,19 +34,23 @@ Form &Form::operator=(const Form &form) {
     return *this;
 }
 
-std::string Form::getTarget() const{
+std::string Form::getTarget() const {
     return target_;
 }
 
-bool Form::getIsSigned() const{
+std::string Form::getType() const {
+    return type_;
+}
+
+bool Form::getIsSigned() const {
     return isSigned_;
 }
 
-int Form::getSignGrade() const{
+int Form::getSignGrade() const {
     return signGrade_;
 }
 
-int Form::getExecuteGrade() const{
+int Form::getExecuteGrade() const {
     return executeGrade_;
 }
 
@@ -76,4 +80,8 @@ const char *Form::GradeTooLowException::what() const throw() {
 
 const char *Form::GradeTooHighException::what() const throw() {
     return "Exception: GradeTooHighException";
+}
+
+const char *Form::CannotExecuteException::what() const throw() {
+    return "Exception: CannotExecuteException";
 }
