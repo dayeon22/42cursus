@@ -3,30 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   megaphone.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/23 11:49:33 by daypark           #+#    #+#             */
-/*   Updated: 2021/12/23 11:49:37 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/10 15:44:29 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 
-std::string	capitalizeString(std::string s)
-{
-	std::string	res;
-	int			i;
-
-	for (i = 0; i < (int)s.size(); i++)
-	{
-		res += toupper(s[i]);
-	}
-	return (res);
-}
-
 int	main(int argc, char *argv[])
 {
-	int	i = 0;
+	int	i;
+	int j;
 
 	if (argc == 1)
 	{
@@ -35,7 +24,12 @@ int	main(int argc, char *argv[])
 	}
 	for (i = 1; i < argc; i++)
 	{
-		std::cout << capitalizeString(argv[i]);
+		j = 0;
+		while (argv[i][j] != '\0')
+		{
+			std::cout << (char)toupper(argv[i][j]);
+			j++;
+		}
 	}
 	return (0);
 }

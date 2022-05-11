@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 10:35:40 by daypark           #+#    #+#             */
-/*   Updated: 2022/01/26 18:23:04 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/10 16:18:34 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ void PhoneBook::displayContact(){
 		if (std::cin.fail())
 		{
 			std::cout << "wrong input!" << std::endl;
-			std::cin.clear();
-			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 			return ;
 		}
 		if (0 <= index && index < max)

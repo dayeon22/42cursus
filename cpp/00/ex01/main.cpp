@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 18:00:47 by daypark           #+#    #+#             */
-/*   Updated: 2022/01/22 18:01:59 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/10 14:40:58 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int main(){
 			phoneBook.addContact();
 		else if (command == "SEARCH")
 			phoneBook.displayContact();
+		if (std::cin.fail())
+			return 0;
 	}
 	return 0;
 }
