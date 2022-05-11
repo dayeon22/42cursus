@@ -6,12 +6,12 @@
 #    By: daypark <daypark@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/13 18:25:12 by daypark           #+#    #+#              #
-#    Updated: 2022/02/16 12:01:58 by daypark          ###   ########.fr        #
+#    Updated: 2022/05/11 17:00:02 by daypark          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = karen
-SRCS = main.cpp Karen.cpp
+NAME = harl
+SRCS = main.cpp Harl.cpp
 OBJS = $(SRCS:.cpp=.o)
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98

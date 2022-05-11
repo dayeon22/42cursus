@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 10:22:45 by daypark           #+#    #+#             */
-/*   Updated: 2022/02/10 14:10:56 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/11 15:35:56 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ int main(){
 	std::cout << stringPTR << std::endl;
 	std::cout << &stringREF << std::endl;
 
-	std::cout << std::endl;
-
 	std::cout << str << std::endl;
+	std::cout << *stringPTR << std::endl;
 	std::cout << stringREF << std::endl;
 }

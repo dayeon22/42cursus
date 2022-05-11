@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Karen.hpp                                          :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 15:35:40 by daypark           #+#    #+#             */
-/*   Updated: 2022/03/07 15:35:41 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/11 17:01:54 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef KAREN_HPP
-# define KAREN_HPP
+#ifndef HARL_HPP
+# define HARL_HPP
 
 #include <iostream>
 #include <string>
 
-class Karen
+class Harl
 {
 private:
 	void debug(void);
