@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 11:07:18 by daypark           #+#    #+#             */
-/*   Updated: 2022/03/21 15:20:31 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/14 21:08:05 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,20 @@ Fixed Fixed::operator--(int) {
 	return temp;
 }
 
+Fixed &Fixed::min(Fixed &one, Fixed &two) {
+	if (one.value_ < two.value_)
+		return one;
+	return two;
+}
+
 const Fixed &Fixed::min(const Fixed &one, const Fixed &two) {
 	if (one.value_ < two.value_)
+		return one;
+	return two;
+}
+
+Fixed &Fixed::max(Fixed &one, Fixed &two) {
+	if (one.value_ > two.value_)
 		return one;
 	return two;
 }

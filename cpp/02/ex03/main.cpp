@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 10:39:02 by daypark           #+#    #+#             */
-/*   Updated: 2022/03/24 10:35:11 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/14 21:21:43 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,5 @@ int main( void ) {
 		std::cout << "True" << std::endl;
 	else
 		std::cout << "False" << std::endl;
-	
 	return 0;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 10:39:02 by daypark           #+#    #+#             */
-/*   Updated: 2022/03/21 15:20:38 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/14 21:13:06 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ int main( void ) {
 	std::cout << b << std::endl;
 	
 	std::cout << Fixed::max( a, b ) << std::endl;
+
+	Fixed c(1);
+	Fixed d(1.5f);
+	bool res = c < d;
+	std::cout << res << std::endl;
+	std::cout << c + d << std::endl;
 	
 	return 0;
 }

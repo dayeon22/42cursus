@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 10:57:34 by daypark           #+#    #+#             */
-/*   Updated: 2022/03/21 16:43:06 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/14 21:09:09 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ public:
 	Fixed &operator--();
 	Fixed operator--(int);
 
+	static Fixed &min(Fixed &one, Fixed &two);
 	static Fixed const &min(const Fixed &one, const Fixed &two);
+	static Fixed &max(Fixed &one, Fixed &two);
 	static Fixed const &max(const Fixed &one, const Fixed &two);
 	int getRawBits(void) const;
 	void setRawBits(int const raw);
