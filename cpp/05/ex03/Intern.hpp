@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 18:31:00 by daypark           #+#    #+#             */
-/*   Updated: 2022/05/17 07:17:39 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/17 07:57:50 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ public:
 	Form *makeSCForm(std::string target);
 	Form *makeRRForm(std::string target);
 	Form *makePPForm(std::string tatget);
+
+	class WrongFormName : public std::exception {
+		const char *what() const throw();
+	};
 };
 
 #endif

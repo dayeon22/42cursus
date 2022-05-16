@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 02:25:27 by daypark           #+#    #+#             */
-/*   Updated: 2022/05/08 16:40:25 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/17 08:06:46 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void Bureaucrat::signForm(Form &form) {
 void Bureaucrat::executeForm(Form const &form) {
     try {
         form.execute(*this);
-        std::cout << name_ << " executed " << form.getTarget();
+        std::cout << name_ << " executed " << form.getTarget() << std::endl;
     }
     catch(const std::exception &e) {
         std::cerr << name_ << " couldn't execute " << form.getTarget() << " because " << e.what() << std::endl;

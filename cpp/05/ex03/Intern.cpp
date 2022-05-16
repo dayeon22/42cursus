@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 18:31:05 by daypark           #+#    #+#             */
-/*   Updated: 2022/05/17 07:24:04 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/17 07:57:06 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,24 +30,15 @@ Intern &Intern::operator=(const Intern &intern) {
 }
 
 Form *Intern::makeForm(std::string name, std::string target) {
-	Form *form;
-	std::string names[3] = {"shrubbery creatioin", "robotomy request", "presidential pardon"};
-	Form *(Intern::*f[4])(std::string) = {&makeSCForm, &makeRRForm, &makePPForm};
+	std::string names[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
+	Form *(Intern::*f[4])(std::string) = {&Intern::makeSCForm, &Intern::makeRRForm, &Intern::makePPForm};
 
 	for (int i = 0; i < 3; i++) {
 		if (names[i] == name) {
-			form = (this->*f[i])(target);
+			return (this->*f[i])(target);
 		}
 	}
-	// if (name == "shrubbery creation")
-	// 	form = new ShrubberyCreationForm(target);
-	// else if (name == "robotomy request")
-	// 	form = new RobotomyRequestForm(target);
-	// else if (name == "presidential pardon")
-	// 	form = new PresidentialPardonForm(target);
-	// else
-	// 	//예외처리...
-	return form;
+	throw WrongFormName();
 }
 
 Form *Intern::makeSCForm(std::string target) {
@@ -60,4 +51,8 @@ Form *Intern::makeRRForm(std::string target) {
 
 Form *Intern::makePPForm(std::string target) {
 	return new PresidentialPardonForm(target);
+}
+
+const char *Intern::WrongFormName::what() const throw() {
+	return "Exception: WrongFormNameExcpetion";
 }
