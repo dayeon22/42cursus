@@ -6,7 +6,7 @@
 #    By: daypark <daypark@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/09 15:13:17 by daypark           #+#    #+#              #
-#    Updated: 2022/04/09 18:25:26 by daypark          ###   ########.fr        #
+#    Updated: 2022/05/17 01:41:30 by daypark          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ clean :
 .PHONY: fclean
 fclean : clean
 	rm -f $(NAME)
-	rm -r $(W_NAME)
+	rm -f $(W_NAME)
 
 .PHONY: re
 re : fclean all

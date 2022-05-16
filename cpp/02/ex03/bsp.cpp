@@ -6,13 +6,13 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 14:59:06 by daypark           #+#    #+#             */
-/*   Updated: 2022/03/24 10:14:12 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/16 23:11:38 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Point.hpp"
 
-int countContact(Point const p1, Point const p2, Point const p3, Point const point) {
+int countContact(Point const &p1, Point const &p2, Point const &p3, Point const &point) {
 	Fixed s0;
 	Fixed s1;
 	Fixed s2;
