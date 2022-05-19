@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dayeon <daypark@student.42seoul.kr>        +#+  +:+       +#+        */
+/*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/17 14:35:40 by dayeon            #+#    #+#             */
-/*   Updated: 2022/05/17 17:19:37 by dayeon           ###   ########.fr       */
+/*   Created: 2022/05/20 00:53:50 by daypark           #+#    #+#             */
+/*   Updated: 2022/05/20 01:31:23 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ int main(int argc, char *argv[]) {
 		std::cout << "./convert string_to_convert" << std::endl;
 		return 0;
 	}
-	
 	std::string input = argv[1];
 	Convert convert(input);
-	convert.convertTo();
+	convert.convertToScalar();
 }

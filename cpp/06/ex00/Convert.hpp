@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Convert.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dayeon <daypark@student.42seoul.kr>        +#+  +:+       +#+        */
+/*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/17 10:44:13 by dayeon            #+#    #+#             */
-/*   Updated: 2022/05/17 17:13:25 by dayeon           ###   ########.fr       */
+/*   Created: 2022/05/20 00:54:03 by daypark           #+#    #+#             */
+/*   Updated: 2022/05/20 02:04:16 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 #include <iostream>
 #include <string>
+#include <iomanip>
+#include <limits>
 
 class Convert {
 private:
@@ -26,11 +28,18 @@ public:
 	~Convert();
 	Convert &operator=(const Convert &convert);
 
-	void convertTo();
+	void convertToScalar();
 	void convertToChar();
 	void convertToInt();
 	void convertToFloat();
 	void convertToDouble();
+
+	class NonDisplayableException : public std::exception {
+		const char *what() const throw();
+	};
+	class ImpossibleException : public std::exception {
+		const char *what() const throw();
+	};
 };
 
 #endif
