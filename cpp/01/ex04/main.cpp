@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 18:17:39 by daypark           #+#    #+#             */
-/*   Updated: 2022/02/17 17:21:54 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/20 11:34:29 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ int main(int argc, char *argv[]){
 	}
 
 	std::string line;
-	while (true){
+	while (true) {
 		std::getline(fin, line);
 
 		size_t start = 0;
 		size_t index = 0;
 		while (true){
 			index = line.find(argv[2], start);
-			if (index == std::string::npos){
+			if (index == std::string::npos) {
 				fout << line.substr(start);
 				break;
 			}

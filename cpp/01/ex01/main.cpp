@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 23:59:41 by daypark           #+#    #+#             */
-/*   Updated: 2022/02/10 09:44:37 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/20 10:49:53 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ int main(){
     for (int i = 0; i < n; i++){
         zombieH[i].announce();
     }
+    
     delete[] zombieH;
 }
