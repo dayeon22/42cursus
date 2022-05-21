@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: daypark <daypark@student.42.fr>            +#+  +:+       +#+         #
+#    By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/05/20 03:48:04 by daypark           #+#    #+#              #
-#    Updated: 2022/05/20 08:49:37 by daypark          ###   ########.fr        #
+#    Created: 2022/05/21 15:25:05 by daypark           #+#    #+#              #
+#    Updated: 2022/05/21 16:31:25 by daypark          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = identify
-SRCS = main.cpp Base.cpp
+SRCS = main.cpp
 OBJS = $(SRCS:.cpp=.o)
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
