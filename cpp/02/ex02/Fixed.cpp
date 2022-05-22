@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 11:07:18 by daypark           #+#    #+#             */
-/*   Updated: 2022/05/16 23:03:17 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/22 18:26:33 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ Fixed::~Fixed() {
 }
 
 Fixed &Fixed::operator=(const Fixed &fixed) {
-	std::cout << "Assignation operator called" << std::endl;
+	std::cout << "Copy assignment operator called" << std::endl;
 	setRawBits(fixed.getRawBits());
 	return *this;
 }
