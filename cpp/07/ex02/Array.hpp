@@ -1,0 +1,117 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Array.hpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/23 23:07:59 by daypark           #+#    #+#             */
+/*   Updated: 2022/05/24 10:40:54 by daypark          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef ARRAY_HPP
+# define ARRAY_HPP
+
+#include <iostream>
+#include <exception>
+
+template <typename T>
+class Array
+{
+private:
+    unsigned int size_;
+    T *arr_;
+public:
+    Array<T>();
+    Array<T>(unsigned int n);
+    Array<T>(const Array &array);
+    ~Array<T>();
+    Array<T> &operator=(const Array &array);
+    T &operator[](unsigned int idx);
+    T &operator[](unsigned int idx) const;
+    unsigned int size() const;
+
+    class OutOfBoundsException : public std::exception {
+        const char *what() const throw();
+    };
+};
+
+template <typename T>
+Array<T>::Array() {
+    size_ = 0;
+    arr_ = NULL;
+}
+
+template <typename T>
+Array<T>::Array(unsigned int n) {
+    size_ = n;
+    if (n == 0)
+        arr_ = NULL;
+    else
+        arr_ = new T[size_];
+}
+
+template <typename T>
+Array<T>::Array(const Array<T> &array) {
+    *this = array;
+}
+
+template <typename T>
+Array<T>::~Array() {
+    delete[] arr_;
+    arr_ = NULL;
+    size_ = 0;
+}
+
+template <typename T>
+Array<T> &Array<T>::operator=(const Array<T> &array) {
+    size_ = array.size_;
+    if (arr_)
+        delete[] arr_;
+    if (size_ == 0)
+        arr_ = NULL;
+    else
+        arr_ = new T[array.size_];
+
+    for (int i = 0; i < array.size_; i++) {
+        arr_[i] = array.arr_[i];
+    }
+    return *this;
+}
+
+template <typename T>
+T &Array<T>::operator[](unsigned int idx) {
+    if (idx < 0 || idx >= size_)
+        throw OutOfBoundsException();
+    return arr_[idx];
+}
+
+template <typename T>
+T &Array<T>::operator[](unsigned int idx) const {
+    if (idx < 0 || idx >= size_)
+        throw OutOfBoundsException();
+    return arr_[idx];
+}
+
+template <typename T>
+unsigned int Array<T>::size() const {
+    return size_;
+}
+
+template< typename T >
+std::ostream &operator<<(std::ostream &outputStream, const Array<T> &array)
+{
+	if (array.size()) {
+		for (unsigned int i = 0; i < array.size(); i++)
+			outputStream << array[i] << " ";
+	}
+	return outputStream;
+}
+
+template <typename T>
+const char *Array<T>::OutOfBoundsException::what() const throw() {
+    return "Exception: Out Of Bounds";
+}
+
+#endif
