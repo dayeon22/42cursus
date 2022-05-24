@@ -6,11 +6,10 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 17:09:17 by daypark           #+#    #+#             */
-/*   Updated: 2022/05/17 02:13:24 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/24 15:30:14 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
 #include "Cat.hpp"
 #include "Dog.hpp"
 #include "Brain.hpp"

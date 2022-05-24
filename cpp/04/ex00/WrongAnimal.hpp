@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 17:33:34 by daypark           #+#    #+#             */
-/*   Updated: 2022/04/09 17:36:15 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/24 15:29:06 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define WRONGANIMAL_HPP
 
 #include <iostream>
-#include <string>
 
 class WrongAnimal
 {

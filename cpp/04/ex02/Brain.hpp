@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 18:37:01 by daypark           #+#    #+#             */
-/*   Updated: 2022/04/10 17:16:57 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/24 15:30:25 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define BRAIN_HPP
 
 #include <iostream>
-#include <string>
 
 class Brain
 {

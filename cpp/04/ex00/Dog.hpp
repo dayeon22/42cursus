@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 15:26:53 by daypark           #+#    #+#             */
-/*   Updated: 2022/04/09 17:25:04 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/24 15:57:20 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ public:
 	Dog(const Dog &dog);
 	~Dog();
 	Dog &operator=(const Dog &dog);
-	virtual std::string getType() const;
+	std::string getType() const;
 	virtual void makeSound() const;
 };
 

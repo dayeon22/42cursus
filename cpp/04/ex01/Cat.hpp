@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 15:27:18 by daypark           #+#    #+#             */
-/*   Updated: 2022/04/10 17:15:10 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/24 15:58:23 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ public:
 	Cat(const Cat &cat);
 	~Cat();
 	Cat &operator=(const Cat &cat);
-	virtual std::string getType() const;
+	std::string getType() const;
 	virtual void makeSound() const;
 	Brain *getBrain();
 };

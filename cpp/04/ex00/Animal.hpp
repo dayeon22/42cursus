@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 15:10:15 by daypark           #+#    #+#             */
-/*   Updated: 2022/04/09 17:24:30 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/24 16:02:27 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define ANIMAL_HPP
 
 #include <iostream>
-#include <string>
 
 class Animal
 {
@@ -23,9 +22,9 @@ protected:
 public:
 	Animal();
 	Animal(const Animal &animal);
-	~Animal();
+	virtual ~Animal();
 	Animal &operator=(const Animal &animal);
-	virtual std::string getType() const;
+	std::string getType() const;
 	virtual void makeSound() const;
 };
 
