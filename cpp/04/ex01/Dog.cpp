@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 16:46:01 by daypark           #+#    #+#             */
-/*   Updated: 2022/04/10 17:19:39 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/26 15:35:40 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ Dog::Dog() {
 
 Dog::Dog(const Dog &dog) {
 	std::cout << "[Dog] Copy constructor called" << std::endl;
+	brain_ = NULL;
 	*this = dog;
 }
 
@@ -30,6 +31,8 @@ Dog::~Dog() {
 
 Dog &Dog::operator=(const Dog &dog) {
 	type_ = dog.type_;
+	if (brain_)
+		delete brain_;
 	brain_ = new Brain(*dog.brain_);
 	return *this;
 }
