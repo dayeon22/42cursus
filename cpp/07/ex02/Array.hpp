@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 23:07:59 by daypark           #+#    #+#             */
-/*   Updated: 2022/05/24 10:40:54 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/26 16:45:17 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,14 @@ Array<T>::Array() {
 template <typename T>
 Array<T>::Array(unsigned int n) {
     size_ = n;
-    if (n == 0)
-        arr_ = NULL;
-    else
+    arr_ = NULL;
+    if (n)
         arr_ = new T[size_];
 }
 
 template <typename T>
 Array<T>::Array(const Array<T> &array) {
+    arr_ = NULL;
     *this = array;
 }
 
@@ -73,7 +73,6 @@ Array<T> &Array<T>::operator=(const Array<T> &array) {
         arr_ = NULL;
     else
         arr_ = new T[array.size_];
-
     for (int i = 0; i < array.size_; i++) {
         arr_[i] = array.arr_[i];
     }
