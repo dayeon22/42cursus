@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 02:24:20 by daypark           #+#    #+#             */
-/*   Updated: 2022/05/17 08:09:41 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/28 22:09:37 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ int main() {
         bureaucrat.executeForm(*f3);
 
         Form *f4 = intern.makeForm("formform", "aaaa");
-
-    } catch (std::exception &e) {
+    } catch(std::exception &e) {
         std::cerr << e.what() << std::endl;
     }
 }

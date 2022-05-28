@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 12:31:32 by daypark           #+#    #+#             */
-/*   Updated: 2022/05/03 11:43:57 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/28 22:10:50 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define FORM_HPP
 
 #include <iostream>
-#include <string>
 
 class Bureaucrat;
 

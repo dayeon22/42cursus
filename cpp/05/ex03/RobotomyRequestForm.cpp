@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 16:06:04 by daypark           #+#    #+#             */
-/*   Updated: 2022/05/08 18:06:59 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/28 21:51:40 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ RobotomyRequestForm::~RobotomyRequestForm() {
 
 }
 
-RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &trrt) {
+RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &rr) {
 	return *this;
 }
 
