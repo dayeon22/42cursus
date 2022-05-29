@@ -6,12 +6,12 @@
 #    By: daypark <daypark@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/20 03:48:04 by daypark           #+#    #+#              #
-#    Updated: 2022/05/20 07:44:04 by daypark          ###   ########.fr        #
+#    Updated: 2022/05/29 21:39:02 by daypark          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = serialization
-SRCS = main.cpp Data.cpp
+SRCS = main.cpp
 OBJS = $(SRCS:.cpp=.o)
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
