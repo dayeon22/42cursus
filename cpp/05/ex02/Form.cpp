@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 12:54:14 by daypark           #+#    #+#             */
-/*   Updated: 2022/05/08 18:10:06 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/29 17:49:15 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ void Form::checkGrade() {
 }
 
 std::ostream &operator<<(std::ostream &outputStream, const Form &form) {
-    std::cout << "name: " << form.getTarget() << ", is signed: " << form.getIsSigned() << ", grade: " 
-    << form.getSignGrade() << ", required grade: " << form.getExecuteGrade();
+    std::cout << "name: " << form.getTarget() << ", is signed: " << form.getIsSigned() << ", sign grade: " 
+    << form.getSignGrade() << ", execute grade: " << form.getExecuteGrade();
     return outputStream;
 }
 

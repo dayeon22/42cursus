@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 02:24:20 by daypark           #+#    #+#             */
-/*   Updated: 2022/05/28 21:23:10 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/29 17:39:21 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int main() {
     Form form3("form3", 1, 1);
     bureaucrat.signForm(form3);
 
-    Form form4("form4", 1, 44);
+    Form form4("form4", 44, 1);
     std::cout << form4 << std::endl;
     bureaucrat.signForm(form4);
 }

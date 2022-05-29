@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 16:06:04 by daypark           #+#    #+#             */
-/*   Updated: 2022/05/28 21:54:16 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/29 18:01:53 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,11 @@ void RobotomyRequestForm::execute(Bureaucrat const &executor) const {
 	
     srand((unsigned int)time(NULL));
     int robo = rand() % 2;
+    std::cout << "drrrrrrrr..." << std::endl;
     if (!robo)
         throw RobotomizeFailedException();
-    else {
-        std::cout << "drrrrrrrr" << std::endl;
+    else
         std::cout << getTarget() << " has been robotomized." << std::endl;
-    }
 }
 
 const char *RobotomyRequestForm::RobotomizeFailedException::what() const throw() {
