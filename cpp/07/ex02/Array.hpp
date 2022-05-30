@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 23:07:59 by daypark           #+#    #+#             */
-/*   Updated: 2022/05/26 16:45:17 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/30 16:26:36 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ public:
     ~Array<T>();
     Array<T> &operator=(const Array &array);
     T &operator[](unsigned int idx);
-    T &operator[](unsigned int idx) const;
+    const T &operator[](unsigned int idx) const;
     unsigned int size() const;
 
     class OutOfBoundsException : public std::exception {
@@ -66,15 +66,18 @@ Array<T>::~Array() {
 
 template <typename T>
 Array<T> &Array<T>::operator=(const Array<T> &array) {
-    size_ = array.size_;
-    if (arr_)
-        delete[] arr_;
-    if (size_ == 0)
-        arr_ = NULL;
-    else
-        arr_ = new T[array.size_];
-    for (int i = 0; i < array.size_; i++) {
-        arr_[i] = array.arr_[i];
+    if (&array != this)
+    {
+        size_ = array.size_;
+        if (arr_)
+            delete[] arr_;
+        if (size_ == 0)
+            arr_ = NULL;
+        else
+            arr_ = new T[array.size_];
+        for (int i = 0; i < array.size_; i++) {
+            arr_[i] = array.arr_[i];
+        }
     }
     return *this;
 }
@@ -87,7 +90,7 @@ T &Array<T>::operator[](unsigned int idx) {
 }
 
 template <typename T>
-T &Array<T>::operator[](unsigned int idx) const {
+const T &Array<T>::operator[](unsigned int idx) const {
     if (idx < 0 || idx >= size_)
         throw OutOfBoundsException();
     return arr_[idx];
@@ -98,7 +101,7 @@ unsigned int Array<T>::size() const {
     return size_;
 }
 
-template< typename T >
+template <typename T>
 std::ostream &operator<<(std::ostream &outputStream, const Array<T> &array)
 {
 	if (array.size()) {

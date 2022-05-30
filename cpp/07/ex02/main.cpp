@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 01:12:37 by daypark           #+#    #+#             */
-/*   Updated: 2022/05/26 16:46:42 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/30 16:32:59 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,9 @@ int main(int, char**)
     std::cout << arr1[1] << std::endl;
 
     Array<std::string> arr2(3);
-    arr2[0] = "000";
-    arr2[1] = "111";
-    arr2[2] = "222";
+    arr2[0] = "abc";
+    arr2[1] = "def";
+    arr2[2] = "ghi";
     std::cout << arr2 << std::endl;
 
     try {
@@ -84,7 +84,6 @@ int main(int, char**)
     } catch(std::exception &e) {
         std::cerr << e.what() << std::endl;
     }
-
-
+    
     return 0;
 }
