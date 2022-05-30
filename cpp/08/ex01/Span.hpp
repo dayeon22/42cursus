@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 05:27:15 by daypark           #+#    #+#             */
-/*   Updated: 2022/05/27 12:03:54 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/31 03:31:09 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,27 @@
 class Span
 {
 private:
-public:
     unsigned int N_;
     std::vector<int> v_;
+public:
     Span();
     Span(unsigned int N);
     Span(const Span &span);
     ~Span();
     Span &operator=(const Span &span);
 
-    void addNumber(int num);
     int shortestSpan();
     int longestSpan();
+    void addNumber(int num);
+    template <typename T>
+    void addNumberItr(T start, T end) {
+        if (start == end) //start >= end
+            return ;
+        while (start != end) {
+            addNumber(*start);
+            start++;
+        }
+    }
 
     class NoSpaceException : public std::exception {
         const char *what() const throw();

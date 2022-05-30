@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 05:27:09 by daypark           #+#    #+#             */
-/*   Updated: 2022/05/27 12:20:46 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/31 02:59:07 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ Span &Span::operator=(const Span &span) {
     N_ = span.N_;
     v_.resize(N_);
     std::copy(span.v_.begin(), span.v_.end(), v_.begin());
-
-    std::cout << "@@@" << *v_.begin() << ", " << *v_.end() << std::endl;
     return *this;
 }
 
@@ -48,14 +46,16 @@ void Span::addNumber(int num) {
 int Span::shortestSpan() {
     if (N_ < 2)
         throw NoNumberException();
-    std::vector<int> temp(v_);  // 벡터라서 복사생성자 실행안되는거였음!!(여기고치기)
-    std::cout << "!!!" << *temp.begin() << ", " << *temp.end() << std::endl; // 출력이상함!!
+    
+    std::vector<int> temp(v_);
     sort(temp.begin(), temp.end());
-    std::vector<int>::iterator it;
-    int min = 0;
-
-    for (it = temp.begin(); it != temp.end(); it++) {
-        std::cout << *it << std::endl;
+    std::vector<int>::iterator it = temp.begin();
+    int min = std::abs(*(it + 1) - *it);
+    int diff = 0;
+    for (; it != temp.end() - 1; it++) {
+        diff = std::abs(*(it + 1) - *it);
+        if (min > diff)
+            min = diff;
     }
     return min;
 }
@@ -63,8 +63,8 @@ int Span::shortestSpan() {
 int Span::longestSpan() {
     if (N_ < 2)
         throw NoNumberException();
-    int min = *max_element(v_.begin(), v_.end());
-    int max = *min_element(v_.begin(), v_.end());
+    int min = *min_element(v_.begin(), v_.end());
+    int max = *max_element(v_.begin(), v_.end());
     return max - min;
 }
 

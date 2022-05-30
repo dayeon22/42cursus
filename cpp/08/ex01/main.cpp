@@ -6,40 +6,29 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 05:27:24 by daypark           #+#    #+#             */
-/*   Updated: 2022/05/27 12:17:41 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/31 03:37:15 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 
 int main() {
-    Span s(10);
+    Span sp = Span(5);
+    Span sp1(10000);
 
-    s.addNumber(1);
-    s.addNumber(5);
-    s.addNumber(3);
-    s.addNumber(2);
-    s.addNumber(4);
-/*
-    Span s1 = s;
-    std::cout << s1.N_ << std::endl;
-    std::cout << s1.v_[0] << std::endl;
-    std::cout << s1.v_[1] << std::endl;
-    std::cout << s1.v_[2] << std::endl;
-    std::cout << s1.v_[3] << std::endl;
-    std::cout << s1.v_[4] << std::endl;
+    sp.addNumber(6);
+    sp.addNumber(3);
+    sp.addNumber(17);
+    sp.addNumber(9);
+    sp.addNumber(11);
+    std::cout << "shortest span: " << sp.shortestSpan() << std::endl;
+    std::cout << "longest span: " << sp.longestSpan() << std::endl;
 
-    Span s2;
-    s2 = s;
-    std::cout << s2.N_ << std::endl;
-    std::cout << s2.v_[0] << std::endl;
-    std::cout << s2.v_[1] << std::endl;
-    std::cout << s2.v_[2] << std::endl;
-    std::cout << s2.v_[3] << std::endl;
-    std::cout << s2.v_[4] << std::endl;
-*/
-    s.shortestSpan();
-    s.longestSpan();
-    //std::cout << "shortest span: " << s.shortestSpan() << std::endl;
-    //std::cout << "longest span: " << s.longestSpan() << std::endl;
+    std::vector<int> v;
+    for (int i = -5000; i < 5000; i++) {
+        v.push_back(i);
+    }
+    sp1.addNumberItr(v.begin(), v.end());
+    std::cout << "shortest span: " << sp1.shortestSpan() << std::endl;
+    std::cout << "longest span: " << sp1.longestSpan() << std::endl;
 }
