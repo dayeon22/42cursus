@@ -6,13 +6,11 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 11:14:23 by daypark           #+#    #+#             */
-/*   Updated: 2022/05/31 12:44:11 by daypark          ###   ########.fr       */
+/*   Updated: 2022/06/01 04:41:08 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MutantStack.hpp"
-#include <iostream>
-#include <list>
 
 int main()
 {
@@ -37,8 +35,8 @@ int main()
     }
     std::cout << std::endl;
     MutantStack<int>::reverse_iterator rit = mstack.rbegin();
-    MutantStack<int>::reverse_iterator rend = mstack.rend();
-    while (rit != rend)
+    MutantStack<int>::reverse_iterator rite = mstack.rend();
+    while (rit != rite)
     {
         std::cout << *rit << " ";
         ++rit;
@@ -69,13 +67,14 @@ int main()
     }
     std::cout << std::endl;
     std::list<int>::reverse_iterator rit1 = li.rbegin();
-    std::list<int>::reverse_iterator rend1 = li.rend();
-    while (rit1 != rend1)
+    std::list<int>::reverse_iterator rite1 = li.rend();
+    while (rit1 != rite1)
     {
         std::cout << *rit1 << " ";
         ++rit1;
     }
 
     std::list<int> s1(li);
+    
     return 0;
 }

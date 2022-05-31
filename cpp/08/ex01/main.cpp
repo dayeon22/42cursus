@@ -6,12 +6,11 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 05:27:24 by daypark           #+#    #+#             */
-/*   Updated: 2022/05/31 12:56:00 by daypark          ###   ########.fr       */
+/*   Updated: 2022/06/01 04:37:16 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
-#include <list>
 
 int main() {
     Span sp = Span(5);

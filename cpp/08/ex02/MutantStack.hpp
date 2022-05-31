@@ -6,12 +6,14 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 04:01:07 by daypark           #+#    #+#             */
-/*   Updated: 2022/05/31 12:18:26 by daypark          ###   ########.fr       */
+/*   Updated: 2022/06/01 04:41:06 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stack>
 #include <deque>
+#include <list>
+#include <iostream>
 
 template < typename T, typename Container = std::deque<T> >
 class MutantStack : public std::stack<T, Container> {
