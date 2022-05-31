@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 05:27:15 by daypark           #+#    #+#             */
-/*   Updated: 2022/05/31 03:31:09 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/31 06:56:04 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,10 @@ public:
     void addNumber(int num);
     template <typename T>
     void addNumberItr(T start, T end) {
-        if (start == end) //start >= end
+        if (std::distance(start, end) > N_ - v_.size())
             return ;
-        while (start != end) {
-            addNumber(*start);
-            start++;
-        }
+        while (start != end)
+            v_.push_back(*start++);
     }
 
     class NoSpaceException : public std::exception {

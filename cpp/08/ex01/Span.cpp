@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 05:27:09 by daypark           #+#    #+#             */
-/*   Updated: 2022/05/31 02:59:07 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/31 05:20:53 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,11 @@ Span::~Span() {
 }
 
 Span &Span::operator=(const Span &span) {
-    N_ = span.N_;
-    v_.resize(N_);
-    std::copy(span.v_.begin(), span.v_.end(), v_.begin());
+    if (this != &span) {
+        N_ = span.N_;
+        v_.resize(N_);
+        std::copy(span.v_.begin(), span.v_.end(), v_.begin());
+    }
     return *this;
 }
 
