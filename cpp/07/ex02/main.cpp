@@ -6,11 +6,10 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 01:12:37 by daypark           #+#    #+#             */
-/*   Updated: 2022/05/30 16:32:59 by daypark          ###   ########.fr       */
+/*   Updated: 2022/06/01 00:17:43 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
 #include "Array.hpp"
 
 #define MAX_VAL 750
@@ -69,21 +68,25 @@ int main(int, char**)
     Array<int> arr1 = arr;
     
     std::cout << arr << std::endl;
-    arr[1] = 1;
-    std::cout << arr[1] << std::endl;
-    std::cout << arr1[1] << std::endl;
+    arr[0] = 1;
+    std::cout << arr << std::endl;
+    std::cout << arr1 << std::endl;
 
     Array<std::string> arr2(3);
     arr2[0] = "abc";
     arr2[1] = "def";
     arr2[2] = "ghi";
     std::cout << arr2 << std::endl;
+    Array<std::string> arr3 = arr2;
+    arr3[0] = "aaa";
+    arr3[1] = "bbb";
+    std::cout << arr3 << std::endl;
 
     try {
         arr2[3] = "333";
     } catch(std::exception &e) {
         std::cerr << e.what() << std::endl;
     }
-    
+
     return 0;
 }

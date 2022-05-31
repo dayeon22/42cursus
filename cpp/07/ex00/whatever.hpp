@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   whatever.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daypark <daypark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 17:18:33 by daypark           #+#    #+#             */
-/*   Updated: 2022/05/21 18:39:04 by daypark          ###   ########.fr       */
+/*   Updated: 2022/06/01 00:05:00 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include <string>
 
 template <typename T>
 void swap(T &a, T &b) {

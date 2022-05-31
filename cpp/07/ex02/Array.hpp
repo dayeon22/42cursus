@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 23:07:59 by daypark           #+#    #+#             */
-/*   Updated: 2022/05/30 16:26:36 by daypark          ###   ########.fr       */
+/*   Updated: 2022/05/31 23:51:40 by daypark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define ARRAY_HPP
 
 #include <iostream>
-#include <exception>
 
 template <typename T>
 class Array
@@ -23,11 +22,11 @@ private:
     unsigned int size_;
     T *arr_;
 public:
-    Array<T>();
-    Array<T>(unsigned int n);
-    Array<T>(const Array &array);
-    ~Array<T>();
-    Array<T> &operator=(const Array &array);
+    Array();
+    Array(unsigned int n);
+    Array(const Array &array);
+    ~Array();
+    Array &operator=(const Array &array);
     T &operator[](unsigned int idx);
     const T &operator[](unsigned int idx) const;
     unsigned int size() const;
@@ -40,15 +39,13 @@ public:
 template <typename T>
 Array<T>::Array() {
     size_ = 0;
-    arr_ = NULL;
+    arr_ = new T[size_];
 }
 
 template <typename T>
 Array<T>::Array(unsigned int n) {
     size_ = n;
-    arr_ = NULL;
-    if (n)
-        arr_ = new T[size_];
+    arr_ = new T[size_];
 }
 
 template <typename T>
@@ -61,7 +58,6 @@ template <typename T>
 Array<T>::~Array() {
     delete[] arr_;
     arr_ = NULL;
-    size_ = 0;
 }
 
 template <typename T>
@@ -71,10 +67,7 @@ Array<T> &Array<T>::operator=(const Array<T> &array) {
         size_ = array.size_;
         if (arr_)
             delete[] arr_;
-        if (size_ == 0)
-            arr_ = NULL;
-        else
-            arr_ = new T[array.size_];
+        arr_ = new T[array.size_];
         for (int i = 0; i < array.size_; i++) {
             arr_[i] = array.arr_[i];
         }
