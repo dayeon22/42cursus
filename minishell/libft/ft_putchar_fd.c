@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daypark <daypark@student.42seoul.k>        +#+  +:+       +#+        */
+/*   By: jawpark <jawpark@studen.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 13:40:03 by daypark           #+#    #+#             */
-/*   Updated: 2021/01/16 14:24:05 by daypark          ###   ########.fr       */
+/*   Updated: 2021/12/16 18:43:20 by jawpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,6 @@ void	ft_putchar_fd(char c, int fd)
 {
 	if (fd < 0)
 		return ;
-	write(fd, &c, 1);
+	if (c != 0)
+		write(fd, &c, 1);
 }

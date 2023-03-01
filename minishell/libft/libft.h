@@ -6,7 +6,7 @@
 /*   By: jawpark <jawpark@studen.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 12:36:05 by daypark           #+#    #+#             */
-/*   Updated: 2021/11/15 12:17:04 by jawpark          ###   ########.fr       */
+/*   Updated: 2021/12/12 12:34:39 by jawpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ char		*ft_strdup(const char *s1);
 
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 char		*ft_strjoin(char const *s1, char const *s2);
+char		*ft_strjoin_other(char const *s1, char const *s2, char const *s3);
 char		*ft_strtrim(char const *s1, char const *set);
 char		**ft_split(char *s, char c);
-int			count_words(char *s, char c);
 char		**ft_split_main(char const *s, char c);
 char		*ft_itoa(int n);
 char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));

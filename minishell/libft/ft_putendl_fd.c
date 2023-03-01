@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daypark <daypark@student.42seoul.k>        +#+  +:+       +#+        */
+/*   By: jawpark <jawpark@studen.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 13:44:06 by daypark           #+#    #+#             */
-/*   Updated: 2021/01/16 14:31:59 by daypark          ###   ########.fr       */
+/*   Updated: 2021/12/09 15:16:52 by jawpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,5 @@ void	ft_putendl_fd(char *s, int fd)
 	if (!s || fd < 0)
 		return ;
 	ft_putstr_fd(s, fd);
-	write(fd, "\n", 1);
+	ft_putchar_fd('\n', fd);
 }
