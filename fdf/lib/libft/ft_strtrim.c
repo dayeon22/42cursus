@@ -6,7 +6,7 @@
 /*   By: daypark <daypark@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 07:26:55 by daypark           #+#    #+#             */
-/*   Updated: 2021/03/19 19:26:51 by daypark          ###   ########.fr       */
+/*   Updated: 2023/03/01 17:51:07 by dayeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ char	*ft_strtrim(char const *s1, char const *set)
 	int		first;
 	int		last;
 	char	*res;
-	int		i;
 
 	if (!s1)
 		return (NULL);
@@ -52,7 +51,6 @@ char	*ft_strtrim(char const *s1, char const *set)
 	res = (char *)malloc(sizeof(char) * (last - first) + 1);
 	if (!res)
 		return (NULL);
-	i = 0;
 	ft_strlcpy(res, s1 + first, last - first + 1);
 	return (res);
 }
